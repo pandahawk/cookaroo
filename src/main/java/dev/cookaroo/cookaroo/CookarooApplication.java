@@ -9,6 +9,7 @@ public class CookarooApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(CookarooApplication.class, args);
 
+
 	}
 
 }
