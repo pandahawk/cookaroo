@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: cookaroo
+
+  data:
+    mongodb:
+      auditing:
+        enabled: true
+      # nothing secret in the base file
+      auto-index-creation: false
+
+springdoc:
+  override-with-generic-response: false
+  swagger-ui:
+    path: /swagger-ui
