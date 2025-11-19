@@ -10,4 +10,5 @@ public class CookarooApplication {
 		SpringApplication.run(CookarooApplication.class, args);
 	}
 
+
 }
