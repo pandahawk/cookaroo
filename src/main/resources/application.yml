@@ -1,3 +1,6 @@
+cookaroo:
+  api-key: ${COOKAROO_API_KEY}
+
 spring:
   application:
     name: cookaroo
