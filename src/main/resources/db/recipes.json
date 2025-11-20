@@ -1,0 +1,97 @@
+[
+  {
+    "publicId": "a7Gh3KpQ",
+    "title": "Spaghetti Carbonara",
+    "description": "Classic Italian pasta with eggs, cheese, pancetta, and pepper.",
+    "ingredients": [
+      "200g spaghetti",
+      "100g pancetta",
+      "2 eggs",
+      "50g parmesan cheese",
+      "Black pepper"
+    ],
+    "steps": [
+      "Cook the spaghetti.",
+      "Fry the pancetta.",
+      "Mix eggs and parmesan.",
+      "Combine everything and season."
+    ],
+    "servings": 2
+  },
+  {
+    "publicId": "B9xkLm28",
+    "title": "Chicken Curry",
+    "description": "Mild curry with coconut milk and tender chicken pieces.",
+    "ingredients": [
+      "300g chicken breast",
+      "1 onion",
+      "2 garlic cloves",
+      "200ml coconut milk",
+      "Curry powder"
+    ],
+    "steps": [
+      "Sauté onion and garlic.",
+      "Add chicken and fry.",
+      "Add curry powder.",
+      "Pour in coconut milk and simmer."
+    ],
+    "servings": 3
+  },
+  {
+    "publicId": "pQ3zWm4T",
+    "title": "Pancakes",
+    "description": "Fluffy breakfast pancakes.",
+    "ingredients": [
+      "200g flour",
+      "2 eggs",
+      "300ml milk",
+      "1 tbsp sugar",
+      "1 tsp baking powder"
+    ],
+    "steps": [
+      "Mix dry ingredients.",
+      "Add eggs and milk.",
+      "Whisk to smooth batter.",
+      "Cook in a pan until golden."
+    ],
+    "servings": 4
+  },
+  {
+    "publicId": "Zt8hF1sA",
+    "title": "Guacamole",
+    "description": "Fresh Mexican avocado dip.",
+    "ingredients": [
+      "2 ripe avocados",
+      "1 lime",
+      "1 tomato",
+      "Salt",
+      "Pepper"
+    ],
+    "steps": [
+      "Mash the avocados.",
+      "Add chopped tomato.",
+      "Squeeze lime over mixture.",
+      "Season with salt and pepper."
+    ],
+    "servings": 2
+  },
+  {
+    "publicId": "7RnK9bCd",
+    "title": "Tomato Soup",
+    "description": "Smooth and creamy tomato soup.",
+    "ingredients": [
+      "400g tomatoes",
+      "1 onion",
+      "1 garlic clove",
+      "300ml vegetable broth",
+      "Salt"
+    ],
+    "steps": [
+      "Sauté onion and garlic.",
+      "Add tomatoes.",
+      "Pour in broth and simmer.",
+      "Blend until smooth."
+    ],
+    "servings": 2
+  }
+]

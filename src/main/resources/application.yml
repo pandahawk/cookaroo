@@ -10,6 +10,11 @@ spring:
       auto-index-creation: false
 
 springdoc:
+  show-actuator: false
   override-with-generic-response: false
   swagger-ui:
     path: /swagger-ui
+
+mongock:
+  migration-scan-package:
+    - dev.pandahawk.cookaroo.migration

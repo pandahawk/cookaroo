@@ -1,4 +1,4 @@
-package dev.cookaroo.cookaroo;
+package dev.pandahawk.cookaroo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -8,7 +8,5 @@ public class CookarooApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(CookarooApplication.class, args);
-
 	}
-
 }
