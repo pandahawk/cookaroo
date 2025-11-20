@@ -37,7 +37,7 @@ public class RecipeController {
     public RecipeResponse getRecipe(
             @Parameter(name = "id", description = "Nano id of the recipe")
             @PathVariable String id) {
-        return null;
+        return service.getRecipe(id);
     }
 
     @PostMapping
@@ -48,7 +48,7 @@ public class RecipeController {
     @ResponseStatus(HttpStatus.CREATED)
     public RecipeResponse createRecipe(
             @Valid @RequestBody CreateRecipeRequest request) {
-        return null;
+        return service.createRecipe(request);
     }
 
     @DeleteMapping("/{id}")
@@ -60,8 +60,9 @@ public class RecipeController {
     public void deleteRecipe(
             @Parameter(name = "id", description = "Nano id of the recipe")
             @PathVariable String id) {
-        //to be implemented
+        service.deleteRecipe(id);
     }
+
     @PatchMapping("/{id}")
     @Operation(summary = "Update recipe", description = "Updates the recipe " +
             "with the given id.")
@@ -71,5 +72,10 @@ public class RecipeController {
             @Valid @RequestBody UpdateRecipeRequest request) {
         return null;
     }
+
+
+
+
+
 }
 

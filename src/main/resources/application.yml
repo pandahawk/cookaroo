@@ -16,7 +16,7 @@ springdoc:
   show-actuator: false
   override-with-generic-response: false
   swagger-ui:
-    path: /swagger-ui
+    path: /docs
 
 mongock:
   migration-scan-package:
