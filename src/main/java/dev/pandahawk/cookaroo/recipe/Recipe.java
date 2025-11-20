@@ -14,6 +14,7 @@ public record Recipe(
         String publicId,
         String title,
         String description,
+        Difficulty difficulty,
         List<String> ingredients,
         List<String> steps,
         int servings

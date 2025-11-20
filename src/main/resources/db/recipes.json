@@ -16,7 +16,8 @@
       "Mix eggs and parmesan.",
       "Combine everything and season."
     ],
-    "servings": 2
+    "servings": 2,
+    "difficulty": "HARD"
   },
   {
     "publicId": "B9xkLm28",
@@ -35,7 +36,8 @@
       "Add curry powder.",
       "Pour in coconut milk and simmer."
     ],
-    "servings": 3
+    "servings": 3,
+    "difficulty": "MEDIUM"
   },
   {
     "publicId": "pQ3zWm4T",
@@ -54,7 +56,8 @@
       "Whisk to smooth batter.",
       "Cook in a pan until golden."
     ],
-    "servings": 4
+    "servings": 4,
+    "difficulty": "EASY"
   },
   {
     "publicId": "Zt8hF1sA",
@@ -73,7 +76,8 @@
       "Squeeze lime over mixture.",
       "Season with salt and pepper."
     ],
-    "servings": 2
+    "servings": 2,
+    "difficulty": "EASY"
   },
   {
     "publicId": "7RnK9bCd",
@@ -92,6 +96,7 @@
       "Pour in broth and simmer.",
       "Blend until smooth."
     ],
-    "servings": 2
+    "servings": 2,
+    "difficulty": "MEDIUM"
   }
 ]
