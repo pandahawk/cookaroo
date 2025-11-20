@@ -28,8 +28,10 @@ public class RecipeService {
     }
 
     public RecipeResponse getRecipe(String id) {
-        var r = repo.findByPublicId(id).orElseThrow(() -> new RecipeNotFoundException(id));
-        return mapper.toRecipeResponse(r);
+        return repo.findByPublicId(id)
+                .map(mapper::toRecipeResponse)
+                .orElseThrow(() -> new RecipeNotFoundException(id));
+
     }
 
     public void deleteRecipe(String id) {

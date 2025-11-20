@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import dev.pandahawk.cookaroo.core.id.NanoIdService;
 import dev.pandahawk.cookaroo.error.domain.RecipeNotFoundException;
+import dev.pandahawk.cookaroo.recipe.dto.CreateRecipeRequest;
 import dev.pandahawk.cookaroo.recipe.dto.RecipeResponse;
 import dev.pandahawk.cookaroo.recipe.dto.RecipeSummaryResponse;
 import org.junit.jupiter.api.BeforeEach;
@@ -32,7 +33,7 @@ class RecipeServiceTest {
     @Mock
     private RecipeRepository mockRepo;
     @Mock
-    private NanoIdService idService;
+    private NanoIdService mockIdService;
 
     private List<Recipe> testRecipes;
 
@@ -98,8 +99,7 @@ class RecipeServiceTest {
         @Test
         void notFound() {
             var id = "notfound";
-            when(mockRepo.findByPublicId(anyString())).
-                    thenThrow(new RecipeNotFoundException(id));
+            when(mockRepo.findByPublicId(anyString())).thenReturn(Optional.empty());
 
             assertThrows(RecipeNotFoundException.class,
                     () -> service.getRecipe(id));
@@ -107,44 +107,56 @@ class RecipeServiceTest {
             verifyNoMoreInteractions(mockRepo, mockMapper);
         }
     }
-//
-//    @Nested
-//    class deleteRecipe {
-//
-//        @Test
-//        void success() {
-//            var r = testRecipes.getFirst();
-//            var id = r.publicId();
-//            when(mockRepo.findByPublicId(id)).thenReturn(Optional.of(r));
-//
-//            service.deleteRecipe(id);
-//
-//            verify(mockRepo).findByPublicId(id);
-//            verify(mockRepo).delete(r);
-//        }
-//
-//        @Test
-//        void notFound() {
-//            var id = "someid";
-//            when(mockRepo.findByPublicId(id)).thenThrow(new RecipeNotFoundException(id));
-//
-//            assertThrows(RecipeNotFoundException.class,
-//                    () -> service.deleteRecipe(id));
-//        }
-//    }
-//
-//    @Nested
-//    class createRecipe {
-//        @Test
-//        void success() {
-//            var rSaved = testRecipes.getFirst();
-//            var req = mapper.toCreateRequest(rSaved);
-//            when(mockRepo.save(any(Recipe.class))).thenReturn(rSaved);
-//
-//            var res = service.createRecipe(req);
-//
-//            var expected = mapper.toRecipeResponse(rSaved);
-//            assertThat(res).isEqualTo(expected);
-//        }
-//    }
+
+    @Nested
+    class deleteRecipe {
+
+        @Test
+        void success() {
+            var r = testRecipes.getFirst();
+            var id = r.publicId();
+            when(mockRepo.findByPublicId(id)).thenReturn(Optional.of(r));
+
+            service.deleteRecipe(id);
+
+            verify(mockRepo).findByPublicId(id);
+            verify(mockRepo).delete(r);
+            verifyNoMoreInteractions(mockRepo, mockMapper);
+        }
+
+        @Test
+        void notFound() {
+            var id = "someid";
+            when(mockRepo.findByPublicId(id)).thenReturn(Optional.empty());
+
+            assertThrows(RecipeNotFoundException.class,
+                    () -> service.deleteRecipe(id));
+
+            verifyNoMoreInteractions(mockMapper, mockRepo);
+        }
+    }
+
+    @Nested
+    class createRecipe {
+        @Test
+        void success() {
+            var rSaved = testRecipes.getFirst();
+            var r = testRecipes.getFirst();
+            var req = mock(CreateRecipeRequest.class);
+            var res = mock(RecipeResponse.class);
+            when(mockMapper.toEntity(eq(req), anyString())).thenReturn(r);
+            when(mockRepo.save(r)).thenReturn(rSaved);
+            when(mockMapper.toRecipeResponse(rSaved)).thenReturn(res);
+            when(mockIdService.generateId()).thenReturn("abcd1234");
+
+            var result = service.createRecipe(req);
+
+            assertThat(result).isSameAs(res);
+            verify(mockMapper).toEntity(req, "abcd1234");
+            verify(mockRepo).save(r);
+            verify(mockMapper).toRecipeResponse(rSaved);
+            verify(mockIdService).generateId();
+            verifyNoMoreInteractions(mockRepo, mockMapper, mockIdService);
+        }
+    }
 }
