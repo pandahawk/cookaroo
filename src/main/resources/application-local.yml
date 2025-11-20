@@ -3,3 +3,5 @@ spring:
     mongodb:
       uri: mongodb://localhost:27017/cookaroo_db
       auto-index-creation: true
+  config:
+    import: "optional:file:.env[.properties]"
