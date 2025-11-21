@@ -3,8 +3,8 @@ package dev.pandahawk.cookaroo.recipe;
 import dev.pandahawk.cookaroo.recipe.dto.CreateRecipeRequest;
 import dev.pandahawk.cookaroo.recipe.dto.RecipeResponse;
 import dev.pandahawk.cookaroo.recipe.dto.RecipeSummaryResponse;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
+import dev.pandahawk.cookaroo.recipe.dto.UpdateRecipeRequest;
+import org.mapstruct.*;
 
 @Mapper(componentModel = "spring")
 public interface RecipeMapper {
@@ -18,5 +18,18 @@ public interface RecipeMapper {
     @Mapping(target = "publicId", source = "nanoId")
     Recipe toEntity(CreateRecipeRequest request, String nanoId);
 
-    CreateRecipeRequest toCreateRequest(Recipe recipe);
+    default Recipe merge(Recipe old, UpdateRecipeRequest req) {
+        if (req == null) return old;
+
+        return Recipe.builder()
+                .id(old.id())
+                .publicId(old.publicId())
+                .title(req.title() != null ? req.title() : old.title())
+                .description(req.description() != null ? req.description() : old.description())
+                .difficulty(req.difficulty() != null ? req.difficulty() : old.difficulty())
+                .ingredients(req.ingredients() != null ? req.ingredients() : old.ingredients())
+                .steps(req.steps() != null ? req.steps() : old.steps())
+                .servings(req.servings() != null ? req.servings() : old.servings())
+                .build();
+    }
 }

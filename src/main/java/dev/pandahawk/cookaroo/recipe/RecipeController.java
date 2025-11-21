@@ -70,7 +70,7 @@ public class RecipeController {
             @Parameter(name = "id", description = "Nano id of the recipe")
             @PathVariable String id,
             @Valid @RequestBody UpdateRecipeRequest request) {
-        return null;
+        return service.updateRecipe(id, request);
     }
 
 
