@@ -1,0 +1,23 @@
+cookaroo:
+  api-key: ${COOKAROO_API_KEY}
+
+spring:
+  application:
+    name: cookaroo
+
+  data:
+    mongodb:
+      auditing:
+        enabled: true
+      # nothing secret in the base file
+      auto-index-creation: false
+
+springdoc:
+  show-actuator: false
+  override-with-generic-response: false
+  swagger-ui:
+    path: /docs
+
+mongock:
+  migration-scan-package:
+    - dev.pandahawk.cookaroo.migration

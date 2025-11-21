@@ -1,0 +1,7 @@
+spring:
+  data:
+    mongodb:
+      uri: ${MONGO_URI}
+      auto-index-creation: true
+  config:
+    import: "optional:file:.env[.properties]"
