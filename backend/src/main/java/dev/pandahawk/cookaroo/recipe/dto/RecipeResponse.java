@@ -4,7 +4,6 @@ import dev.pandahawk.cookaroo.recipe.Difficulty;
 
 import java.util.List;
 
-@SuppressWarnings("java:S2094")
 public record RecipeResponse(
     String id,
     String title,
