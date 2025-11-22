@@ -48,8 +48,7 @@ jobs:
             -Dsonar.token=$SONAR_TOKEN \
             -Dsonar.pullrequest.key=${{ github.event.pull_request.number }} \
             -Dsonar.pullrequest.branch=${{ github.head_ref }} \
-            -Dsonar.pullrequest.base=${{ github.base_ref }} \
-            -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
+            -Dsonar.pullrequest.base=${{ github.base_ref }} 
 
       # 3) Sonar analysis for MAIN BRANCH pushes
       - name: SonarCloud analysis (main branch)
@@ -59,7 +58,4 @@ jobs:
         run: |
           mvn -B org.sonarsource.scanner.maven:sonar-maven-plugin:5.3.0.6276:sonar \
             -Dsonar.token=$SONAR_TOKEN \
-            -Dsonar.branch.name=${{ github.ref_name }} \
-            -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
-
-
+            -Dsonar.branch.name=${{ github.ref_name }}
