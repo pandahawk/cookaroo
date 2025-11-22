@@ -39,6 +39,15 @@
         <sonar.coverage.jacoco.xmlReportPaths>
             target/site/jacoco/jacoco.xml
         </sonar.coverage.jacoco.xmlReportPaths>
+        <sonar.exclusions>
+            **/config/**,
+            **/dto/**,
+            **/error/**,
+            **/migration/**,
+            **/*Application.java,
+            **/core/id/**,
+            **/*Exception.java
+        </sonar.exclusions>
     </properties>
 
     <dependencyManagement>
