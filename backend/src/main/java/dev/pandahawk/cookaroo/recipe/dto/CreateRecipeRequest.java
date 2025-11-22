@@ -1,6 +1,7 @@
 package dev.pandahawk.cookaroo.recipe.dto;
 
 import dev.pandahawk.cookaroo.recipe.Difficulty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.*;
 
 import java.util.List;
@@ -12,6 +13,7 @@ public record CreateRecipeRequest(
                 regexp = "^(?!\\d+$).+$",
                 message = "Title cannot be only numbers"
         )
+        @Schema(example = "string")
         String title,
 
         @NotBlank(message = "Title must not be empty")
