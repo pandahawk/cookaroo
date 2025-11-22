@@ -10,6 +10,7 @@ jobs:
   build-and-analyze:
     runs-on: ubuntu-latest
 
+    # We work from the backend module
     defaults:
       run:
         working-directory: backend
@@ -18,7 +19,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # needed for proper blame & branch analysis
+          fetch-depth: 0  # SonarCloud needs full history for some features
 
       - name: Set up JDK 21
         uses: actions/setup-java@v4
@@ -27,13 +28,16 @@ jobs:
           java-version: '21'
           cache: 'maven'
 
-      - name: Build, test & coverage
+      - name: Build, test & generate JaCoCo report
         run: mvn -B clean verify -Pcoverage
 
       - name: SonarCloud analysis
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
-          mvn -B sonar:sonar \
+          mvn -B org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
+            -Dsonar.projectKey=pandahawk_cookaroo \
+            -Dsonar.organization=pandahawk \
+            -Dsonar.host.url=https://sonarcloud.io \
             -Dsonar.login=$SONAR_TOKEN \
             -Dsonar.branch.name=${{ github.ref_name }}
