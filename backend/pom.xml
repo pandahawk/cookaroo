@@ -35,10 +35,6 @@
         <sonar.projectKey>pandahawk_cookaroo</sonar.projectKey>
         <sonar.organization>pandahawk</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
-        <!-- Coverage report path -->
-        <sonar.coverage.jacoco.xmlReportPaths>
-            target/site/jacoco/jacoco.xml
-        </sonar.coverage.jacoco.xmlReportPaths>
         <sonar.exclusions>
             **/config/**,
             **/dto/**,
