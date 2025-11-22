@@ -42,7 +42,8 @@ jobs:
             -Dsonar.token=$SONAR_TOKEN \
             -Dsonar.pullrequest.key=${{ github.event.pull_request.number }} \
             -Dsonar.pullrequest.branch=${{ github.head_ref }} \
-            -Dsonar.pullrequest.base=${{ github.base_ref }} 
+            -Dsonar.pullrequest.base=${{ github.base_ref }} \
+            -Dsonar.qualitygate.wait=true
 
       # 3) Sonar analysis for MAIN BRANCH pushes
       - name: SonarCloud analysis (main branch)
@@ -52,4 +53,5 @@ jobs:
         run: |
           mvn -B org.sonarsource.scanner.maven:sonar-maven-plugin:5.3.0.6276:sonar \
             -Dsonar.token=$SONAR_TOKEN \
-            -Dsonar.branch.name=${{ github.ref_name }}
+            -Dsonar.branch.name=${{ github.ref_name }} \
+            -Dsonar.qualitygate.wait=true
