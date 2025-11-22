@@ -28,13 +28,31 @@ jobs:
           java-version: '21'
           cache: 'maven'
 
-      - name: SonarCloud - Build, Test & Analyze
+       # 1) Build, test, and generate JaCoCo report (with coverage profile)
+      - name: Build, test & generate JaCoCo report
+        run: mvn -B clean verify -Pcoverage
+
+      # 2) Sonar analysis for PULL REQUESTS (shows up under "Pull Requests")
+      - name: SonarCloud analysis (PR)
+        if: github.event_name == 'pull_request'
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
-          mvn -B clean verify -Pcoverage \
-            org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
+          mvn -B org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
             -Dsonar.token=$SONAR_TOKEN \
+            -Dsonar.pullrequest.key=${{ github.event.pull_request.number }} \
+            -Dsonar.pullrequest.branch=${{ github.head_ref }} \
+            -Dsonar.pullrequest.base=${{ github.base_ref }}
+
+      # 3) Sonar analysis for MAIN BRANCH pushes
+      - name: SonarCloud analysis (main branch)
+        if: github.event_name == 'push' && github.ref_name == 'main'
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: |
+          mvn -B org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
+            -Dsonar.token=$SONAR_TOKEN \
+            -Dsonar.branch.name=${{ github.ref_name }}
             -Dsonar.branch.name=${{ github.ref_name }}
 
 
