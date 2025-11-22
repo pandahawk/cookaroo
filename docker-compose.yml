@@ -31,5 +31,19 @@ services:
       ME_CONFIG_BASICAUTH: "false" # no UI login for local
       TZ: Europe/Berlin
 
+  # cookaroo backend (Spring Boot)
+  cookaroo-api:
+    build:
+      context: ./backend        # 👈 folder where your Dockerfile lives
+    container_name: cookaroo-api
+    restart: unless-stopped
+    depends_on:
+      mongo:
+        condition: service_healthy
+    env_file:
+      - ./backend/.env.dev          # 👈 your env file with API key + Mongo URI
+    ports:
+      - "8080:8080"             # host:container, so you hit it via http://localhost:8080
+
 volumes:
   mongo_data:
