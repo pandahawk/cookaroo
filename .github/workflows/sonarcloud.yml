@@ -32,6 +32,12 @@ jobs:
       - name: Build, test & generate JaCoCo report
         run: mvn -B clean verify -Pcoverage
 
+      - name: Debug Jacoco
+        run: |
+          ls -R target/site/jacoco || echo "Jacoco folder missing"
+          cat target/site/jacoco/jacoco.xml || echo "No jacoco.xml"
+
+
       # 2) Sonar analysis for PULL REQUESTS (shows up under "Pull Requests")
       - name: SonarCloud analysis (PR)
         if: github.event_name == 'pull_request'
