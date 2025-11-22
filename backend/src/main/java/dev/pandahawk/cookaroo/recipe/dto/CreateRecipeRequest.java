@@ -1,15 +1,14 @@
 package dev.pandahawk.cookaroo.recipe.dto;
 
 import dev.pandahawk.cookaroo.recipe.Difficulty;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.*;
+
 import java.util.List;
 
 public record CreateRecipeRequest(
 
         @NotBlank(message = "Title must not be empty")
+        @Pattern(regexp = ".*\\D.*", message = "Title cannot be only numbers")
         String title,
 
         @NotBlank(message = "Title must not be empty")

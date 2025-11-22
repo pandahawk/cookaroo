@@ -6,7 +6,7 @@ import dev.pandahawk.cookaroo.core.id.NanoIdService;
 import dev.pandahawk.cookaroo.error.domain.RecipeNotFoundException;
 import dev.pandahawk.cookaroo.recipe.dto.CreateRecipeRequest;
 import dev.pandahawk.cookaroo.recipe.dto.RecipeResponse;
-import dev.pandahawk.cookaroo.recipe.dto.RecipeSummaryResponse;
+import dev.pandahawk.cookaroo.recipe.dto.UpdateRecipeRequest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -59,10 +59,10 @@ class RecipeServiceTest {
         void success() {
             var r1 = testRecipes.getFirst();
             var r2 = testRecipes.getLast();
-            var r1res = mock(RecipeSummaryResponse.class);
-            var r2res = mock(RecipeSummaryResponse.class);
-            when(mockMapper.toRecipeSummaryResponse(r1)).thenReturn(r1res);
-            when(mockMapper.toRecipeSummaryResponse(r2)).thenReturn(r2res);
+            var r1res = mock(RecipeResponse.class);
+            var r2res = mock(RecipeResponse.class);
+            when(mockMapper.toRecipeResponse(r1)).thenReturn(r1res);
+            when(mockMapper.toRecipeResponse(r2)).thenReturn(r2res);
             when(mockRepo.findAll()).thenReturn(List.of(r1, r2));
 
             var result = service.listRecipes();
@@ -72,8 +72,8 @@ class RecipeServiceTest {
                     .containsExactly(r1res, r2res);
 
             verify(mockRepo).findAll();
-            verify(mockMapper).toRecipeSummaryResponse(r1);
-            verify(mockMapper).toRecipeSummaryResponse(r2);
+            verify(mockMapper).toRecipeResponse(r1);
+            verify(mockMapper).toRecipeResponse(r2);
             verifyNoMoreInteractions(mockRepo, mockMapper);
         }
     }
@@ -144,7 +144,7 @@ class RecipeServiceTest {
             var r = testRecipes.getFirst();
             var req = mock(CreateRecipeRequest.class);
             var res = mock(RecipeResponse.class);
-            when(mockMapper.toEntity(eq(req), anyString())).thenReturn(r);
+            when(mockMapper.toEntity(anyString(),eq(req))).thenReturn(r);
             when(mockRepo.save(r)).thenReturn(rSaved);
             when(mockMapper.toRecipeResponse(rSaved)).thenReturn(res);
             when(mockIdService.generateId()).thenReturn("abcd1234");
@@ -152,11 +152,41 @@ class RecipeServiceTest {
             var result = service.createRecipe(req);
 
             assertThat(result).isSameAs(res);
-            verify(mockMapper).toEntity(req, "abcd1234");
+            verify(mockMapper).toEntity( "abcd1234",req);
             verify(mockRepo).save(r);
             verify(mockMapper).toRecipeResponse(rSaved);
             verify(mockIdService).generateId();
             verifyNoMoreInteractions(mockRepo, mockMapper, mockIdService);
+        }
+    }
+
+    @Nested
+    class updateRecipe {
+        @Test
+        void success() {
+            var r = testRecipes.getFirst();
+            var id = r.publicId();
+            var req = UpdateRecipeRequest.builder()
+                    .title("banana milkshake")
+                    .ingredients(List.of("bananas", "milk", "sugar"))
+                    .build();
+            var updated = mock(Recipe.class);
+            var saved = mock(Recipe.class);
+            var response = mock(RecipeResponse.class);
+            when(mockRepo.findByPublicId(id)).thenReturn(Optional.of(r));
+            when(mockMapper.merge(r, req)).thenReturn(updated);
+            when(mockRepo.save(updated)).thenReturn(saved);
+            when(mockMapper.toRecipeResponse(saved)).thenReturn(response);
+
+            var result = service.updateRecipe(id, req);
+
+            assertThat(result).isEqualTo(response);
+
+            verify(mockRepo).findByPublicId(id);
+            verify(mockMapper).merge(r, req);
+            verify(mockRepo).save(updated);
+            verify(mockMapper).toRecipeResponse(saved);
+            verifyNoMoreInteractions(mockRepo, mockMapper);
         }
     }
 }

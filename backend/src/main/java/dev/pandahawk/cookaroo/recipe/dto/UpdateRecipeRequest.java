@@ -10,7 +10,6 @@ import java.util.List;
 
 @Builder
 public record UpdateRecipeRequest(
-
         String title,
         String description,
         Difficulty difficulty,

@@ -2,7 +2,6 @@ package dev.pandahawk.cookaroo.recipe;
 
 import dev.pandahawk.cookaroo.recipe.dto.CreateRecipeRequest;
 import dev.pandahawk.cookaroo.recipe.dto.RecipeResponse;
-import dev.pandahawk.cookaroo.recipe.dto.RecipeSummaryResponse;
 import dev.pandahawk.cookaroo.recipe.dto.UpdateRecipeRequest;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -27,7 +26,7 @@ public class RecipeController {
 
     @GetMapping
     @Operation(summary = "List recipes", description = "Lists all recipes.")
-    public List<RecipeSummaryResponse> listRecipes() {
+    public List<RecipeResponse> listRecipes() {
         return service.listRecipes();
     }
 

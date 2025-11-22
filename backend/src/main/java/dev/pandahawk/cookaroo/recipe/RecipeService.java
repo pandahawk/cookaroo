@@ -4,7 +4,6 @@ import dev.pandahawk.cookaroo.core.id.NanoIdService;
 import dev.pandahawk.cookaroo.error.domain.RecipeNotFoundException;
 import dev.pandahawk.cookaroo.recipe.dto.CreateRecipeRequest;
 import dev.pandahawk.cookaroo.recipe.dto.RecipeResponse;
-import dev.pandahawk.cookaroo.recipe.dto.RecipeSummaryResponse;
 import dev.pandahawk.cookaroo.recipe.dto.UpdateRecipeRequest;
 import org.springframework.stereotype.Service;
 
@@ -23,10 +22,10 @@ public class RecipeService {
         this.idService = idService;
     }
 
-    public List<RecipeSummaryResponse> listRecipes() {
+    public List<RecipeResponse> listRecipes() {
         return repo.findAll()
                 .stream()
-                .map(mapper::toRecipeSummaryResponse)
+                .map(mapper::toRecipeResponse)
                 .toList();
     }
 
@@ -43,7 +42,7 @@ public class RecipeService {
     }
 
     public RecipeResponse createRecipe(CreateRecipeRequest request) {
-        var r = mapper.toEntity(request, idService.generateId());
+        var r = mapper.toEntity(idService.generateId(), request);
         var saved = repo.save(r);
         return mapper.toRecipeResponse(saved);
     }

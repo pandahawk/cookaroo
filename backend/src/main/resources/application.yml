@@ -1,16 +1,19 @@
-cookaroo:
-  api-key: ${COOKAROO_API_KEY}
-
 spring:
+  config:
+    import: "optional:classpath:local.properties"
   application:
     name: cookaroo
 
   data:
     mongodb:
+      uri: ${SPRING_DATA_MONGODB_URI}
       auditing:
         enabled: true
       # nothing secret in the base file
       auto-index-creation: false
+
+cookaroo:
+  api-key: ${COOKAROO_API_KEY}
 
 springdoc:
   show-actuator: false
@@ -21,3 +24,7 @@ springdoc:
 mongock:
   migration-scan-package:
     - dev.pandahawk.cookaroo.migration
+
+logging:
+  level:
+    root: INFO
