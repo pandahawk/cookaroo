@@ -32,17 +32,24 @@ jobs:
       - name: Build, test & generate JaCoCo report
         run: mvn -B clean verify -Pcoverage
 
+      - name: Debug Jacoco
+        run: |
+          ls -R target/site/jacoco || echo "Jacoco folder missing"
+          cat target/site/jacoco/jacoco.xml || echo "No jacoco.xml"
+
+
       # 2) Sonar analysis for PULL REQUESTS (shows up under "Pull Requests")
       - name: SonarCloud analysis (PR)
         if: github.event_name == 'pull_request'
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
-          mvn -B org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
+          mvn -B org.sonarsource.scanner.maven:sonar-maven-plugin:5.3.0.6276:sonar \
             -Dsonar.token=$SONAR_TOKEN \
             -Dsonar.pullrequest.key=${{ github.event.pull_request.number }} \
             -Dsonar.pullrequest.branch=${{ github.head_ref }} \
-            -Dsonar.pullrequest.base=${{ github.base_ref }}
+            -Dsonar.pullrequest.base=${{ github.base_ref }} \
+            -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
 
       # 3) Sonar analysis for MAIN BRANCH pushes
       - name: SonarCloud analysis (main branch)
@@ -50,9 +57,9 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
-          mvn -B org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
+          mvn -B org.sonarsource.scanner.maven:sonar-maven-plugin:5.3.0.6276:sonar \
             -Dsonar.token=$SONAR_TOKEN \
-            -Dsonar.branch.name=${{ github.ref_name }}
-            -Dsonar.branch.name=${{ github.ref_name }}
+            -Dsonar.branch.name=${{ github.ref_name }} \
+            -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
 
 
