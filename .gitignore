@@ -35,4 +35,3 @@ build/
 ### env vars ###
 .env
 .env.*
-src/main/resources/local.properties

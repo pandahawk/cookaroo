@@ -24,7 +24,6 @@ public class SecurityConfig {
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .cors(cors -> {})
-                .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
                         // allow Swagger + api docs
                         .requestMatchers(
