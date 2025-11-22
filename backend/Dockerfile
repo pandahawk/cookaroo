@@ -8,12 +8,17 @@ RUN mvn -q -e -B dependency:go-offline
 COPY src ./src
 RUN mvn -q -e -B package
 
-# ------ Runtime ------
-FROM eclipse-temurin:21-jre
-WORKDIR /app
 
+# ------ Run ------
+FROM eclipse-temurin:21-jre
+
+# Create non-root user
+RUN useradd -r -u 1001 cookaroo
+
+WORKDIR /app
 COPY --from=build /app/target/*.jar app.jar
 
-EXPOSE 8080
+USER cookaroo
 
+EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "app.jar"]
