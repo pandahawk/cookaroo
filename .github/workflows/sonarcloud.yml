@@ -28,10 +28,7 @@ jobs:
           java-version: '21'
           cache: 'maven'
 
-      - name: Build, test & generate JaCoCo report
-        run: mvn -B clean verify -Pcoverage
-
-      - name: SonarCloud analysis
+      - name: SonarCloud - Build, Test & Analyze
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
@@ -39,4 +36,5 @@ jobs:
             org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
             -Dsonar.token=$SONAR_TOKEN \
             -Dsonar.branch.name=${{ github.ref_name }}
+
 
