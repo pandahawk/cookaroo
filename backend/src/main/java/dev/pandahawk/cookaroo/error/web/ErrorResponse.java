@@ -1,10 +1,11 @@
 package dev.pandahawk.cookaroo.error.web;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Builder;
 
 import java.time.LocalDateTime;
 import java.util.Map;
-
+@Builder
 public record ErrorResponse(
         int status,
         String error,
