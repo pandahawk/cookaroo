@@ -14,14 +14,14 @@ public record UpdateRecipeRequest(
         String description,
         Difficulty difficulty,
 
-        @Size(min = 1, message = "Ingredients must not be empty")
-        List<@NotBlank(message = "Ingredient must not be blank") String> ingredients,
+        @Size(min = 1)
+        List<@NotBlank String> ingredients,
 
         // Same idea for steps
-        @Size(min = 1, message = "Steps must not be empty")
-        List<@NotBlank(message = "Step must not be blank") String> steps,
+        @Size(min = 1)
+        List<@NotBlank String> steps,
 
-        @Min(value = 1, message = "Servings must be at least 1")
+        @Min(value = 1)
         Integer servings
 ) {
 }

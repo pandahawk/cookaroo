@@ -44,6 +44,7 @@
             **/core/id/**,
             **/*Exception.java
         </sonar.exclusions>
+        <sonar.qualitygate.wait>true</sonar.qualitygate.wait>
     </properties>
 
     <dependencyManagement>
