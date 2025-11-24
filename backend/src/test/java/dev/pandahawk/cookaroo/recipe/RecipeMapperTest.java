@@ -35,7 +35,7 @@ class RecipeMapperTest {
 
 
     @Nested
-    class merge {
+    class Merge {
         @Test
         void newTitleStepsDescription() {
             var old = testRecipes.getFirst();

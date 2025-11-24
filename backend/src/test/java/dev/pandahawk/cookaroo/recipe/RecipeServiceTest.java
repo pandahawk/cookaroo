@@ -48,7 +48,7 @@ class RecipeServiceTest {
     private List<Recipe> loadRecipesFromJson() throws IOException {
         var om = new ObjectMapper();
         try (InputStream is = getClass().getResourceAsStream("/db/recipes.json")) {
-            return om.readValue(is, new TypeReference<List<Recipe>>() {
+            return om.readValue(is, new TypeReference<>() {
             });
         }
     }
@@ -79,7 +79,7 @@ class RecipeServiceTest {
     }
 
     @Nested
-    class getRecipe {
+    class GetRecipe {
         @Test
         void success() {
             var id = "abcd1234";
@@ -109,7 +109,7 @@ class RecipeServiceTest {
     }
 
     @Nested
-    class deleteRecipe {
+    class DeleteRecipe {
 
         @Test
         void success() {
@@ -137,7 +137,7 @@ class RecipeServiceTest {
     }
 
     @Nested
-    class createRecipe {
+    class CreateRecipe {
         @Test
         void success() {
             var rSaved = testRecipes.getFirst();
@@ -161,7 +161,7 @@ class RecipeServiceTest {
     }
 
     @Nested
-    class updateRecipe {
+    class UpdateRecipe {
         @Test
         void success() {
             var r = testRecipes.getFirst();

@@ -3,32 +3,31 @@ package dev.pandahawk.cookaroo.recipe.dto;
 import dev.pandahawk.cookaroo.recipe.Difficulty;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.*;
+import lombok.Builder;
 
 import java.util.List;
 
+@Builder
 public record CreateRecipeRequest(
 
-        @NotBlank(message = "Title must not be empty")
-        @Pattern(
-                regexp = "^(?!\\d+$).+$",
-                message = "Title cannot be only numbers"
-        )
+        @NotBlank
+        @Pattern(regexp = "^(?!\\d+$).*$", message = "must not be a number")
         @Schema(example = "string")
         String title,
 
-        @NotBlank(message = "Title must not be empty")
+        @NotBlank
         String description
         ,
-        @NotNull(message = "Difficulty is required")
+        @NotNull
         Difficulty difficulty,
 
-        @NotEmpty(message = "Ingredients must not be empty")
-        List<@NotBlank(message = "Ingredient must not be blank") String> ingredients,
+        @NotEmpty
+        List<@NotBlank String> ingredients,
 
-        @NotEmpty(message = "Steps must not be empty")
-        List<@NotBlank(message = "Step must not be blank") String> steps,
+        @NotEmpty
+        List<@NotBlank String> steps,
 
-        @Min(value = 1, message = "Servings must be at least 1")
+        @Min(value = 1)
         int servings
 ) {
 }
