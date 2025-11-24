@@ -1,11 +1,11 @@
 import {Component, signal} from '@angular/core';
-import {MatToolbar} from '@angular/material/toolbar';
-import {Recipe, RecipeService} from './recipe.service';
-import {MatButton} from '@angular/material/button';
+import {Recipe, RecipeService} from './recipes/recipe.service';
+import {Toolbar} from './shared/toolbar/toolbar';
+import {Recipes} from './recipes/recipes';
 
 @Component({
   selector: 'app-root',
-  imports: [MatToolbar, MatButton],
+  imports: [ Toolbar, Recipes],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
@@ -17,11 +17,8 @@ export class App {
 
   protected readonly title = signal('frontend');
 
-  loadRecipeSummaries() {
-    this.recipeService.listRecipes()
-      .subscribe(recipe => {
-        this.recipes.set(recipe);
-        console.log('Loaded recipes: ', recipe);
-      });
+
+  createRecipe() {
+    console.log('Creating recipe...');
   }
 }

@@ -1,1 +1,9 @@
-<p>recipes works!</p>
+<button (click)="recipeService.listRecipes()">Load Recipes</button>
+
+<ul>
+  @for (r of recipes(); track r.id) {
+    <li>
+      {{ r.title }} – {{ r.description }} – {{ r.difficulty }}
+    </li>
+  }
+</ul>

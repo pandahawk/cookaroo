@@ -8,12 +8,4 @@
   text-align: center;
 }
 
-.mat-toolbar button {
-  margin-left: 16px; /* Perfect Material spacing */
-}
 
-.toolbar-logo {
-  width: 50px;
-  height: auto;
-  margin-right: 12px;
-}

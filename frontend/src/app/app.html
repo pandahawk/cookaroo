@@ -1,21 +1,6 @@
-<mat-toolbar color="primary">
-  <img src="/cookaroo.png" class="toolbar-logo" alt=""/>
-  <span>Cookaroo</span>
-
-  <!-- pushes the menu item to the right -->
-  <span class="spacer"></span>
-
-  <!-- toolbar menu item -->
-  <button mat-raised-button color="primary"
-          (click)="loadRecipeSummaries()">
-    Load recipes
-  </button>
-
-  <button mat-raised-button color="primary">
-    Create recipe
-  </button>
-
-</mat-toolbar>
+<app-toolbar
+></app-toolbar>
+<app-recipes></app-recipes>
 
 <ul>
   @for (r of recipes(); track r.id) {
