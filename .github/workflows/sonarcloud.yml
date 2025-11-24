@@ -83,8 +83,7 @@ jobs:
 
       - name: Run Angular unit tests with coverage
         working-directory: frontend
-        run: npm test -- --watch=false --code-coverage
-        # or: npx ng test --watch=false --code-coverage
+        run: npm test -- --watch=false --coverage
 
       - name: SonarCloud Scan (frontend)
         uses: SonarSource/sonarcloud-github-action@v3
