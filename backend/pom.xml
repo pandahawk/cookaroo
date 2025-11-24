@@ -33,6 +33,7 @@
         <argLine>-XX:+EnableDynamicAgentLoading -Xshare:off</argLine>
         <!-- SonarCloud configuration -->
         <sonar.projectKey>cookaroo-backend</sonar.projectKey>
+        <sonar.projectName>cookaroo-backend</sonar.projectName>
         <sonar.organization>pandahawk</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
         <sonar.exclusions>
