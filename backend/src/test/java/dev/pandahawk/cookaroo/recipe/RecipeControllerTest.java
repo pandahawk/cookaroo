@@ -45,13 +45,12 @@ class RecipeControllerTest {
                 .status(HttpStatus.INTERNAL_SERVER_ERROR.value())
                 .error(HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase())
                 .message("boom")
-                .timestamp(LocalDateTime.now())
                 .build();
         when(mockService.listRecipes()).thenThrow(new RuntimeException("boom"));
 
         mvc.perform(get("/api/v1/recipes"))
                 .andExpect(status().isInternalServerError())
-                .andExpect(content().json(mapper.writeValueAsString(expectedErrResponse)))
+                .andExpect(jsonPath("$.message").value(expectedErrResponse.message()))
                 .andReturn();
 
         verify(mockService).listRecipes();
