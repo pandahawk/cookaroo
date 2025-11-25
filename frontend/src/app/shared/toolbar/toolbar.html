@@ -1,8 +1,27 @@
-<mat-toolbar color="primary">
+<mat-toolbar class="cookaroo-toolbar mat-elevation-z4">
+  <img
+    src="/cookaroo_final.png"
+    class="toolbar-logo"
+    alt=""/>
   <span>Cookaroo</span>
   <span class="spacer"></span>
 
-  <button mat-raised-button color="primary" (click)="onLoadRecipes()">
-    Load recipes
+  <button
+    mat-raised-button
+    class="nav-button"
+    (click)="load()"
+    [disabled]="loading">
+
+    @if (loading) {
+      Laden…
+    } @else {
+      Rezepte
+    }
+  </button>
+
+  <button
+    mat-raised-button
+    class="nav-button">
+    Neu
   </button>
 </mat-toolbar>

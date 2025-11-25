@@ -1,5 +1,4 @@
-import {Component, signal} from '@angular/core';
-import {Recipe, RecipeService} from './recipes/recipe.service';
+import {Component} from '@angular/core';
 import {Toolbar} from './shared/toolbar/toolbar';
 import {Recipes} from './recipes/recipes';
 
@@ -9,16 +8,4 @@ import {Recipes} from './recipes/recipes';
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
-export class App {
-  recipes = signal<Recipe[]>([]);
-
-  constructor(private readonly recipeService: RecipeService) {
-  }
-
-  protected readonly title = signal('frontend');
-
-
-  createRecipe() {
-    console.log('Creating recipe...');
-  }
-}
+export class App {}

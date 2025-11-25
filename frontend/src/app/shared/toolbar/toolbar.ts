@@ -13,9 +13,15 @@ import {RecipeService} from '../../recipes/recipe.service';
   styleUrl: './toolbar.css',
 })
 export class Toolbar {
+
   constructor(private readonly recipeService: RecipeService) {}
 
-  onLoadRecipes(): void {
+  load() {
     this.recipeService.listRecipes();
   }
+
+  get loading(): boolean {
+    return this.recipeService.loading();   // call the signal here
+  }
+
 }

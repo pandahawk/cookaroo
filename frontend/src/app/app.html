@@ -1,14 +1,8 @@
-<app-toolbar
-></app-toolbar>
-<app-recipes></app-recipes>
+<app-toolbar></app-toolbar>
 
-<ul>
-  @for (r of recipes(); track r.id) {
-    <li>
-      {{ r.title }} – {{ r.description }} - {{ r.difficulty }}
-    </li>
-  }
-</ul>
+<main class="app-content">
+  <app-recipes></app-recipes>
+</main>
 
 
 

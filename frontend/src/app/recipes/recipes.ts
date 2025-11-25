@@ -1,23 +1,34 @@
-import {Component, Signal} from '@angular/core';
+import {Component} from '@angular/core';
 import {Recipe, RecipeService} from './recipe.service';
+import {MatCard, MatCardContent, MatCardTitle} from '@angular/material/card';
+import {NgClass} from '@angular/common';
+import {MatButton} from '@angular/material/button';
 
 @Component({
   selector: 'app-recipes',
-  imports: [],
+  imports: [
+    MatCard,
+    MatCardTitle,
+    MatCardContent,
+    NgClass,
+    MatButton
+  ],
   templateUrl: './recipes.html',
   styleUrl: './recipes.css',
 })
 export class Recipes {
 
+  constructor(private readonly recipeService: RecipeService) {}
 
-  // just read the signal from the service
-  readonly recipes: Signal<Recipe[]>;
+    get recipes() {
+      return this.recipeService.recipes();
+    }
 
-  constructor(private readonly recipeService: RecipeService) {
-    this.recipes = this.recipeService.recipes;
+    get loading() {
+      return this.recipeService.loading();
+    }
 
-    // optional: auto-load once
-    this.recipeService.listRecipes();
+  onRecipeClick(r: Recipe) {
+    console.log("Card clicked:", r.title);
   }
-
 }
