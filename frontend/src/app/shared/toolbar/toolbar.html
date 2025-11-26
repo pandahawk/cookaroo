@@ -2,7 +2,9 @@
 
   <div
     class="logo-container"
-      (click)="goHome()">
+    (click)="goHome()"
+    (keydown.enter)="goHome()"
+    (keydown.space)="goHome()">
     <img
       src="/cookaroo_final.png"
       class="toolbar-logo"
