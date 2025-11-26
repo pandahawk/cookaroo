@@ -1,0 +1,48 @@
+<div class="recipes-container recipe-detail-page">
+
+  <button mat-button class="back-link" (click)="goBack()">
+    ← Zurück
+  </button>
+
+  @if (recipe()) {
+    <mat-card
+      class="recipe-card recipe-detail-card"
+      [ngClass]="'difficulty-' + recipe()!.difficulty.toLowerCase()">
+
+      <div class="recipe-header recipe-detail-header">
+        <h1 class="recipe-detail-title">
+          {{ recipe()!.title }}
+        </h1>
+
+        <span
+          class="pill recipe-detail-pill"
+          [ngClass]="'difficulty-' + recipe()!.difficulty.toLowerCase()">
+        {{ recipe()!.difficulty.toLowerCase() }}
+       </span>
+      </div>
+
+      <p class="recipe-detail-description">
+        {{ recipe()!.description }}
+      </p>
+
+      <div class="recipe-detail-meta">
+        <span>🍽 {{ recipe()!.servings }} Portionen</span>
+      </div>
+
+      <h3>Zutaten</h3>
+      <ul>
+        @for (item of recipe()!.ingredients; track item) {
+          <li>{{ item }}</li>
+        }
+      </ul>
+
+      <h3>Zubereitung</h3>
+      <ol>
+        @for (step of recipe()!.steps; track step) {
+          <li>{{ step }}</li>
+        }
+      </ol>
+
+    </mat-card>
+  }
+</div>
