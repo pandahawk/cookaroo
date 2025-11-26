@@ -3,6 +3,7 @@ import {Recipe, RecipeService} from './recipe.service';
 import {MatCard, MatCardContent, MatCardTitle} from '@angular/material/card';
 import {NgClass} from '@angular/common';
 import {MatButton} from '@angular/material/button';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-recipes',
@@ -18,7 +19,9 @@ import {MatButton} from '@angular/material/button';
 })
 export class Recipes {
 
-  constructor(private readonly recipeService: RecipeService) {
+  constructor(
+    private readonly recipeService: RecipeService,
+    private readonly router: Router,) {
   }
 
   get recipes() {
@@ -35,5 +38,6 @@ export class Recipes {
 
   onRecipeClick(r: Recipe) {
     console.log("Card clicked:", r.title);
+    this.router.navigate(['/recipes', r.id]);
   }
 }

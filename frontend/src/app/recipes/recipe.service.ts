@@ -20,6 +20,7 @@ export class RecipeService {
   recipes = signal<Recipe[]>([]);
   homeMode = signal(true);
   loading = signal(false);
+  selectedRecipe = signal<Recipe | null>(null);
 
 
   private readonly apiUrl = 'http://localhost:8080/api/v1/recipes';
@@ -28,7 +29,7 @@ export class RecipeService {
   constructor(private readonly http: HttpClient) {
   }
 
-  listRecipes() {
+  loadRecipes() {
     if (this.loading()) return;
     this.loading.set(true);
 
@@ -47,6 +48,15 @@ export class RecipeService {
           this.loading.set(false);
         },
       });
+  }
+
+  loadRecipe(id: string) {
+    this.selectedRecipe.set(null);
+    const headers = new HttpHeaders({'X-API-KEY': this.apiKey});
+    this.http.get<Recipe>(`${this.apiUrl}/${id}`, {headers}).subscribe({
+      next: data => {this.selectedRecipe.set(data);},
+      error: err =>  console.error('Failed to load recipe', err)
+    });
   }
 
   goHome() {
