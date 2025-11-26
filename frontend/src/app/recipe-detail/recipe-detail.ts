@@ -1,4 +1,4 @@
-import { Component, inject} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {RecipeService} from '../recipes/recipe.service';
 import {MatButton} from '@angular/material/button';
@@ -15,14 +15,14 @@ import {NgClass} from '@angular/common';
   templateUrl: './recipe-detail.html',
   styleUrl: './recipe-detail.css',
 })
-export class RecipeDetail {
+export class RecipeDetail implements OnInit  {
 
   private readonly route =  inject(ActivatedRoute);
   private readonly recipeService=  inject(RecipeService);
 
   recipe = this.recipeService.selectedRecipe;
 
-  ngOnInit() {
+  ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
       this.recipeService.loadRecipe(id);
