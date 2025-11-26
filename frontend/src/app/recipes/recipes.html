@@ -1,38 +1,39 @@
 <div class="recipes-container">
-  @if (!recipes.length) {
+  @if (homeMode) {
     <div class="empty-state">
       <img src="/cookaroo_final.png" class="empty-icon" alt="" />
       <h2 style="color: #1c5a04">Cookaroo</h2>
-      @if (loading) {
-        <p>Lade Rezepte…</p>
-      } @else {
-      <p>Dein persönliches Rezeptbuch!</p>
-      }
+      <p>Dein persönliches Rezeptbuch :)</p>
       <button mat-raised-button>
         Neu
       </button>
     </div>
   }
-
-  <div class="recipe-grid">
-    @for (r of recipes; track r.id) {
-      <mat-card
-        class="recipe-card"
-        [ngClass]="'difficulty-' + r.difficulty.toLowerCase()"
-        (click)="onRecipeClick(r)">
-        <div class="recipe-header">
-          <mat-card-title> {{ r.title }}</mat-card-title>
-          <span
-            class="pill"
-            [ngClass]="'difficulty-' + r.difficulty.toLowerCase()">
+    @else {
+      <div class="recipe-grid">
+        @for (r of recipes; track r.id) {
+          <button
+            type="button"
+            class="recipe-card-button"
+            (click)="onRecipeClick(r)">
+            <mat-card
+              class="recipe-card"
+              [ngClass]="'difficulty-' + r.difficulty.toLowerCase()">
+              <div class="recipe-header">
+                <mat-card-title> {{ r.title }}</mat-card-title>
+                <span
+                  class="pill"
+                  [ngClass]="'difficulty-' + r.difficulty.toLowerCase()">
            {{ r.difficulty.toLowerCase() }}
           </span>
-        </div>
+              </div>
 
-        <mat-card-content>
-          <p>{{ r.description }}</p>
-        </mat-card-content>
-      </mat-card>
+              <mat-card-content>
+                <p>{{ r.description }}</p>
+              </mat-card-content>
+            </mat-card>
+          </button>
+        }
+      </div>
     }
-  </div>
 </div>

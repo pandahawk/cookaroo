@@ -6,6 +6,7 @@
 
 :root {
   --inter-font: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --toolbar-height: 76px; /* your real toolbar height */
 }
 
 html, body {
@@ -23,6 +24,20 @@ html, body, app-root, .mat-application-wrapper, .app-container {
 
 .cookaroo-toolbar.mat-elevation-z4 {
   box-shadow: 0 3px 9px rgba(0, 0, 0, 0.30);
-  position: relative;
-  z-index: 10;
+}
+
+.cookaroo-toolbar {
+  height: var(--toolbar-height);
+  line-height: var(--toolbar-height);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000; /* stays above cards */
+  background: #ffffff; /* ensure white background when fixed */
+}
+
+.app-content,
+.recipes-container {
+  padding-top: var(--toolbar-height);
 }

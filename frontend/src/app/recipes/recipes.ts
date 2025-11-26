@@ -18,15 +18,20 @@ import {MatButton} from '@angular/material/button';
 })
 export class Recipes {
 
-  constructor(private readonly recipeService: RecipeService) {}
+  constructor(private readonly recipeService: RecipeService) {
+  }
 
-    get recipes() {
-      return this.recipeService.recipes();
-    }
+  get recipes() {
+    return this.recipeService.recipes();
+  }
 
-    get loading() {
-      return this.recipeService.loading();
-    }
+  load() {
+    this.recipeService.recipes();
+  }
+
+  get homeMode() {
+    return this.recipeService.homeMode();
+  }
 
   onRecipeClick(r: Recipe) {
     console.log("Card clicked:", r.title);

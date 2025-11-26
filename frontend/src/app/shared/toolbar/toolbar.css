@@ -4,6 +4,17 @@
   color: #1c5a04;
 }
 
+.logo-container {
+  display: flex;
+  align-items: center;
+  cursor: pointer;     /* shows hand cursor */
+  gap: 0.5rem;
+}
+
+.logo-container:hover .logo-text {
+  opacity: 0.8;        /* subtle hover effect */
+}
+
 .cookaroo-toolbar {
   background: #ffffff;
   color: #1c5a04;

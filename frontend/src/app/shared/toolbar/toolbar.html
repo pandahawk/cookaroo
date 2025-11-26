@@ -1,9 +1,16 @@
 <mat-toolbar class="cookaroo-toolbar mat-elevation-z4">
-  <img
-    src="/cookaroo_final.png"
-    class="toolbar-logo"
-    alt=""/>
-  <span>Cookaroo</span>
+
+  <div
+    class="logo-container"
+      (click)="goHome()">
+    <img
+      src="/cookaroo_final.png"
+      class="toolbar-logo"
+      alt=""
+    />
+    <span class="logo-text">Cookaroo</span>
+  </div>
+
   <span class="spacer"></span>
 
   <button

@@ -1,4 +1,4 @@
-import {Injectable, signal} from '@angular/core';
+import {computed, Injectable, signal} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 export interface Recipe {
@@ -18,7 +18,9 @@ export interface Recipe {
 export class RecipeService {
 
   recipes = signal<Recipe[]>([]);
+  homeMode = signal(true);
   loading = signal(false);
+
 
   private readonly apiUrl = 'http://localhost:8080/api/v1/recipes';
   private readonly apiKey = 'dingding'; // later we can move this to environment.ts
@@ -27,24 +29,27 @@ export class RecipeService {
   }
 
   listRecipes() {
+    if (this.loading()) return;
     this.loading.set(true);
 
-    setTimeout(()=> {
       const headers = new HttpHeaders({'X-API-KEY': this.apiKey});
 
       this.http.get<Recipe[]>(this.apiUrl, {headers}).subscribe({
         next: data => {
           this.recipes.set(data);
           console.log('recipes received', data);
-          this.loading.set(false);
         },
         error: (err) => {
           console.log('Failed to load recipes', err);
+        },
+        complete: () => {
+          this.homeMode.set(false);
           this.loading.set(false);
         },
       });
-    },2000);
+  }
 
-
+  goHome() {
+    this.homeMode.set(true);
   }
 }

@@ -98,5 +98,263 @@
     ],
     "servings": 2,
     "difficulty": "MEDIUM"
+  },
+  {
+    "publicId": "K3tP1xQ9",
+    "title": "Beef Stroganoff",
+    "description": "Creamy Russian-style beef served with mushrooms.",
+    "ingredients": [
+      "400g beef strips",
+      "1 onion",
+      "150g mushrooms",
+      "200ml sour cream",
+      "1 tbsp paprika"
+    ],
+    "steps": [
+      "Brown the beef.",
+      "Cook onions and mushrooms.",
+      "Add paprika and sour cream.",
+      "Simmer until thickened."
+    ],
+    "servings": 3,
+    "difficulty": "MEDIUM"
+  },
+  {
+    "publicId": "hG83kLmD",
+    "title": "Margherita Pizza",
+    "description": "Simple Italian pizza with tomato, mozzarella, and basil.",
+    "ingredients": [
+      "Pizza dough",
+      "200g tomato sauce",
+      "150g mozzarella",
+      "Fresh basil"
+    ],
+    "steps": [
+      "Spread tomato sauce on dough.",
+      "Add mozzarella slices.",
+      "Bake until crispy.",
+      "Top with fresh basil."
+    ],
+    "servings": 2,
+    "difficulty": "EASY"
+  },
+  {
+    "publicId": "Q9pLm12A",
+    "title": "Beef Tacos",
+    "description": "Mexican tacos with seasoned ground beef.",
+    "ingredients": [
+      "300g ground beef",
+      "Taco seasoning",
+      "Taco shells",
+      "Lettuce",
+      "Cheddar cheese"
+    ],
+    "steps": [
+      "Brown the beef.",
+      "Add taco seasoning.",
+      "Assemble tacos with toppings.",
+      "Serve warm."
+    ],
+    "servings": 4,
+    "difficulty": "EASY"
+  },
+  {
+    "publicId": "Lp0Zs93F",
+    "title": "Greek Salad",
+    "description": "Refreshing salad with feta, cucumber, and tomatoes.",
+    "ingredients": [
+      "1 cucumber",
+      "2 tomatoes",
+      "100g feta cheese",
+      "Olives",
+      "Olive oil"
+    ],
+    "steps": [
+      "Chop vegetables.",
+      "Mix everything.",
+      "Drizzle with olive oil.",
+      "Top with feta."
+    ],
+    "servings": 2,
+    "difficulty": "EASY"
+  },
+  {
+    "publicId": "aK2P8nX0",
+    "title": "Chocolate Cake",
+    "description": "Rich and moist chocolate cake.",
+    "ingredients": [
+      "200g flour",
+      "100g cocoa powder",
+      "150g sugar",
+      "2 eggs",
+      "1 tsp baking powder"
+    ],
+    "steps": [
+      "Mix dry ingredients.",
+      "Add wet ingredients.",
+      "Bake until cooked through.",
+      "Cool and serve."
+    ],
+    "servings": 8,
+    "difficulty": "MEDIUM"
+  },
+  {
+    "publicId": "F4rTm79B",
+    "title": "Caesar Salad",
+    "description": "Crisp lettuce with creamy Caesar dressing.",
+    "ingredients": [
+      "Romaine lettuce",
+      "Parmesan",
+      "Croutons",
+      "Caesar dressing",
+      "Lemon juice"
+    ],
+    "steps": [
+      "Chop lettuce.",
+      "Mix with dressing.",
+      "Add croutons.",
+      "Sprinkle parmesan."
+    ],
+    "servings": 2,
+    "difficulty": "EASY"
+  },
+  {
+    "publicId": "G6nHs31L",
+    "title": "Lasagna",
+    "description": "Layered pasta with meat sauce and cheese.",
+    "ingredients": [
+      "Lasagna sheets",
+      "300g minced beef",
+      "Tomato sauce",
+      "Mozzarella",
+      "Ricotta"
+    ],
+    "steps": [
+      "Make meat sauce.",
+      "Layer pasta and sauce.",
+      "Top with cheese.",
+      "Bake until golden."
+    ],
+    "servings": 6,
+    "difficulty": "HARD"
+  },
+  {
+    "publicId": "Zp9Hm4Ks",
+    "title": "Fried Rice",
+    "description": "Quick Asian-style fried rice with vegetables.",
+    "ingredients": [
+      "2 cups cooked rice",
+      "1 carrot",
+      "1 egg",
+      "Soy sauce",
+      "Peas"
+    ],
+    "steps": [
+      "Scramble egg.",
+      "Add vegetables.",
+      "Add rice and soy sauce.",
+      "Stir-fry until combined."
+    ],
+    "servings": 2,
+    "difficulty": "EASY"
+  },
+  {
+    "publicId": "J7yNs6C1",
+    "title": "Pad Thai",
+    "description": "Thai rice noodles stir-fried with peanuts and vegetables.",
+    "ingredients": [
+      "Rice noodles",
+      "Bean sprouts",
+      "Peanuts",
+      "Tofu or chicken",
+      "Tamarind sauce"
+    ],
+    "steps": [
+      "Cook noodles.",
+      "Stir-fry tofu.",
+      "Add sauce and noodles.",
+      "Top with peanuts."
+    ],
+    "servings": 2,
+    "difficulty": "MEDIUM"
+  },
+  {
+    "publicId": "S1uRt79Q",
+    "title": "Hamburger",
+    "description": "Juicy beef burger with fresh toppings.",
+    "ingredients": [
+      "Beef patty",
+      "Burger bun",
+      "Lettuce",
+      "Tomato",
+      "Cheese"
+    ],
+    "steps": [
+      "Grill patty.",
+      "Assemble with toppings.",
+      "Serve warm."
+    ],
+    "servings": 1,
+    "difficulty": "EASY"
+  },
+  {
+    "publicId": "W8mQk01P",
+    "title": "Butter Chicken",
+    "description": "Creamy tomato-based Indian chicken curry.",
+    "ingredients": [
+      "400g chicken",
+      "Tomato puree",
+      "Cream",
+      "Butter",
+      "Spices"
+    ],
+    "steps": [
+      "Marinate chicken.",
+      "Cook with spices.",
+      "Add tomato puree.",
+      "Finish with cream."
+    ],
+    "servings": 4,
+    "difficulty": "MEDIUM"
+  },
+  {
+    "publicId": "D4kZs90H",
+    "title": "French Toast",
+    "description": "Sweet and buttery breakfast classic.",
+    "ingredients": [
+      "2 slices bread",
+      "1 egg",
+      "Milk",
+      "Cinnamon",
+      "Sugar"
+    ],
+    "steps": [
+      "Whisk egg and milk.",
+      "Dip bread.",
+      "Fry until golden.",
+      "Sprinkle cinnamon."
+    ],
+    "servings": 1,
+    "difficulty": "EASY"
+  },
+  {
+    "publicId": "M3rLt65A",
+    "title": "Ramen Bowl",
+    "description": "Japanese noodle soup with toppings.",
+    "ingredients": [
+      "Ramen noodles",
+      "Broth",
+      "Egg",
+      "Spring onions",
+      "Soy sauce"
+    ],
+    "steps": [
+      "Cook noodles.",
+      "Heat broth.",
+      "Add toppings.",
+      "Serve hot."
+    ],
+    "servings": 1,
+    "difficulty": "MEDIUM"
   }
 ]
