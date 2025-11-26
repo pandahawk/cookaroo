@@ -85,6 +85,10 @@ jobs:
         working-directory: ./frontend
         run: npm run test:coverage
 
+      - name: Show coverage files (debug)
+        working-directory: ./frontend
+        run: ls -R
+
       - name: SonarCloud Scan (frontend)
         uses: SonarSource/sonarcloud-github-action@v3
         with:
