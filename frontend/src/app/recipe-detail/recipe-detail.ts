@@ -1,6 +1,6 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {Component, OnInit, signal, WritableSignal} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {RecipeService} from '../recipes/recipe.service';
+import {Recipe, RecipeService} from '../recipes/recipe.service';
 import {MatButton} from '@angular/material/button';
 import {MatCard} from '@angular/material/card';
 import {NgClass} from '@angular/common';
@@ -16,16 +16,19 @@ import {NgClass} from '@angular/common';
   styleUrl: './recipe-detail.css',
 })
 export class RecipeDetail implements OnInit  {
+  recipe: WritableSignal<Recipe | null> = signal<Recipe | null>(null);
 
-  private readonly route =  inject(ActivatedRoute);
-  private readonly recipeService=  inject(RecipeService);
+  constructor(
+    private readonly recipeService: RecipeService,
+    private readonly route: ActivatedRoute) { }
 
-  recipe = this.recipeService.selectedRecipe;
+
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
+    this.recipe = this.recipeService.selectedRecipe;
     if (id) {
-      this.recipeService.loadRecipe(id);
+      this.recipeService.loadRecipeById(id);
     }
   }
 

@@ -1,40 +1,51 @@
-// src/app/shared/toolbar/toolbar.spec.ts
-
-import { TestBed, ComponentFixture } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { describe, it, expect, beforeEach, vi } from 'vitest';
-
-import {provideRouter, Router} from '@angular/router';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { provideHttpClient } from '@angular/common/http';
-
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { Toolbar } from './toolbar';
-import { RecipeService } from '../../recipes/recipe.service';
+import {Router} from '@angular/router';
+import {RecipeService} from '../../recipes/recipe.service';
+import {By} from '@angular/platform-browser';
 
 describe('Toolbar', () => {
-  let fixture: ComponentFixture<Toolbar>;
   let component: Toolbar;
+  let fixture: ComponentFixture<Toolbar>;
 
-  let router: Router;
-  let recipeService: RecipeService;
+  // simple mocks for the dependencies
+  let recipeServiceMock: {
+    loadRecipes: ReturnType<typeof vi.fn>;
+    goHome: ReturnType<typeof vi.fn>;
+    loading: ReturnType<typeof vi.fn>;
+  };
+
+  let routerMock: {
+    navigate: ReturnType<typeof vi.fn>;
+  };
 
   beforeEach(async () => {
+    recipeServiceMock = {
+      loadRecipes: vi.fn(),
+      goHome: vi.fn(),
+      // your real service probably returns a signal() here,
+      // for the component we just care that it's called + its value
+      loading: vi.fn().mockReturnValue(false),
+    };
+
+    routerMock = {
+      navigate: vi.fn(),
+    };
+
+
     await TestBed.configureTestingModule({
       imports: [Toolbar],
       providers: [
-        provideRouter([]),           // replaces RouterTestingModule
-        provideHttpClient(),         // base HttpClient
-        provideHttpClientTesting(), // replaces HttpClientTestingModule
+        { provide: RecipeService, useValue: recipeServiceMock },
+        { provide: Router, useValue: routerMock },
       ],
-    }).compileComponents();
-
-    router = TestBed.inject(Router);
-    recipeService = TestBed.inject(RecipeService);
+    })
+    .compileComponents();
 
     fixture = TestBed.createComponent(Toolbar);
     component = fixture.componentInstance;
-    fixture.detectChanges();
+    // await fixture.whenStable();
   });
 
   it('should create', () => {
@@ -42,51 +53,74 @@ describe('Toolbar', () => {
   });
 
   it('load() should navigate to /recipes and call loadRecipes on the service', () => {
-    const navigateSpy = vi
-      .spyOn(router, 'navigate')
-      .mockResolvedValue(true as any);
-    const loadRecipesSpy = vi
-      .spyOn(recipeService, 'loadRecipes')
-      .mockReturnValue(undefined as any);
-
     component.load();
 
-    expect(navigateSpy).toHaveBeenCalledWith(['/recipes']);
-    expect(loadRecipesSpy).toHaveBeenCalled();
+    expect(routerMock.navigate).toHaveBeenCalledWith(['/recipes']);
+    expect(recipeServiceMock.loadRecipes).toHaveBeenCalled();
   });
 
-  it('goHome() should navigate to /recipes and call goHome on the service', () => {
-    const navigateSpy = vi
-      .spyOn(router, 'navigate')
-      .mockResolvedValue(true as any);
-    const goHomeSpy = vi
-      .spyOn(recipeService, 'goHome')
-      .mockReturnValue(undefined as any);
-
+  it('goHome() should navigate to /recipes and call goHome on the' +
+    ' service', () => {
     component.goHome();
 
-    expect(navigateSpy).toHaveBeenCalledWith(['/recipes']);
+    expect(routerMock.navigate).toHaveBeenCalledWith(['/recipes']);
+    expect(recipeServiceMock.goHome).toHaveBeenCalled();
+  });
+
+  it('clicking the logo container calls goHome()', () => {
+    const goHomeSpy = vi.spyOn(component, 'goHome');
+
+    fixture.detectChanges();
+    const logoDe = fixture.debugElement.query(By.css('.logo-container'));
+    logoDe.triggerEventHandler('click', {});
+
     expect(goHomeSpy).toHaveBeenCalled();
   });
 
-  it('loading getter should delegate to recipeService.loading()', () => {
-    const loadingSpy = vi
-      .spyOn(recipeService, 'loading')
-      .mockReturnValue(true as any);
-
-    expect(component.loading).toBe(true);
-    expect(loadingSpy).toHaveBeenCalled();
-  });
-
-  it('clicking the "Rezepte" button calls load()', () => {
+  it('clicking the recipe button calls load()', () => {
     const loadSpy = vi.spyOn(component, 'load');
     fixture.detectChanges();
-
-    const loadButtonDe = fixture.debugElement.query(
-      By.css('button.nav-button')
-    );
-    loadButtonDe.triggerEventHandler('click', {});
+    const button = fixture.debugElement.query(By.css('.nav-button'));
+    button.triggerEventHandler('click', {});
 
     expect(loadSpy).toHaveBeenCalled();
   });
+
+  it('shows "Rezepte" and enables button when not loading', () => {
+    recipeServiceMock.loading.mockReturnValue(false);
+    fixture.detectChanges();
+
+    const buttonEl: HTMLButtonElement =
+      fixture.debugElement.query(By.css('button.nav-button')).nativeElement;
+
+    expect(buttonEl.disabled).toBe(false);
+    expect(buttonEl.textContent).toContain('Rezepte');
+  });
+
+  it('shows "Laden…" and disables button when loading', () => {
+    recipeServiceMock.loading.mockReturnValue(true);
+    fixture.detectChanges();
+
+    const buttonEl: HTMLButtonElement =
+      fixture.debugElement.query(By.css('button.nav-button')).nativeElement;
+
+    expect(buttonEl.disabled).toBe(true);
+    expect(buttonEl.textContent).toContain('Laden');
+  });
+
+  it('pressing enter on logo container calls goHome()', () => {
+    const goHomeSpy = vi.spyOn(component, 'goHome');
+
+    fixture.detectChanges();
+    const logoDe = fixture.debugElement.query(By.css('.logo-container'));
+
+    // Keyboard-like event – enough for Angular’s key handling
+    const event = { key: 'Enter' } as KeyboardEvent;
+
+    logoDe.triggerEventHandler('keydown.enter', event);
+
+
+    expect(goHomeSpy).toHaveBeenCalled();
+  });
+
 });

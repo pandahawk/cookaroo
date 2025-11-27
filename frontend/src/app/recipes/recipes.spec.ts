@@ -1,109 +1,131 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { describe, it, expect, beforeEach, vi } from 'vitest';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { Router } from '@angular/router';
-import { Recipes } from './recipes';
-import { RecipeService, Recipe } from './recipe.service';
+import {Recipes} from './recipes';
+import {expect} from 'vitest';
+import {Router} from '@angular/router';
+import {Recipe, RecipeService} from './recipe.service';
+import {By} from '@angular/platform-browser';
 
 describe('Recipes', () => {
-  let routerMock: { navigate: ReturnType<typeof vi.fn> };
+  let component: Recipes;
+  let fixture: ComponentFixture<Recipes>;
+
   let recipeServiceMock: {
     recipes: ReturnType<typeof vi.fn>;
     homeMode: ReturnType<typeof vi.fn>;
   };
 
+  let routerMock: {
+    navigate: ReturnType<typeof vi.fn>;
+  };
+
   beforeEach(async () => {
-    routerMock = {
-      navigate: vi.fn(),
+    recipeServiceMock = {
+      recipes: vi.fn(),
+      homeMode: vi.fn(),
     };
 
-    recipeServiceMock = {
-      recipes: vi.fn().mockReturnValue([]), // default empty list
-      homeMode: vi.fn().mockReturnValue(false),
-    };
+    routerMock = {navigate: vi.fn()}
+
 
     await TestBed.configureTestingModule({
-      imports: [Recipes], // standalone component
+      imports: [Recipes],
       providers: [
-        { provide: Router, useValue: routerMock },
-        { provide: RecipeService, useValue: recipeServiceMock },
+        {provide: Router, useValue: routerMock},
+        {provide: RecipeService, useValue: recipeServiceMock},
       ],
-    }).compileComponents();
+    })
+      .compileComponents();
+
+    fixture = TestBed.createComponent(Recipes);
+    component = fixture.componentInstance;
+    // await fixture.whenStable();
   });
 
-  function createComponent(): ComponentFixture<Recipes> {
-    const fixture = TestBed.createComponent(Recipes);
-    fixture.detectChanges();
-    return fixture;
-  }
-
   it('should create', () => {
-    const fixture = createComponent();
-    const component = fixture.componentInstance;
-
     expect(component).toBeTruthy();
   });
 
-  it('recipes getter should delegate to recipeService.recipes()', () => {
-    const mockRecipes: Recipe[] = [
-      {
-        id: '1',
-        title: 'Test recipe',
-        description: 'desc',
-        difficulty: 'EASY' as any,
-        ingredients: [],
-        steps: [],
-        servings: 2,
-      } as Recipe,
-    ];
-    recipeServiceMock.recipes.mockReturnValue(mockRecipes);
-
-    const fixture = createComponent();
-    const component = fixture.componentInstance;
-
-    const result = component.recipes;
-
-    expect(recipeServiceMock.recipes).toHaveBeenCalled();
-    expect(result).toBe(mockRecipes);
-  });
-
-  it('homeMode getter should delegate to recipeService.homeMode()', () => {
-    recipeServiceMock.homeMode.mockReturnValue(true);
-
-    const fixture = createComponent();
-    const component = fixture.componentInstance;
-
-    const result = component.homeMode;
-
-    expect(recipeServiceMock.homeMode).toHaveBeenCalled();
-    expect(result).toBe(true);
-  });
-
-  it('load() should call recipeService.recipes()', () => {
-    const fixture = createComponent();
-    const component = fixture.componentInstance;
-
-    component.load();
-
+  it('load() should call recipes on the recipeService', () => {
+    component.load()
     expect(recipeServiceMock.recipes).toHaveBeenCalled();
   });
 
-  it('onRecipeClick should navigate to the recipe detail page', () => {
-    const fixture = createComponent();
-    const component = fixture.componentInstance;
-
-    const recipe: Recipe = {
-      id: '42',
-      title: 'Detail',
-      description: 'desc',
-      difficulty: 'EASY' as any,
+  it('onRecipeClick() navigates to /recipes/:id', () => {
+    const r: Recipe = {
+      id: 'abcd1234',
+      title: 'test',
+      difficulty: 'EASY',
       ingredients: [],
       steps: [],
-      servings: 1,
-    } as Recipe;
+      description: 'test desc',
+      servings: 4,
+    };
+    component.onRecipeClick(r);
 
-    component.onRecipeClick(recipe);
-
-    expect(routerMock.navigate).toHaveBeenCalledWith(['/recipes', '42']);
+    expect(routerMock.navigate).toHaveBeenCalledWith(['/recipes', r.id]);
   });
+
+
+  it('shows empty state when in homeMode', () => {
+    recipeServiceMock.homeMode.mockReturnValue(true);
+    recipeServiceMock.recipes.mockReturnValue([]);
+    fixture.detectChanges();
+
+    const emptyState = fixture.debugElement.query(By.css('.empty-state'));
+    const grid = fixture.debugElement.query(By.css('.recipe-grid'));
+
+    expect(emptyState).toBeTruthy();
+    expect(grid).toBeNull();
+
+  });
+
+  it('renders recipe cards when not in homeMode', () => {
+    const r: Recipe = {
+      id: 'abcd1234',
+      title: 'test',
+      difficulty: 'EASY',
+      ingredients: [],
+      steps: [],
+      description: 'test desc',
+      servings: 4,
+    };
+    recipeServiceMock.homeMode.mockReturnValue(false);
+    recipeServiceMock.recipes.mockReturnValue([r]);
+    fixture.detectChanges();
+
+
+    const buttons = fixture.debugElement.queryAll(
+      By.css('.recipe-card-button')
+    );
+    expect(buttons.length).toBe(1);
+
+    const titleEl = buttons[0].query(By.css('mat-card-title')).nativeElement;
+    expect(titleEl.textContent.trim()).toBe('test');
+  });
+
+  it('calls onRecipeClick when a card is clicked', () => {
+    const r: Recipe = {
+      id: 'abcd1234',
+      title: 'test',
+      difficulty: 'EASY',
+      ingredients: [],
+      steps: [],
+      description: 'test desc',
+      servings: 4,
+    };
+    recipeServiceMock.homeMode.mockReturnValue(false);
+    recipeServiceMock.recipes.mockReturnValue([r]);
+    const spy = vi.spyOn(component, 'onRecipeClick');
+    fixture.detectChanges();
+
+    const button = fixture.debugElement.query(
+      By.css('.recipe-card-button'));
+
+    button.triggerEventHandler('click');
+
+    expect(routerMock.navigate).toHaveBeenCalledWith(['/recipes', r.id])
+    expect(spy).toHaveBeenCalledWith(r);
+
+  })
 });
