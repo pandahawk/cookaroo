@@ -50,7 +50,7 @@ export class RecipeService {
       });
   }
 
-  loadRecipe(id: string) {
+  loadRecipeById(id: string) {
     this.selectedRecipe.set(null);
     const headers = new HttpHeaders({'X-API-KEY': this.apiKey});
     this.http.get<Recipe>(`${this.apiUrl}/${id}`, {headers}).subscribe({
