@@ -1,18 +1,38 @@
 .mat-toolbar button {
-  margin-left: 2rem;
-  border-color: #1c5a04;
-  color: #1c5a04;
+  border-color: #549647;
+  color: #549647;
 }
 
 .logo-container {
   display: flex;
   align-items: center;
-  cursor: pointer;     /* shows hand cursor */
-  gap: 0.5rem;
+  cursor: pointer;
+  padding: 4px;                 /* tiny click comfort */
+  border-radius: 6px;
+  transition: background 0.15s ease, transform 0.05s ease;
 }
 
-.logo-container:hover .logo-text {
-  opacity: 0.8;        /* subtle hover effect */
+.logo-container:hover {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.logo-container:active {
+  transform: scale(0.98);
+}
+
+.logo-container:focus-visible {
+  outline: 2px solid #2e7d32;
+  outline-offset: 2px;
+}
+
+.toolbar-logo {
+  height: 44px;
+  width: auto;
+  display: block;
+}
+
+.spacer {
+  flex: 1 1 auto;
 }
 
 .cookaroo-toolbar {
@@ -47,8 +67,8 @@
 
 
 
-.toolbar-logo {
-  width: 50px;
-  height: auto;
-  margin-right: 12px;
-}
+/*.toolbar-logo {*/
+/*  width: 50px;*/
+/*  height: auto;*/
+/*  margin-right: 12px;*/
+/*}*/
