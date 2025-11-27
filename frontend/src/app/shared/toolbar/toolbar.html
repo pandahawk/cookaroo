@@ -1,21 +1,22 @@
 <mat-toolbar class="cookaroo-toolbar mat-elevation-z4">
 
-  <div
-    class="logo-container"
+  <button
+    mat-button
+    class="logo-button"
     (click)="goHome()"
-    (keydown.enter)="goHome()"
-    (keydown.space)="goHome()">
+    aria-label="Cookaroo Home"
+    title="Home">
     <img
       src="/cookaroo_test3.png"
       class="toolbar-logo"
-      alt=""
+      alt="Cookaroo Home"
     />
-  </div>
+  </button>
 
   <span class="spacer"></span>
 
   <button
-    mat-raised-button
+    mat-button
     class="nav-button"
     (click)="load()"
     [disabled]="loading">
@@ -28,8 +29,44 @@
   </button>
 
   <button
-    mat-raised-button
-    class="nav-button">
+    mat-flat-button
+    color="primary" class="nav-button">
     Neu
   </button>
 </mat-toolbar>
+
+<!--<mat-toolbar class="cookaroo-toolbar mat-elevation-z4">-->
+
+<!--  <div-->
+<!--    class="logo-container"-->
+<!--    (click)="goHome()"-->
+<!--    (keydown.enter)="goHome()"-->
+<!--    (keydown.space)="goHome()">-->
+<!--    <img-->
+<!--      src="/cookaroo_test3.png"-->
+<!--      class="toolbar-logo"-->
+<!--      alt=""-->
+<!--    />-->
+<!--  </div>-->
+
+<!--  <span class="spacer"></span>-->
+
+<!--  <button-->
+<!--    mat-raised-button-->
+<!--    class="nav-button"-->
+<!--    (click)="load()"-->
+<!--    [disabled]="loading">-->
+
+<!--    @if (loading) {-->
+<!--      Laden…-->
+<!--    } @else {-->
+<!--      Rezepte-->
+<!--    }-->
+<!--  </button>-->
+
+<!--  <button-->
+<!--    mat-raised-button-->
+<!--    class="nav-button">-->
+<!--    Neu-->
+<!--  </button>-->
+<!--</mat-toolbar>-->
