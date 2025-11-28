@@ -49,3 +49,14 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     color: #ffffff,
   ));
 }
+
+.main-content {
+  padding-top: 64px; /* Default for Desktop */
+}
+
+/* Adjust padding for smaller screens (e.g., width less than 600px) */
+@media (max-width: 599px) {
+  .main-content {
+    padding-top: 56px; /* Adjust for common mobile toolbar height */
+  }
+}

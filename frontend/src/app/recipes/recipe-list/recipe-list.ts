@@ -10,8 +10,7 @@ import {Router} from '@angular/router';
   imports: [
     MatCard,
     MatCardTitle,
-    MatCardContent,
-    NgClass
+    MatCardContent
   ],
   templateUrl: './recipe-list.html',
   styleUrl: './recipe-list.scss',

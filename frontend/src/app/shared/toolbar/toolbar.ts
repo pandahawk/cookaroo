@@ -31,8 +31,8 @@ export class Toolbar {
   }
 
   load() {
-    this.router.navigate(['/recipes']);
     this.recipeService.loadRecipeList();
+    this.router.navigate(['/recipes']);
   }
 
   get loading(): boolean {

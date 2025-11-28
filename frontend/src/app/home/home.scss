@@ -10,17 +10,33 @@
   // We use 90vh to fill most of the screen, accounting for the top toolbar.
   height: 90vh;
   width: 100%;
+  opacity: 0.4;
 }
 
+.logo {
+  display: flex; /* Makes the icon and text sit side-by-side */
+  //flex-direction: column;
+  align-items: center; /* Vertically aligns the icon and the text */
+  font-size: 4em; /* Make the text bigger */
+  //font-weight: bold; /* Make the text stand out */
+  color: green; /* Example color (Angular Material Primary) */
+}
+
+
 .logo-image {
-  /* Set a defined size for the logo */
-  width: 250px;
-  height: auto;
-  margin-bottom: 25px; /* Adds space between the logo and the text */
+  /* Make the icon much larger */
+  font-size: 1em;
+  height: 1em; /* Important: match height and width for proper display */
+  width: 1em;
+
+  /* Set its color (if it's not already green from global styles) */
+
+  margin-bottom: 10px; /* Space below the icon */
+  color: green;
 }
 
 .tagline-text {
-  font-size: 1.2em;
-  color: #555;
+  font-size: 1em;
+  color: green;
   font-weight: 500;
 }

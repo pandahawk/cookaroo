@@ -3,12 +3,26 @@
   flex: 1 1 auto;
 }
 
-.brand-logo-button {
-  height: 24px; /* Adjust as needed for your logo's height */
-  width: auto;   /* Maintain aspect ratio */
-  margin-right: 8px; /* Add some space if you have text next to the logo */
-  vertical-align: middle; /* Helps align with text if present */
-  /* If the logo is only the icon, you might not need margin-right */
+@media (max-width: 600px) {
+  .button-text {
+    /* Hides the element without affecting the layout flow (best practice) */
+    display: none;
+  }
+}
+
+.fixed-toolbar {
+  /* The Key Property: Fixes the element relative to the browser window (viewport) */
+  position: fixed;
+
+  /* Ensures it sticks to the very top */
+  top: 0;
+
+  /* Makes it span the entire width of the screen */
+  left: 0;
+  right: 0;
+
+  /* Puts it on top of other content when scrolling (higher z-index = more on top) */
+  z-index: 1000;
 }
 //.spacer {
 //  flex: 1 1 auto;
