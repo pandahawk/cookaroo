@@ -1,14 +1,22 @@
 <mat-toolbar>
-  <button matIconButton class="example-icon" aria-label="Example icon-button with menu icon">
-    <mat-icon>home</mat-icon>
+  <a matIconButton routerLink="/">
+   <mat-icon>home</mat-icon>
+  </a>
+
+  <a mat-button routerLink="/recipes">
+    <mat-icon>dataset</mat-icon>Rezepte
+  </a>
+  <button mat-button>
+    <mat-icon>add_box</mat-icon>Neu
   </button>
-  <span>Cookaroo</span>
+  <button mat-button>
+    <mat-icon>filter_alt</mat-icon>Filtern
+  </button>
+
   <span class="example-spacer"></span>
-  <button matIconButton class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-    <mat-icon>favorite</mat-icon>
-  </button>
+
   <button matIconButton class="example-icon" aria-label="Example icon-button with share icon">
-    <mat-icon>menu</mat-icon>
+    <mat-icon>logout</mat-icon>
   </button>
 </mat-toolbar>
 

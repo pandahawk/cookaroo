@@ -2,7 +2,12 @@ import {Component,} from '@angular/core';
 import {RecipeService} from '../../recipes/recipe.service';
 import {Router, RouterLink} from '@angular/router';
 import {MatToolbar} from '@angular/material/toolbar';
-import {MatButton, MatIconButton} from '@angular/material/button';
+import {
+  MatButton,
+  MatFabButton,
+  MatIconButton,
+  MatMiniFabButton
+} from '@angular/material/button';
 import {MatIcon} from '@angular/material/icon';
 import {MatMenu, MatMenuItem, MatMenuTrigger} from '@angular/material/menu';
 
@@ -12,6 +17,8 @@ import {MatMenu, MatMenuItem, MatMenuTrigger} from '@angular/material/menu';
     MatToolbar,
     MatIcon,
     MatIconButton,
+    MatButton,
+    RouterLink,
   ],
   templateUrl: './toolbar.html',
   styleUrl: './toolbar.scss',

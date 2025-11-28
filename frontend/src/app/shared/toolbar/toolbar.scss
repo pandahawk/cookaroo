@@ -3,6 +3,13 @@
   flex: 1 1 auto;
 }
 
+.brand-logo-button {
+  height: 24px; /* Adjust as needed for your logo's height */
+  width: auto;   /* Maintain aspect ratio */
+  margin-right: 8px; /* Add some space if you have text next to the logo */
+  vertical-align: middle; /* Helps align with text if present */
+  /* If the logo is only the icon, you might not need margin-right */
+}
 //.spacer {
 //  flex: 1 1 auto;
 //}
