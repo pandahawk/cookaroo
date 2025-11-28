@@ -1,17 +1,20 @@
 import {Component,} from '@angular/core';
+import {RecipeService} from '../../recipes/recipe.service';
+import {Router, RouterLink} from '@angular/router';
 import {MatToolbar} from '@angular/material/toolbar';
 import {MatButton, MatIconButton} from '@angular/material/button';
-import {RecipeService} from '../../recipes/recipe.service';
-import {Router} from '@angular/router';
+import {MatIcon} from '@angular/material/icon';
+import {MatMenu, MatMenuItem, MatMenuTrigger} from '@angular/material/menu';
 
 @Component({
   selector: 'app-toolbar',
   imports: [
     MatToolbar,
-    MatButton,
+    MatIcon,
+    MatIconButton,
   ],
   templateUrl: './toolbar.html',
-  styleUrl: './toolbar.css',
+  styleUrl: './toolbar.scss',
 })
 export class Toolbar {
 
@@ -22,14 +25,15 @@ export class Toolbar {
 
   load() {
     this.router.navigate(['/recipes']);
-    this.recipeService.loadRecipes();
+    this.recipeService.loadRecipeList();
   }
+
   get loading(): boolean {
     return this.recipeService.loading();   // call the signal here
   }
 
   goHome() {
-    this.router.navigate(['/recipes']);
+    this.router.navigate(['/']);
     this.recipeService.goHome();
   }
 

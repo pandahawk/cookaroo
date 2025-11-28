@@ -52,18 +52,18 @@ describe('Toolbar', () => {
     expect(component).toBeTruthy();
   });
 
-  it('load() should navigate to /recipes and call loadRecipes on the service', () => {
+  it('load() should navigate to /recipe-list and call loadRecipes on the service', () => {
     component.load();
 
-    expect(routerMock.navigate).toHaveBeenCalledWith(['/recipes']);
+    expect(routerMock.navigate).toHaveBeenCalledWith(['/recipe-list']);
     expect(recipeServiceMock.loadRecipes).toHaveBeenCalled();
   });
 
-  it('goHome() should navigate to /recipes and call goHome on the' +
+  it('goHome() should navigate to /recipe-list and call goHome on the' +
     ' service', () => {
     component.goHome();
 
-    expect(routerMock.navigate).toHaveBeenCalledWith(['/recipes']);
+    expect(routerMock.navigate).toHaveBeenCalledWith(['/recipe-list']);
     expect(recipeServiceMock.goHome).toHaveBeenCalled();
   });
 

@@ -1,14 +1,14 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {Recipes} from './recipes';
+import {RecipeList} from './recipe-list';
 import {expect} from 'vitest';
 import {Router} from '@angular/router';
-import {Recipe, RecipeService} from './recipe.service';
+import {Recipe, RecipeService} from '../recipe.service';
 import {By} from '@angular/platform-browser';
 
-describe('Recipes', () => {
-  let component: Recipes;
-  let fixture: ComponentFixture<Recipes>;
+describe('RecipeList', () => {
+  let component: RecipeList;
+  let fixture: ComponentFixture<RecipeList>;
 
   let recipeServiceMock: {
     recipes: ReturnType<typeof vi.fn>;
@@ -29,7 +29,7 @@ describe('Recipes', () => {
 
 
     await TestBed.configureTestingModule({
-      imports: [Recipes],
+      imports: [RecipeList],
       providers: [
         {provide: Router, useValue: routerMock},
         {provide: RecipeService, useValue: recipeServiceMock},
@@ -37,7 +37,7 @@ describe('Recipes', () => {
     })
       .compileComponents();
 
-    fixture = TestBed.createComponent(Recipes);
+    fixture = TestBed.createComponent(RecipeList);
     component = fixture.componentInstance;
     // await fixture.whenStable();
   });
@@ -46,12 +46,12 @@ describe('Recipes', () => {
     expect(component).toBeTruthy();
   });
 
-  it('load() should call recipes on the recipeService', () => {
+  it('load() should call recipe-list on the recipeService', () => {
     component.load()
     expect(recipeServiceMock.recipes).toHaveBeenCalled();
   });
 
-  it('onRecipeClick() navigates to /recipes/:id', () => {
+  it('onRecipeClick() navigates to /recipe-list/:id', () => {
     const r: Recipe = {
       id: 'abcd1234',
       title: 'test',
@@ -63,7 +63,7 @@ describe('Recipes', () => {
     };
     component.onRecipeClick(r);
 
-    expect(routerMock.navigate).toHaveBeenCalledWith(['/recipes', r.id]);
+    expect(routerMock.navigate).toHaveBeenCalledWith(['/recipe-list', r.id]);
   });
 
 
@@ -124,7 +124,7 @@ describe('Recipes', () => {
 
     button.triggerEventHandler('click');
 
-    expect(routerMock.navigate).toHaveBeenCalledWith(['/recipes', r.id])
+    expect(routerMock.navigate).toHaveBeenCalledWith(['/recipe-list', r.id])
     expect(spy).toHaveBeenCalledWith(r);
 
   })

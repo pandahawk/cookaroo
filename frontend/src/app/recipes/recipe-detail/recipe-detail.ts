@@ -1,6 +1,6 @@
-import {Component, OnInit, signal, WritableSignal} from '@angular/core';
+import {Component, OnInit, Signal, signal, WritableSignal} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {Recipe, RecipeService} from '../recipes/recipe.service';
+import {Recipe, RecipeService} from '../recipe.service';
 import {MatButton} from '@angular/material/button';
 import {MatCard} from '@angular/material/card';
 import {NgClass} from '@angular/common';
@@ -13,10 +13,10 @@ import {NgClass} from '@angular/common';
     NgClass
   ],
   templateUrl: './recipe-detail.html',
-  styleUrl: './recipe-detail.css',
+  styleUrl: './recipe-detail.scss',
 })
 export class RecipeDetail implements OnInit  {
-  recipe: WritableSignal<Recipe | null> = signal<Recipe | null>(null);
+  recipe: Signal<Recipe | null> = signal<Recipe | null>(null);
 
   constructor(
     private readonly recipeService: RecipeService,

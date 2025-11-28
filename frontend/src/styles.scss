@@ -33,3 +33,19 @@ body {
   // Reset the user agent margin.
   margin: 0;
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+:root {
+  @include mat.toolbar-overrides((
+    container-background-color: green,
+    container-text-color: white,
+  ));
+}
+
+:root {
+  @include mat.icon-overrides((
+    color: #ffffff,
+  ));
+}

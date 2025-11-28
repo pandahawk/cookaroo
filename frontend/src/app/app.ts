@@ -1,11 +1,13 @@
 import {Component} from '@angular/core';
-import {Toolbar} from './shared/toolbar/toolbar';
 import {RouterOutlet} from '@angular/router';
+import {Toolbar} from './shared/toolbar/toolbar';
 
 @Component({
   selector: 'app-root',
-  imports: [Toolbar, RouterOutlet],
+  imports: [RouterOutlet, Toolbar],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrl: './app.scss'
 })
-export class App {}
+export class App {
+  title = 'Cookaroo';
+}

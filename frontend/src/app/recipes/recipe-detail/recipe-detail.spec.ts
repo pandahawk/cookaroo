@@ -2,7 +2,7 @@ import {ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {RecipeDetail} from './recipe-detail';
 import {ActivatedRoute, convertToParamMap} from '@angular/router';
-import {Recipe} from '../recipes/recipe.service';
+import {Recipe} from '../recipe.service';
 import {vi} from 'vitest';
 import {signal, WritableSignal} from '@angular/core';
 

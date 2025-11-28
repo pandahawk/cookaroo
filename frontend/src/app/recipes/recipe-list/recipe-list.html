@@ -1,15 +1,4 @@
 <div class="recipes-container">
-  @if (homeMode) {
-    <div class="empty-state">
-      <img src="/cookaroo_final.png" class="empty-icon" alt="" />
-      <h2 style="color: #1c5a04">Cookaroo</h2>
-      <p>Dein persönliches Rezeptbuch :)</p>
-      <button mat-raised-button>
-        Neu
-      </button>
-    </div>
-  }
-    @else {
       <div class="recipe-grid">
         @for (r of recipes; track r.id) {
           <button
@@ -35,5 +24,4 @@
           </button>
         }
       </div>
-    }
 </div>

@@ -1,0 +1,26 @@
+/* The container uses Flexbox to manage the vertical alignment */
+.logo-container {
+  // Use Flexbox to align items
+  display: flex;
+  flex-direction: column;  /* Stack the logo and text vertically */
+  align-items: center;     /* Center items horizontally */
+  justify-content: center; /* Center items vertically */
+
+  // CRITICAL: Ensure the container takes up the height of the router-outlet area.
+  // We use 90vh to fill most of the screen, accounting for the top toolbar.
+  height: 90vh;
+  width: 100%;
+}
+
+.logo-image {
+  /* Set a defined size for the logo */
+  width: 250px;
+  height: auto;
+  margin-bottom: 25px; /* Adds space between the logo and the text */
+}
+
+.tagline-text {
+  font-size: 1.2em;
+  color: #555;
+  font-weight: 500;
+}

@@ -42,7 +42,7 @@ describe('RecipeService', () => {
     expect(service.loading()).toBe(true);
   });
 
-  it('loadRecipes() should fetch recipes and update signals on success', () => {
+  it('loadRecipes() should fetch recipe-list and update signals on success', () => {
     const mockRecipes: Recipe[] = [
       {
         id: '1',
@@ -86,7 +86,7 @@ describe('RecipeService', () => {
     req.flush('boom', { status: 500, statusText: 'Server Error' });
 
     expect(logSpy).toHaveBeenCalledWith(
-      'Failed to load recipes',
+      'Failed to load recipe-list',
       expect.anything(),
     );
     expect(service.loading()).toBe(true);
