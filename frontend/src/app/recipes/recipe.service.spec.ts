@@ -1,4 +1,4 @@
-import {describe} from 'vitest';
+import {describe, expect} from 'vitest';
 import {Recipe, RecipeService} from './recipe.service';
 import {
   HttpTestingController,
@@ -31,18 +31,17 @@ describe('RecipeService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('loadRecipes() should return early when already loading', () => {
+  it('loadRecipeList() should return early when already loading', () => {
     // force loading = true
-    (service as any).loading.set(true);
 
-    service.loadRecipes();
-
-    // no HTTP request should be made
-    httpMock.expectNone('http://localhost:8080/api/v1/recipes');
+    service.loadRecipeList();
     expect(service.loading()).toBe(true);
+
+    service.loadRecipeList();
+    httpMock.expectOne('http://localhost:8080/api/v1/recipes');
   });
 
-  it('loadRecipes() should fetch recipe-list and update signals on success', () => {
+  it('loadRecipeList() should fetch recipe-list and update signals on success', () => {
     const mockRecipes: Recipe[] = [
       {
         id: '1',
@@ -57,9 +56,8 @@ describe('RecipeService', () => {
 
     // initial state
     expect(service.loading()).toBe(false);
-    expect(service.homeMode()).toBe(true);
 
-    service.loadRecipes();
+    service.loadRecipeList();
 
     // loading flag set
     expect(service.loading()).toBe(true);
@@ -73,25 +71,23 @@ describe('RecipeService', () => {
 
     // signals updated
     expect(service.recipes()).toEqual(mockRecipes);
-    expect(service.homeMode()).toBe(false); // set in complete()
     expect(service.loading()).toBe(false);  // set in complete()
   });
 
-  it('loadRecipes() should log error and clear loading on failure', () => {
-    const logSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
+  it('loadRecipeList() should log error and clear loading on failure', () => {
+    const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
 
-    service.loadRecipes();
+    service.loadRecipeList();
     const req = httpMock.expectOne('http://localhost:8080/api/v1/recipes');
-
+    expect(service.loading()).toBe(true);
     req.flush('boom', { status: 500, statusText: 'Server Error' });
 
-    expect(logSpy).toHaveBeenCalledWith(
-      'Failed to load recipe-list',
+    expect(errorSpy).toHaveBeenCalledWith(
+      expect.stringContaining('RecipeService: Failed to load recipes list.'),
       expect.anything(),
     );
-    expect(service.loading()).toBe(true);
-    expect(service.homeMode()).toBe(true);// from complete()
-    logSpy.mockRestore();
+    expect(service.loading()).toBe(false);
+    errorSpy.mockRestore();
   });
 
 
@@ -106,7 +102,7 @@ describe('RecipeService', () => {
     req.flush('not found', { status: 404, statusText: 'Not Found' });
 
     expect(errSpy).toHaveBeenCalledWith(
-      'Failed to load recipe',
+      expect.stringContaining('Failed to load recipe'),
       expect.anything(),
     );
     errSpy.mockRestore();

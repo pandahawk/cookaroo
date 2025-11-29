@@ -18,10 +18,10 @@ export interface Recipe {
 
 export class RecipeService {
 
-  private _recipes =  signal<Recipe[]>([]);
-  private _loading = signal<boolean>(false);
-  private _error = signal<string | null>(null);
-  private _selectedRecipe = signal<Recipe | null>(null);
+  private readonly _recipes =  signal<Recipe[]>([]);
+  private readonly _loading = signal<boolean>(false);
+  private readonly _error = signal<string | null>(null);
+  private readonly _selectedRecipe = signal<Recipe | null>(null);
 
   public readonly recipes: Signal<Recipe[]> = this._recipes.asReadonly();
   public readonly loading: Signal<boolean> = this._loading.asReadonly();
@@ -82,6 +82,27 @@ export class RecipeService {
         }
       });
   }
+
+  deleteRecipe(id: string): void {
+    this.http.delete<Recipe>(`${this.apiUrl}/${id}`, { headers: this.getHeaders() })
+      .subscribe({
+        next: data => {
+          console.log(`RecipeService: Recipe ${id} deleted successfully.`);
+          this._recipes.update(recipes =>
+            recipes ? recipes.filter(r => r.id !== id) : []
+          );
+          const current = this._selectedRecipe();
+          if (current?.id === id) {
+            this._selectedRecipe.set(null);
+          }
+        },
+        error: err => {
+          console.error(`RecipeService: Failed to delete recipe ${id}.`, err);
+          this._error.set(`Failed to delete recipe with ID: ${id}.`);
+        },
+      });
+  }
+
   goHome(): void {
     // Clears the selected recipe state
     this._selectedRecipe.set(null);
@@ -89,53 +110,6 @@ export class RecipeService {
     console.log("RecipeService: Selected recipe state cleared.");
   }
 
-}
 
-// export class RecipeService {
-//
-//   recipes = signal<Recipe[]>([]);
-//   homeMode = signal(true);
-//   loading = signal(false);
-//   selectedRecipe = signal<Recipe | null>(null);
-//
-//
-//   private readonly apiUrl = 'http://localhost:8080/api/v1/recipes';
-//   private readonly apiKey = 'dingding'; // later we can move this to environment.ts
-//
-//   constructor(private readonly http: HttpClient) {
-//   }
-//
-//   loadRecipes() {
-//     if (this.loading()) return;
-//     this.loading.set(true);
-//
-//       const headers = new HttpHeaders({'X-API-KEY': this.apiKey});
-//
-//       this.http.get<Recipe[]>(this.apiUrl, {headers}).subscribe({
-//         next: data => {
-//           this.recipes.set(data);
-//           console.log('recipe-list received', data);
-//         },
-//         error: (err) => {
-//           console.log('Failed to load recipe-list', err);
-//         },
-//         complete: () => {
-//           this.homeMode.set(false);
-//           this.loading.set(false);
-//         },
-//       });
-//   }
-//
-//   loadRecipeById(id: string) {
-//     this.selectedRecipe.set(null);
-//     const headers = new HttpHeaders({'X-API-KEY': this.apiKey});
-//     this.http.get<Recipe>(`${this.apiUrl}/${id}`, {headers}).subscribe({
-//       next: data => {this.selectedRecipe.set(data);},
-//       error: err =>  console.error('Failed to load recipe', err)
-//     });
-//   }
-//
-//   goHome() {
-//     this.homeMode.set(true);
-//   }
-// }
+
+}

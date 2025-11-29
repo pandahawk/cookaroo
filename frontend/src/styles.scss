@@ -29,26 +29,22 @@ body {
   background-color: var(--mat-sys-surface);
   color: var(--mat-sys-on-surface);
   font: var(--mat-sys-body-medium);
-
-  // Reset the user agent margin.
-  margin: 0;
+  margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
 
 :root {
   @include mat.toolbar-overrides((
     container-background-color: green,
     container-text-color: white,
   ));
-}
-
-:root {
   @include mat.icon-overrides((
     color: #ffffff,
   ));
 }
+
 
 .main-content {
   padding-top: 64px; /* Default for Desktop */
@@ -60,3 +56,25 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     padding-top: 56px; /* Adjust for common mobile toolbar height */
   }
 }
+
+
+.mat-mdc-button:hover,
+.mat-mdc-icon-button:hover {
+  border-color: rgba(255, 255, 255, 0.85);  // white outline
+  background-color: rgba(255, 255, 255, 0.08); // subtle glow
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.15); // soft halo
+}
+
+.recipe-card-action {
+  justify-content: space-between;
+}
+
+button.mdc-button.mat-mdc-button-base.screen-button.mat-mdc-button.mat-unthemed {
+  color: green;
+}
+
+.screen-button:hover {
+  background-color: rgba(49, 168, 18, 0.12); // soft green glow
+  color: #4af41d;
+}
+

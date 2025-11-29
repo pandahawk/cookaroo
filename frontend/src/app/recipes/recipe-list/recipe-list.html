@@ -1,43 +1,33 @@
 <div class="recipe-grid">
 
   @for (recipe of recipes; track recipe.id) {
-    <mat-card (click)="onRecipeClick(recipe)">
-      <mat-card-title>{{recipe.title}}</mat-card-title>
+
+    <mat-card
+      (click)="onRecipeClick(recipe)"
+      (keydown.enter)=" onRecipeClick(recipe)"
+      (keydown.space)="onRecipeClick(recipe)">
+      <mat-card-title>{{ recipe.title }}</mat-card-title>
       <mat-card-content>
         <p> {{ recipe.description }}</p>
       </mat-card-content>
+
+      <span class="spacer"></span>
+
+      <mat-card-actions
+        class="recipe-card-action"
+        (click)="$event.stopPropagation()"
+        (keydown.enter)="$event.stopPropagation()"
+        (keydown.space)="$event.stopPropagation()">
+        <button
+          matButton
+          class="screen-button">Bearbeiten
+        </button>
+        <button
+          matButton
+          class="screen-button"
+          (click)="deleteRecipe(recipe)">Entfernen
+        </button>
+      </mat-card-actions>
     </mat-card>
   }
-
 </div>
-
-
-
-
-<!--<div class="recipes-container">-->
-<!--      <div class="recipe-grid">-->
-<!--        @for (r of recipes; track r.id) {-->
-<!--          <button-->
-<!--            type="button"-->
-<!--            class="recipe-card-button"-->
-<!--            (click)="onRecipeClick(r)">-->
-<!--            <mat-card-->
-<!--              class="recipe-card"-->
-<!--              [ngClass]="'difficulty-' + r.difficulty.toLowerCase()">-->
-<!--              <div class="recipe-header">-->
-<!--                <mat-card-title> {{ r.title }}</mat-card-title>-->
-<!--                <span-->
-<!--                  class="pill"-->
-<!--                  [ngClass]="'difficulty-' + r.difficulty.toLowerCase()">-->
-<!--           {{ r.difficulty.toLowerCase() }}-->
-<!--          </span>-->
-<!--              </div>-->
-
-<!--              <mat-card-content>-->
-<!--                <p>{{ r.description }}</p>-->
-<!--              </mat-card-content>-->
-<!--            </mat-card>-->
-<!--          </button>-->
-<!--        }-->
-<!--      </div>-->
-<!--</div>-->

@@ -8,17 +8,15 @@
 
   // CRITICAL: Ensure the container takes up the height of the router-outlet area.
   // We use 90vh to fill most of the screen, accounting for the top toolbar.
-  height: 90vh;
+  height: 50vh;
   width: 100%;
   opacity: 0.4;
 }
 
 .logo {
   display: flex; /* Makes the icon and text sit side-by-side */
-  //flex-direction: column;
   align-items: center; /* Vertically aligns the icon and the text */
   font-size: 4em; /* Make the text bigger */
-  //font-weight: bold; /* Make the text stand out */
   color: green; /* Example color (Angular Material Primary) */
 }
 
@@ -39,4 +37,8 @@
   font-size: 1em;
   color: green;
   font-weight: 500;
+}
+
+.logo-text{
+  font-size: .7em;
 }
