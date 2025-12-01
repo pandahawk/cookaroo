@@ -23,7 +23,7 @@ export class Toolbar {
     private readonly router: Router,) {
   }
 
-  load() {
+  onRecipesClick() {
     this.recipeService.loadRecipeList();
     this.router.navigate(['/recipes']);
   }
@@ -32,9 +32,9 @@ export class Toolbar {
     return this.recipeService.loading();   // call the signal here
   }
 
-  goHome() {
-    this.router.navigate(['/']);
+  onHomeClick() {
     this.recipeService.goHome();
+    this.router.navigate(['/']);
   }
 
 }

@@ -6,6 +6,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {Router} from '@angular/router';
 import {ConfirmDialog} from '../confirm-dialog/confirm-dialog';
 import {of} from 'rxjs';
+import {By} from '@angular/platform-browser';
 
 describe('RecipeList', () => {
   let component: RecipeList;
@@ -100,6 +101,27 @@ describe('RecipeList', () => {
     deleteButton.click();
 
     expect(dialogMock.open).toHaveBeenCalled(); // or spy on component.deleteRecipe
+  });
+
+  it('should call onRecipeClick when card is clicked', () => {
+    const recipe = {
+      id: '1',
+      title: 'Pizza',
+      description: 'Yum',
+      difficulty: 'EASY',
+      ingredients: [],
+      steps: [],
+      servings: 2,
+    };
+    const spy = vi.spyOn(component, 'onRecipeClick');
+    vi.spyOn(recipeServiceMock, 'recipes').mockReturnValue([recipe]);
+    fixture.detectChanges();
+
+    const card = fixture.debugElement.query(By.css('mat-card'));
+    card.triggerEventHandler('click', {});
+
+    expect(spy).toHaveBeenCalledTimes(1);
+    expect(spy).toHaveBeenCalledWith(recipe);
   });
 
 });

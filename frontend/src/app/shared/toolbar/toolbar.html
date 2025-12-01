@@ -1,9 +1,9 @@
 <mat-toolbar class="fixed-toolbar">
-  <a matButton routerLink="/">
+  <button matButton (click)="onHomeClick()">
    <mat-icon>restaurant</mat-icon>Cookaroo
-  </a>
+  </button>
   <span class="example-spacer"></span>
-  <button matButton (click)="load()">
+  <button matButton (click)="onRecipesClick()">
     <mat-icon>menu_book</mat-icon>
     <span class="button-text">Rezepte</span>
   </button>

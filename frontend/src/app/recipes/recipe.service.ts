@@ -86,7 +86,7 @@ export class RecipeService {
   deleteRecipe(id: string): void {
     this.http.delete<Recipe>(`${this.apiUrl}/${id}`, { headers: this.getHeaders() })
       .subscribe({
-        next: data => {
+        next: () => {
           console.log(`RecipeService: Recipe ${id} deleted successfully.`);
           this._recipes.update(recipes =>
             recipes ? recipes.filter(r => r.id !== id) : []
@@ -104,7 +104,6 @@ export class RecipeService {
   }
 
   goHome(): void {
-    // Clears the selected recipe state
     this._selectedRecipe.set(null);
     this._error.set(null);
     console.log("RecipeService: Selected recipe state cleared.");
