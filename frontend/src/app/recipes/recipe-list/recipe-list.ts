@@ -39,14 +39,6 @@ export class RecipeList implements OnInit {
     return this.recipeService.recipes();
   }
 
-  load() {
-    this.recipeService.recipes();
-  }
-
-  get homeMode() {
-    return this.recipeService.goHome();
-  }
-
   deleteRecipe(r: Recipe) {
     const dialogRef = this.dialog.open(ConfirmDialog, {
       width: '360px',
