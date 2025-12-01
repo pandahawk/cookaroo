@@ -1,6 +1,6 @@
 [
   {
-    "id": "67493a8f2d4b317f9a1c2f01",
+    "mongoId": "67493a8f2d4b317f9a1c2f01",
     "publicId": "a7Gh3KpQ",
     "title": "Spaghetti Carbonara",
     "description": "Classic Italian pasta with eggs, cheese, pancetta, and pepper.",
@@ -21,7 +21,7 @@
     "difficulty": "HARD"
   },
   {
-    "id": "67493a8f2d4b317f9a1c2f02",
+    "mongoId": "67493a8f2d4b317f9a1c2f02",
     "publicId": "B9xkLm28",
     "title": "Chicken Curry",
     "description": "Mild curry with coconut milk and tender chicken pieces.",
@@ -42,7 +42,7 @@
     "difficulty": "MEDIUM"
   },
   {
-    "id": "67493a8f2d4b317f9a1c2f03",
+    "mongoId": "67493a8f2d4b317f9a1c2f03",
     "publicId": "pQ3zWm4T",
     "title": "Pancakes",
     "description": "Fluffy breakfast pancakes.",
@@ -63,7 +63,7 @@
     "difficulty": "EASY"
   },
   {
-    "id": "67493a8f2d4b317f9a1c2f04",
+    "mongoId": "67493a8f2d4b317f9a1c2f04",
     "publicId": "Zt8hF1sA",
     "title": "Guacamole",
     "description": "Fresh Mexican avocado dip.",
@@ -84,7 +84,7 @@
     "difficulty": "EASY"
   },
   {
-    "id": "67493a8f2d4b317f9a1c2f05",
+    "mongoId": "67493a8f2d4b317f9a1c2f05",
     "publicId": "7RnK9bCd",
     "title": "Tomato Soup",
     "description": "Smooth and creamy tomato soup.",
