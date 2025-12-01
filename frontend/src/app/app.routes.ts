@@ -1,4 +1,4 @@
-import { Routes } from '@angular/router';
+import {Routes} from '@angular/router';
 import {RecipeList} from './recipes/recipe-list/recipe-list';
 import {RecipeDetail} from './recipes/recipe-detail/recipe-detail';
 import {Home} from './home/home';
@@ -15,7 +15,7 @@ export const routes: Routes = [
     title: 'All Recipes'
   },
   {
-    path: 'recipes/:mongoId',
+    path: 'recipes/:id',
     component: RecipeDetail,
     title: 'Recipe Detail'
   }
