@@ -1,0 +1,57 @@
+<div class="recipe-detail">
+  <div class="back-button-container">
+    <button matButton class="screen-button" (click)="goBack()">
+      <mat-icon>arrow_back</mat-icon>
+      Zurück
+    </button>
+  </div>
+
+
+  @if (recipe(); as recipe) {
+    <mat-card class="recipe-card">
+      <div class="recipe-header">
+        <div class="recipe-title-block">
+          <h1 class="recipe-title">{{ recipe.title }}</h1>
+          <p class="recipe-subtitle">{{ recipe.description }}</p>
+        </div>
+
+        <div class="recipe-meta">
+
+
+          <span class="meta-chip servings-chip">
+            {{ recipe.servings }} Portionen
+          </span>
+
+          <span class="meta-chip difficulty-chip">
+            {{ recipe.difficulty.toLowerCase() }}
+          </span>
+        </div>
+
+        <mat-divider></mat-divider>
+
+        <section class="recipe-section">
+          <h3>Zutaten</h3>
+          <ul>
+            @for (item of recipe.ingredients; track item) {
+              <li>{{ item }}</li>
+            }
+          </ul>
+        </section>
+
+        <section class="recipe-section">
+          <h3>Zubereitung</h3>
+          <ol>
+            @for (step of recipe.steps; track step) {
+              <li>{{ step }}</li>
+            }
+          </ol>
+        </section>
+
+        <mat-card-actions class="recipe-card-action">
+          <button matButton class="screen-button">Bearbeiten</button>
+          <button matButton class="screen-button">Entfernen</button>
+        </mat-card-actions>
+      </div>
+    </mat-card>
+  }
+</div>

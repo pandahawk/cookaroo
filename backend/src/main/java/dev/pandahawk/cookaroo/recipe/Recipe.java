@@ -11,7 +11,7 @@ import java.util.List;
 @Builder
 public record Recipe(
         @Id
-        String id,
+        String mongoId,
         @Indexed(unique = true)
         String publicId,
         String title,

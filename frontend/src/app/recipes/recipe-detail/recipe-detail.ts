@@ -1,22 +1,24 @@
-import {Component, OnInit, signal, WritableSignal} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {Recipe, RecipeService} from '../recipes/recipe.service';
+import {RecipeService} from '../recipe.service';
 import {MatButton} from '@angular/material/button';
-import {MatCard} from '@angular/material/card';
-import {NgClass} from '@angular/common';
+import {MatCard, MatCardActions,} from '@angular/material/card';
+import {MatIcon} from '@angular/material/icon';
+import {MatDivider} from '@angular/material/list';
 
 @Component({
   selector: 'app-recipe-detail',
   imports: [
     MatButton,
+    MatIcon,
     MatCard,
-    NgClass
+    MatDivider,
+    MatCardActions
   ],
   templateUrl: './recipe-detail.html',
-  styleUrl: './recipe-detail.css',
+  styleUrl: './recipe-detail.scss',
 })
 export class RecipeDetail implements OnInit  {
-  recipe: WritableSignal<Recipe | null> = signal<Recipe | null>(null);
 
   constructor(
     private readonly recipeService: RecipeService,
@@ -26,7 +28,6 @@ export class RecipeDetail implements OnInit  {
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
-    this.recipe = this.recipeService.selectedRecipe;
     if (id) {
       this.recipeService.loadRecipeById(id);
     }
@@ -34,6 +35,10 @@ export class RecipeDetail implements OnInit  {
 
   goBack() {
     globalThis.history.back();
+  }
+
+  get recipe() {
+    return this.recipeService.selectedRecipe;
   }
 
 }

@@ -1,4 +1,4 @@
-import {describe} from 'vitest';
+import {describe, expect} from 'vitest';
 import {Recipe, RecipeService} from './recipe.service';
 import {
   HttpTestingController,
@@ -31,18 +31,17 @@ describe('RecipeService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('loadRecipes() should return early when already loading', () => {
+  it('loadRecipeList() should return early when already loading', () => {
     // force loading = true
-    (service as any).loading.set(true);
 
-    service.loadRecipes();
-
-    // no HTTP request should be made
-    httpMock.expectNone('http://localhost:8080/api/v1/recipes');
+    service.loadRecipeList();
     expect(service.loading()).toBe(true);
+
+    service.loadRecipeList();
+    httpMock.expectOne('http://localhost:8080/api/v1/recipes');
   });
 
-  it('loadRecipes() should fetch recipes and update signals on success', () => {
+  it('loadRecipeList() should fetch recipe-list and update signals on success', () => {
     const mockRecipes: Recipe[] = [
       {
         id: '1',
@@ -57,9 +56,8 @@ describe('RecipeService', () => {
 
     // initial state
     expect(service.loading()).toBe(false);
-    expect(service.homeMode()).toBe(true);
 
-    service.loadRecipes();
+    service.loadRecipeList();
 
     // loading flag set
     expect(service.loading()).toBe(true);
@@ -73,40 +71,40 @@ describe('RecipeService', () => {
 
     // signals updated
     expect(service.recipes()).toEqual(mockRecipes);
-    expect(service.homeMode()).toBe(false); // set in complete()
     expect(service.loading()).toBe(false);  // set in complete()
   });
 
-  it('loadRecipes() should log error and clear loading on failure', () => {
-    const logSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
+  it('loadRecipeList() should log error and clear loading on failure', () => {
+    const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {
+    });
 
-    service.loadRecipes();
+    service.loadRecipeList();
     const req = httpMock.expectOne('http://localhost:8080/api/v1/recipes');
+    expect(service.loading()).toBe(true);
+    req.flush('boom', {status: 500, statusText: 'Server Error'});
 
-    req.flush('boom', { status: 500, statusText: 'Server Error' });
-
-    expect(logSpy).toHaveBeenCalledWith(
-      'Failed to load recipes',
+    expect(errorSpy).toHaveBeenCalledWith(
+      expect.stringContaining('RecipeService: Failed to load recipes list.'),
       expect.anything(),
     );
-    expect(service.loading()).toBe(true);
-    expect(service.homeMode()).toBe(true);// from complete()
-    logSpy.mockRestore();
+    expect(service.loading()).toBe(false);
+    errorSpy.mockRestore();
   });
 
 
   it('loadRecipeById() should log error on failure', () => {
-    const errSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+    const errSpy = vi.spyOn(console, 'error').mockImplementation(() => {
+    });
 
     service.loadRecipeById('99');
 
     const req = httpMock.expectOne(
       'http://localhost:8080/api/v1/recipes/99',
     );
-    req.flush('not found', { status: 404, statusText: 'Not Found' });
+    req.flush('not found', {status: 404, statusText: 'Not Found'});
 
     expect(errSpy).toHaveBeenCalledWith(
-      'Failed to load recipe',
+      expect.stringContaining('Failed to load recipe'),
       expect.anything(),
     );
     errSpy.mockRestore();
@@ -139,6 +137,57 @@ describe('RecipeService', () => {
 
     // signal should now be updated
     expect(service.selectedRecipe()).toEqual(mockRecipe);
+  });
+
+  it('goHome() should set selected recipe and the error to null', () => {
+
+    service.goHome();
+
+    expect(service.error()).toBe(null);
+    expect(service.selectedRecipe()).toBe(null);
+  });
+
+  it('deleteRecipe(id) should remove recipe from list and clear selected recipe on success', () => {
+    const id = 'abcd1234';
+
+    const recipeToDelete = { id, title: 'Delete me' } as Recipe;
+    const otherRecipe   = { id: 'zzz', title: 'Keep me' } as Recipe;
+
+    // seed signals for _recipes and _selectedRecipe
+    (service as any)._recipes.set([recipeToDelete, otherRecipe]);
+    (service as any)._selectedRecipe.set(recipeToDelete);
+
+    service.deleteRecipe(id);
+
+    const req = httpMock.expectOne('http://localhost:8080/api/v1/recipes/abcd1234');
+    expect(req.request.method).toBe('DELETE');
+    expect(req.request.headers.get('X-API-KEY')).toBe('dingding');
+
+    // ⬅️ this actually triggers the `next: data => { ... }` block
+    req.flush(null, { status: 204, statusText: 'No Content' });
+
+    // recipes signal should now only contain the other recipe
+    expect(service.recipes()).toEqual([otherRecipe]);
+
+    // selectedRecipe should have been cleared
+    expect(service.selectedRecipe()).toBeNull();
+  });
+
+  it('deleteRecipe(id) should set error signal on failure', () => {
+    const id = 'abcd1234';
+
+    service.deleteRecipe(id);
+
+    const req = httpMock.expectOne('http://localhost:8080/api/v1/recipes/abcd1234');
+    expect(req.request.method).toBe('DELETE');
+
+    // ⬅️ trigger the error callback
+    req.flush('Server error', {
+      status: 500,
+      statusText: 'Server Error',
+    });
+
+    expect(service.error()).toBe(`Failed to delete recipe with ID: ${id}.`);
   });
 
 })

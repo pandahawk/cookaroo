@@ -2,7 +2,7 @@ import {ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {RecipeDetail} from './recipe-detail';
 import {ActivatedRoute, convertToParamMap} from '@angular/router';
-import {Recipe} from '../recipes/recipe.service';
+import {Recipe, RecipeService} from '../recipe.service';
 import {vi} from 'vitest';
 import {signal, WritableSignal} from '@angular/core';
 
@@ -40,11 +40,15 @@ describe('RecipeDetail', () => {
           provide: ActivatedRoute,
           useValue: {
             snapshot: {
-              paramMap: convertToParamMap({id: 'abcd1234'}), // or whatever id
+              paramMap: convertToParamMap({id: 'abcd1234'}), // or whatever mongoId
             },
           },
         },
-      ],
+        {
+          provide: RecipeService,
+          useValue: recipeServiceMock,      // ✅ use the mock here
+        },
+  ],
     }).compileComponents();
     fixture = TestBed.createComponent(RecipeDetail);
     component = fixture.componentInstance;
@@ -56,16 +60,14 @@ describe('RecipeDetail', () => {
   });
 
   it('renders the recipe details', () => {
-
     const host: HTMLElement = fixture.nativeElement;
-
-    fixture.componentInstance.recipe.set(testRecipe)
     fixture.detectChanges();
-
-    // @if(recipe()) block → mat-card exists
-    const card = host.querySelector('.recipe-detail-card');
+    const card = host.querySelector('.recipe-card');
     expect(card).toBeTruthy();
   });
 
+  it('calls loadRecipeById with route mongoId', () => {
+    expect(recipeServiceMock.loadRecipeById).toHaveBeenCalledWith('abcd1234');
+  });
 
 });

@@ -1,0 +1,40 @@
+.recipe-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+  padding: 16px;
+}
+
+/* Base card look */
+.recipe-grid mat-card {
+  padding: 16px 16px;
+  border-radius: 16px;
+  background-color: var(--mat-sys-surface-container-low);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.38);
+  cursor: pointer;
+  transition:
+    transform 150ms ease,
+    box-shadow 150ms ease,
+    background-color 150ms ease;
+  outline: 2px solid green;
+}
+
+
+.recipe-grid mat-card:hover,
+.recipe-grid mat-card:focus-visible  {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+  outline: 4px solid green;
+}
+
+.recipe-grid mat-card:active {
+  transform: translateY(-1px) scale(0.99);
+}
+
+.recipe-card-action {
+  justify-content: space-between;
+}
+
+.recipe-grid .spacer {
+  flex: 1 1 auto;
+}

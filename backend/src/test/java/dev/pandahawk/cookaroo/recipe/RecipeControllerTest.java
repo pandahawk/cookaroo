@@ -216,7 +216,7 @@ class RecipeControllerTest {
             mvc.perform(delete("/api/v1/recipes/{id}", id))
                     .andExpect(status().isNotFound())
                     .andExpect(jsonPath("$.message").value("Recipe not found " +
-                            "with id: " + id));
+                            "with mongoId: " + id));
         }
     }
 

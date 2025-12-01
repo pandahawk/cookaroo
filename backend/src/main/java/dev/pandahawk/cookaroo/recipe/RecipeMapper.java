@@ -11,7 +11,7 @@ public interface RecipeMapper {
     @Mapping(target = "id", source = "publicId")
     RecipeResponse toRecipeResponse(Recipe recipe);
 
-    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "mongoId", ignore = true)
     @Mapping(target = "publicId", source = "nanoId")
     Recipe toEntity(String nanoId, CreateRecipeRequest request);
 
@@ -19,7 +19,7 @@ public interface RecipeMapper {
         if (req == null) return old;
 
         return Recipe.builder()
-                .id(old.id())
+                .mongoId(old.mongoId())
                 .publicId(old.publicId())
                 .title(req.title() != null ? req.title() : old.title())
                 .description(req.description() != null ? req.description() : old.description())

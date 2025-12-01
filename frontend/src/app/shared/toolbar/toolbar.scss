@@ -1,0 +1,33 @@
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+@media (max-width: 600px) {
+  .button-text {
+    /* Hides the element without affecting the layout flow (best practice) */
+    display: none;
+  }
+}
+
+.fixed-toolbar {
+  /* The Key Property: Fixes the element relative to the browser window (viewport) */
+  position: fixed;
+
+  /* Ensures it sticks to the very top */
+  top: 0;
+
+  /* Makes it span the entire width of the screen */
+  left: 0;
+  right: 0;
+
+  /* Puts it on top of other content when scrolling (higher z-index = more on top) */
+  z-index: 1000;
+}
+
+//mat-toolbar .mat-mdc-button:hover,
+//mat-toolbar .mat-mdc-icon-button:hover {
+//  border-color: rgba(255, 255, 255, 0.85);  // white outline
+//  background-color: rgba(255, 255, 255, 0.08); // subtle glow
+//  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.15); // soft halo
+//}
