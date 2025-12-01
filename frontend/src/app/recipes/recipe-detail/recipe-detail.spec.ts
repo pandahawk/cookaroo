@@ -40,7 +40,7 @@ describe('RecipeDetail', () => {
           provide: ActivatedRoute,
           useValue: {
             snapshot: {
-              paramMap: convertToParamMap({id: 'abcd1234'}), // or whatever id
+              paramMap: convertToParamMap({id: 'abcd1234'}), // or whatever mongoId
             },
           },
         },
@@ -66,7 +66,7 @@ describe('RecipeDetail', () => {
     expect(card).toBeTruthy();
   });
 
-  it('calls loadRecipeById with route id', () => {
+  it('calls loadRecipeById with route mongoId', () => {
     expect(recipeServiceMock.loadRecipeById).toHaveBeenCalledWith('abcd1234');
   });
 

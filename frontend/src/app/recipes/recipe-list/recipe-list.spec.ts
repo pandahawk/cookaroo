@@ -67,7 +67,7 @@ describe('RecipeList', () => {
     expect(recipeServiceMock.deleteRecipe).toHaveBeenCalledWith('abcd1234');
   });
 
-  it('should navigate to recipes/{id} when clicking on a card', () => {
+  it('should navigate to recipes/{mongoId} when clicking on a card', () => {
     const testrecipe = {id: 'abcd1234', title: 'test title'} as Recipe;
     component.onRecipeClick(testrecipe);
     expect(routerMock.navigate).toHaveBeenCalledWith(['/recipes', testrecipe.id])

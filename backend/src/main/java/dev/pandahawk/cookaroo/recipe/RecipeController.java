@@ -34,7 +34,7 @@ public class RecipeController {
     @Operation(summary = "Get recipe", description = "Returns the " +
             "recipe with the given ID.")
     public RecipeResponse getRecipe(
-            @Parameter(name = "id", description = "Nano id of the recipe")
+            @Parameter(name = "id", description = "Nano mongoId of the recipe")
             @PathVariable String id) {
         return service.getRecipe(id);
     }
@@ -52,21 +52,21 @@ public class RecipeController {
 
     @DeleteMapping("/{id}")
     @Operation(summary = "Delete recipe", description = "Deletes the recipe " +
-            "with the given id.")
+            "with the given mongoId.")
     @ApiResponse(responseCode = "204", description = "Recipe deleted")
     @ApiResponse(responseCode = "404", description = "Recipe not found")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteRecipe(
-            @Parameter(name = "id", description = "Nano id of the recipe")
+            @Parameter(name = "id", description = "Nano mongoId of the recipe")
             @PathVariable String id) {
         service.deleteRecipe(id);
     }
 
     @PatchMapping("/{id}")
     @Operation(summary = "Update recipe", description = "Updates the recipe " +
-            "with the given id.")
+            "with the given mongoId.")
     public RecipeResponse updateRecipe(
-            @Parameter(name = "id", description = "Nano id of the recipe")
+            @Parameter(name = "id", description = "Nano mongoId of the recipe")
             @PathVariable String id,
             @Valid @RequestBody UpdateRecipeRequest request) {
         return service.updateRecipe(id, request);

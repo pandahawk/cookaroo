@@ -15,12 +15,12 @@ export const routes: Routes = [
     title: 'All Recipes'
   },
   {
-    path: 'recipes/:id',
+    path: 'recipes/:mongoId',
     component: RecipeDetail,
     title: 'Recipe Detail'
   }
 
   // { path: '', redirectTo: 'recipe-list', pathMatch: 'full' },
   // { path: 'recipe-list', component: RecipeList },
-  // {path: 'recipe-list/:id', component: RecipeDetail}
+  // {path: 'recipe-list/:mongoId', component: RecipeDetail}
 ];

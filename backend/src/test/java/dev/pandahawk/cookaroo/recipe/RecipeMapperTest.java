@@ -51,7 +51,7 @@ class RecipeMapperTest {
             assertThat(result.description()).isEqualTo(req.description());
             assertThat(result.steps()).isEqualTo(req.steps());
             assertThat(result.publicId()).isEqualTo(old.publicId());
-            assertThat(result.id()).isEqualTo(old.id());
+            assertThat(result.mongoId()).isEqualTo(old.mongoId());
             assertThat(result.difficulty()).isEqualTo(old.difficulty());
             assertThat(result.ingredients()).isEqualTo(old.ingredients());
             assertThat(result.servings()).isEqualTo(old.servings());
@@ -69,7 +69,7 @@ class RecipeMapperTest {
             var result = mapper.merge(old, req);
 
             assertThat(result.publicId()).isEqualTo(old.publicId());
-            assertThat(result.id()).isEqualTo(old.id());
+            assertThat(result.mongoId()).isEqualTo(old.mongoId());
 
             assertThat(result.title()).isEqualTo(old.title());
             assertThat(result.description()).isEqualTo(old.description());
