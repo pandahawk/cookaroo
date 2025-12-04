@@ -17,344 +17,187 @@
       "Combine everything and season."
     ],
     "servings": 2,
-    "difficulty": "HARD"
+    "difficulty": "HARD",
+    "category": ["PASTA", "MEAT"]
   },
   {
-    "publicId": "B9xkLm28",
-    "title": "Chicken Curry",
-    "description": "Mild curry with coconut milk and tender chicken pieces.",
+    "publicId": "Zp3Kx9Qa",
+    "title": "Grilled Salmon",
+    "description": "Juicy grilled salmon with lemon and herbs.",
     "ingredients": [
-      "300g chicken breast",
-      "1 onion",
-      "2 garlic cloves",
-      "200ml coconut milk",
-      "Curry powder"
-    ],
-    "steps": [
-      "Sauté onion and garlic.",
-      "Add chicken and fry.",
-      "Add curry powder.",
-      "Pour in coconut milk and simmer."
-    ],
-    "servings": 3,
-    "difficulty": "MEDIUM"
-  },
-  {
-    "publicId": "pQ3zWm4T",
-    "title": "Pancakes",
-    "description": "Fluffy breakfast pancakes.",
-    "ingredients": [
-      "200g flour",
-      "2 eggs",
-      "300ml milk",
-      "1 tbsp sugar",
-      "1 tsp baking powder"
-    ],
-    "steps": [
-      "Mix dry ingredients.",
-      "Add eggs and milk.",
-      "Whisk to smooth batter.",
-      "Cook in a pan until golden."
-    ],
-    "servings": 4,
-    "difficulty": "EASY"
-  },
-  {
-    "publicId": "Zt8hF1sA",
-    "title": "Guacamole",
-    "description": "Fresh Mexican avocado dip.",
-    "ingredients": [
-      "2 ripe avocados",
-      "1 lime",
-      "1 tomato",
+      "2 salmon fillets",
+      "1 lemon",
+      "Olive oil",
       "Salt",
       "Pepper"
     ],
     "steps": [
-      "Mash the avocados.",
-      "Add chopped tomato.",
-      "Squeeze lime over mixture.",
-      "Season with salt and pepper."
+      "Preheat grill.",
+      "Season salmon.",
+      "Grill for 4 minutes per side."
     ],
     "servings": 2,
-    "difficulty": "EASY"
+    "difficulty": "MEDIUM",
+    "category": ["FISH"]
   },
   {
-    "publicId": "7RnK9bCd",
-    "title": "Tomato Soup",
-    "description": "Smooth and creamy tomato soup.",
+    "publicId": "M8Fq2TrA",
+    "title": "Veggie Stir Fry",
+    "description": "Colorful vegetable stir fry with soy sauce.",
     "ingredients": [
-      "400g tomatoes",
-      "1 onion",
-      "1 garlic clove",
-      "300ml vegetable broth",
-      "Salt"
-    ],
-    "steps": [
-      "Sauté onion and garlic.",
-      "Add tomatoes.",
-      "Pour in broth and simmer.",
-      "Blend until smooth."
-    ],
-    "servings": 2,
-    "difficulty": "MEDIUM"
-  },
-  {
-    "publicId": "K3tP1xQ9",
-    "title": "Beef Stroganoff",
-    "description": "Creamy Russian-style beef served with mushrooms.",
-    "ingredients": [
-      "400g beef strips",
-      "1 onion",
-      "150g mushrooms",
-      "200ml sour cream",
-      "1 tbsp paprika"
-    ],
-    "steps": [
-      "Brown the beef.",
-      "Cook onions and mushrooms.",
-      "Add paprika and sour cream.",
-      "Simmer until thickened."
-    ],
-    "servings": 3,
-    "difficulty": "MEDIUM"
-  },
-  {
-    "publicId": "hG83kLmD",
-    "title": "Margherita Pizza",
-    "description": "Simple Italian pizza with tomato, mozzarella, and basil.",
-    "ingredients": [
-      "Pizza dough",
-      "200g tomato sauce",
-      "150g mozzarella",
-      "Fresh basil"
-    ],
-    "steps": [
-      "Spread tomato sauce on dough.",
-      "Add mozzarella slices.",
-      "Bake until crispy.",
-      "Top with fresh basil."
-    ],
-    "servings": 2,
-    "difficulty": "EASY"
-  },
-  {
-    "publicId": "Q9pLm12A",
-    "title": "Beef Tacos",
-    "description": "Mexican tacos with seasoned ground beef.",
-    "ingredients": [
-      "300g ground beef",
-      "Taco seasoning",
-      "Taco shells",
-      "Lettuce",
-      "Cheddar cheese"
-    ],
-    "steps": [
-      "Brown the beef.",
-      "Add taco seasoning.",
-      "Assemble tacos with toppings.",
-      "Serve warm."
-    ],
-    "servings": 4,
-    "difficulty": "EASY"
-  },
-  {
-    "publicId": "Lp0Zs93F",
-    "title": "Greek Salad",
-    "description": "Refreshing salad with feta, cucumber, and tomatoes.",
-    "ingredients": [
-      "1 cucumber",
-      "2 tomatoes",
-      "100g feta cheese",
-      "Olives",
-      "Olive oil"
+      "Broccoli",
+      "Bell peppers",
+      "Carrots",
+      "Soy sauce",
+      "Garlic"
     ],
     "steps": [
       "Chop vegetables.",
-      "Mix everything.",
-      "Drizzle with olive oil.",
-      "Top with feta."
+      "Stir fry in hot pan.",
+      "Add soy sauce."
     ],
     "servings": 2,
-    "difficulty": "EASY"
+    "difficulty": "EASY",
+    "category": ["VEGGI"]
   },
   {
-    "publicId": "aK2P8nX0",
-    "title": "Chocolate Cake",
-    "description": "Rich and moist chocolate cake.",
+    "publicId": "2xWQeLmA",
+    "title": "Chicken Fried Rice",
+    "description": "Classic Asian-style fried rice with chicken.",
     "ingredients": [
-      "200g flour",
-      "100g cocoa powder",
-      "150g sugar",
+      "200g rice",
+      "150g chicken breast",
       "2 eggs",
-      "1 tsp baking powder"
-    ],
-    "steps": [
-      "Mix dry ingredients.",
-      "Add wet ingredients.",
-      "Bake until cooked through.",
-      "Cool and serve."
-    ],
-    "servings": 8,
-    "difficulty": "MEDIUM"
-  },
-  {
-    "publicId": "F4rTm79B",
-    "title": "Caesar Salad",
-    "description": "Crisp lettuce with creamy Caesar dressing.",
-    "ingredients": [
-      "Romaine lettuce",
-      "Parmesan",
-      "Croutons",
-      "Caesar dressing",
-      "Lemon juice"
-    ],
-    "steps": [
-      "Chop lettuce.",
-      "Mix with dressing.",
-      "Add croutons.",
-      "Sprinkle parmesan."
-    ],
-    "servings": 2,
-    "difficulty": "EASY"
-  },
-  {
-    "publicId": "G6nHs31L",
-    "title": "Lasagna",
-    "description": "Layered pasta with meat sauce and cheese.",
-    "ingredients": [
-      "Lasagna sheets",
-      "300g minced beef",
-      "Tomato sauce",
-      "Mozzarella",
-      "Ricotta"
-    ],
-    "steps": [
-      "Make meat sauce.",
-      "Layer pasta and sauce.",
-      "Top with cheese.",
-      "Bake until golden."
-    ],
-    "servings": 6,
-    "difficulty": "HARD"
-  },
-  {
-    "publicId": "Zp9Hm4Ks",
-    "title": "Fried Rice",
-    "description": "Quick Asian-style fried rice with vegetables.",
-    "ingredients": [
-      "2 cups cooked rice",
-      "1 carrot",
-      "1 egg",
       "Soy sauce",
-      "Peas"
+      "Spring onions"
     ],
     "steps": [
-      "Scramble egg.",
-      "Add vegetables.",
-      "Add rice and soy sauce.",
-      "Stir-fry until combined."
+      "Cook rice.",
+      "Fry chicken.",
+      "Add eggs and rice.",
+      "Season."
     ],
-    "servings": 2,
-    "difficulty": "EASY"
+    "servings": 3,
+    "difficulty": "MEDIUM",
+    "category": ["RICE", "MEAT"]
   },
   {
-    "publicId": "J7yNs6C1",
-    "title": "Pad Thai",
-    "description": "Thai rice noodles stir-fried with peanuts and vegetables.",
+    "publicId": "R8ZaT4XQ",
+    "title": "Pasta Pesto",
+    "description": "Green pesto pasta with parmesan.",
     "ingredients": [
-      "Rice noodles",
-      "Bean sprouts",
-      "Peanuts",
-      "Tofu or chicken",
-      "Tamarind sauce"
+      "Pasta",
+      "Basil pesto",
+      "Parmesan",
+      "Olive oil"
     ],
     "steps": [
-      "Cook noodles.",
-      "Stir-fry tofu.",
-      "Add sauce and noodles.",
-      "Top with peanuts."
+      "Cook pasta.",
+      "Mix with pesto.",
+      "Top with parmesan."
     ],
     "servings": 2,
-    "difficulty": "MEDIUM"
+    "difficulty": "EASY",
+    "category": ["PASTA", "VEGGI"]
   },
   {
-    "publicId": "S1uRt79Q",
-    "title": "Hamburger",
-    "description": "Juicy beef burger with fresh toppings.",
+    "publicId": "Y6wE9NQa",
+    "title": "Beef Burger",
+    "description": "Juicy beef burger with cheese and salad.",
     "ingredients": [
       "Beef patty",
-      "Burger bun",
+      "Burger buns",
+      "Cheese",
       "Lettuce",
-      "Tomato",
-      "Cheese"
+      "Tomato"
     ],
     "steps": [
       "Grill patty.",
-      "Assemble with toppings.",
-      "Serve warm."
+      "Toast buns.",
+      "Assemble burger."
     ],
     "servings": 1,
-    "difficulty": "EASY"
+    "difficulty": "MEDIUM",
+    "category": ["MEAT"]
   },
   {
-    "publicId": "W8mQk01P",
-    "title": "Butter Chicken",
-    "description": "Creamy tomato-based Indian chicken curry.",
+    "publicId": "H3KpQm8F",
+    "title": "Fish Tacos",
+    "description": "Crispy fish tacos with lime sauce.",
     "ingredients": [
-      "400g chicken",
-      "Tomato puree",
+      "White fish",
+      "Tortillas",
+      "Cabbage",
+      "Lime",
+      "Yogurt"
+    ],
+    "steps": [
+      "Fry fish.",
+      "Prepare sauce.",
+      "Assemble tacos."
+    ],
+    "servings": 2,
+    "difficulty": "MEDIUM",
+    "category": ["FISH"]
+  },
+  {
+    "publicId": "4NQaXW9P",
+    "title": "Mushroom Risotto",
+    "description": "Creamy risotto with mushrooms and parmesan.",
+    "ingredients": [
+      "Risotto rice",
+      "Mushrooms",
+      "Vegetable broth",
+      "Parmesan"
+    ],
+    "steps": [
+      "Sauté mushrooms.",
+      "Add rice and broth gradually.",
+      "Stir until creamy."
+    ],
+    "servings": 2,
+    "difficulty": "HARD",
+    "category": ["RICE", "VEGGI"]
+  },
+  {
+    "publicId": "K7F2QaXm",
+    "title": "Chicken Alfredo Pasta",
+    "description": "Creamy chicken pasta with garlic sauce.",
+    "ingredients": [
+      "Pasta",
+      "Chicken breast",
       "Cream",
-      "Butter",
-      "Spices"
+      "Garlic",
+      "Parmesan"
     ],
     "steps": [
-      "Marinate chicken.",
-      "Cook with spices.",
-      "Add tomato puree.",
-      "Finish with cream."
+      "Cook pasta.",
+      "Fry chicken.",
+      "Add cream sauce.",
+      "Mix with pasta."
     ],
-    "servings": 4,
-    "difficulty": "MEDIUM"
+    "servings": 3,
+    "difficulty": "MEDIUM",
+    "category": ["PASTA", "MEAT"]
   },
   {
-    "publicId": "D4kZs90H",
-    "title": "French Toast",
-    "description": "Sweet and buttery breakfast classic.",
+    "publicId": "QmT4R8Za",
+    "title": "Vegetable Rice Bowl",
+    "description": "Healthy rice bowl with roasted vegetables.",
     "ingredients": [
-      "2 slices bread",
-      "1 egg",
-      "Milk",
-      "Cinnamon",
-      "Sugar"
+      "Rice",
+      "Zucchini",
+      "Carrots",
+      "Chickpeas",
+      "Tahini sauce"
     ],
     "steps": [
-      "Whisk egg and milk.",
-      "Dip bread.",
-      "Fry until golden.",
-      "Sprinkle cinnamon."
+      "Cook rice.",
+      "Roast vegetables.",
+      "Assemble bowl."
     ],
-    "servings": 1,
-    "difficulty": "EASY"
-  },
-  {
-    "publicId": "M3rLt65A",
-    "title": "Ramen Bowl",
-    "description": "Japanese noodle soup with toppings.",
-    "ingredients": [
-      "Ramen noodles",
-      "Broth",
-      "Egg",
-      "Spring onions",
-      "Soy sauce"
-    ],
-    "steps": [
-      "Cook noodles.",
-      "Heat broth.",
-      "Add toppings.",
-      "Serve hot."
-    ],
-    "servings": 1,
-    "difficulty": "MEDIUM"
+    "servings": 2,
+    "difficulty": "EASY",
+    "category": ["RICE", "VEGGI"]
   }
 ]

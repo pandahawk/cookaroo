@@ -25,6 +25,7 @@ public interface RecipeMapper {
                 .description(req.description() != null ? req.description() : old.description())
                 .difficulty(req.difficulty() != null ? req.difficulty() : old.difficulty())
                 .ingredients(req.ingredients() != null ? req.ingredients() : old.ingredients())
+                .category(req.category() != null? req.category() : old.category())
                 .steps(req.steps() != null ? req.steps() : old.steps())
                 .servings(req.servings() != null ? req.servings() : old.servings())
                 .build();

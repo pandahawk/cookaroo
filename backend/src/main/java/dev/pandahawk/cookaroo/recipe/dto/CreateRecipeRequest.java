@@ -1,11 +1,13 @@
 package dev.pandahawk.cookaroo.recipe.dto;
 
+import dev.pandahawk.cookaroo.recipe.Category;
 import dev.pandahawk.cookaroo.recipe.Difficulty;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.*;
 import lombok.Builder;
 
 import java.util.List;
+import java.util.Set;
 
 @Builder
 public record CreateRecipeRequest(
@@ -20,6 +22,9 @@ public record CreateRecipeRequest(
         ,
         @NotNull
         Difficulty difficulty,
+
+        @NotEmpty
+        Set<@NotNull Category> category,
 
         @NotEmpty
         List<@NotBlank String> ingredients,

@@ -18,7 +18,7 @@ public record Recipe(
         String title,
         String description,
         Difficulty difficulty,
-        Set<Category> categories,
+        Set<Category> category,
         List<String> ingredients,
         List<String> steps,
         int servings
