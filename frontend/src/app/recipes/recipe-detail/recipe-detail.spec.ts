@@ -2,12 +2,13 @@ import {ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {RecipeDetail} from './recipe-detail';
 import {ActivatedRoute, convertToParamMap} from '@angular/router';
-import {Recipe, RecipeService} from '../recipe.service';
+import {RecipeService} from '../recipe.service';
 import {vi} from 'vitest';
 import {signal, WritableSignal} from '@angular/core';
 import {of} from 'rxjs';
 import {ConfirmDialog} from '../confirm-dialog/confirm-dialog';
 import {MatDialog} from '@angular/material/dialog';
+import {Category, Difficulty, Recipe} from '../recipe.model';
 
 describe('RecipeDetail', () => {
   let component: RecipeDetail;
@@ -20,15 +21,15 @@ describe('RecipeDetail', () => {
   };
   let dialogMock: { open: ReturnType<typeof vi.fn>; };
 
-  const testRecipe: Recipe = {
+  const testRecipe =  {
     id: 'abcd1234',
     title: 'Spaghetti Carbonara',
-    difficulty: 'EASY',
+    difficulty: Difficulty.EASY,
+    category: [Category.VEGGI],
     description: 'Yummy pasta',
     servings: 2,
     ingredients: ['Spaghetti', 'Eggs', 'Bacon'],
-    steps: ['Boil pasta', 'Fry bacon', 'Mix everything'],
-  };
+    steps: ['Boil pasta', 'Fry bacon', 'Mix everything']} as Recipe;
 
 
   beforeEach(async () => {

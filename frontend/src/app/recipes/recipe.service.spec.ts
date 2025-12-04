@@ -1,11 +1,12 @@
 import {describe, expect} from 'vitest';
-import {Recipe, RecipeService} from './recipe.service';
+import {RecipeService} from './recipe.service';
 import {
   HttpTestingController,
   provideHttpClientTesting
 } from '@angular/common/http/testing';
 import {provideHttpClient} from '@angular/common/http';
 import {TestBed} from '@angular/core/testing';
+import {Category, Difficulty, Recipe} from './recipe.model';
 
 describe('RecipeService', () => {
   let service: RecipeService;
@@ -47,7 +48,8 @@ describe('RecipeService', () => {
         id: '1',
         title: 'Test',
         description: 'desc',
-        difficulty: 'EASY',
+        difficulty: Difficulty.EASY,
+        category: [Category.VEGGI],
         ingredients: [],
         steps: [],
         servings: 2,
@@ -117,7 +119,8 @@ describe('RecipeService', () => {
       id,
       title: 'Detail',
       description: 'desc',
-      difficulty: 'EASY',
+      difficulty: Difficulty.EASY,
+      category: [Category.VEGGI],
       ingredients: [],
       steps: [],
       servings: 2,
