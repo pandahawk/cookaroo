@@ -1,6 +1,6 @@
 <div class="recipe-grid">
 
-  @for (recipe of recipes; track recipe.id) {
+  @for (recipe of recipeService.recipes(); track recipe.id) {
 
     <mat-card
       (click)="onRecipeClick(recipe)"

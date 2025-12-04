@@ -1,4 +1,4 @@
-import {Component,} from '@angular/core';
+import {Component, inject,} from '@angular/core';
 import {RecipeService} from '../../recipes/recipe.service';
 import {Router} from '@angular/router';
 import {MatToolbar} from '@angular/material/toolbar';
@@ -18,23 +18,16 @@ import {MatIcon} from '@angular/material/icon';
 })
 export class Toolbar {
 
-  constructor(
-    private readonly recipeService: RecipeService,
-    private readonly router: Router,) {
-  }
+  readonly recipeService = inject(RecipeService);
+  readonly router = inject(Router);
 
   onRecipesClick() {
     this.recipeService.loadRecipeList();
     this.router.navigate(['/recipes']);
   }
 
-  get loading(): boolean {
-    return this.recipeService.loading();   // call the signal here
-  }
-
   onHomeClick() {
     this.recipeService.goHome();
     this.router.navigate(['/']);
   }
-
 }

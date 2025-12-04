@@ -7,7 +7,7 @@
   </div>
 
 
-  @if (recipe(); as recipe) {
+  @if (recipeService.selectedRecipe(); as recipe) {
     <mat-card class="recipe-card">
       <div class="recipe-header">
         <div class="recipe-title-block">
@@ -49,7 +49,10 @@
 
         <mat-card-actions class="recipe-card-action">
           <button matButton class="screen-button">Bearbeiten</button>
-          <button matButton class="screen-button">Entfernen</button>
+          <button matButton
+                  class="screen-button"
+                  (click)="deleteRecipe(recipe)">Entfernen
+          </button>
         </mat-card-actions>
       </div>
     </mat-card>

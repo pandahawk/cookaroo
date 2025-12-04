@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {Recipe, RecipeService} from '../recipe.service';
 import {
   MatCard,
@@ -25,18 +25,12 @@ import {MatButton} from '@angular/material/button';
 })
 export class RecipeList implements OnInit {
 
-  constructor(
-    private readonly recipeService: RecipeService,
-    private readonly router: Router,
-    private readonly dialog: MatDialog) {
-  }
+  readonly recipeService = inject(RecipeService);
+  readonly router = inject(Router);
+  readonly dialog = inject(MatDialog);
 
   ngOnInit(): void {
-        this.recipeService.loadRecipeList();
-    }
-
-  get recipes() {
-    return this.recipeService.recipes();
+    this.recipeService.loadRecipeList();
   }
 
   deleteRecipe(r: Recipe) {

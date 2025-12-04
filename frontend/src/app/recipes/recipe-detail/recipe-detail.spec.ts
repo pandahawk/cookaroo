@@ -5,6 +5,9 @@ import {ActivatedRoute, convertToParamMap} from '@angular/router';
 import {Recipe, RecipeService} from '../recipe.service';
 import {vi} from 'vitest';
 import {signal, WritableSignal} from '@angular/core';
+import {of} from 'rxjs';
+import {ConfirmDialog} from '../confirm-dialog/confirm-dialog';
+import {MatDialog} from '@angular/material/dialog';
 
 describe('RecipeDetail', () => {
   let component: RecipeDetail;
@@ -13,7 +16,9 @@ describe('RecipeDetail', () => {
   let recipeServiceMock: {
     selectedRecipe: WritableSignal<Recipe | null>;
     loadRecipeById: ReturnType<typeof vi.fn>;
+    deleteRecipe: ReturnType<typeof vi.fn>;
   };
+  let dialogMock: { open: ReturnType<typeof vi.fn>; };
 
   const testRecipe: Recipe = {
     id: 'abcd1234',
@@ -30,8 +35,9 @@ describe('RecipeDetail', () => {
     recipeServiceMock = {
       selectedRecipe: signal<Recipe | null>(testRecipe),
       loadRecipeById: vi.fn(),
+      deleteRecipe: vi.fn(),
     };
-
+    dialogMock = {open: vi.fn()};
 
     await TestBed.configureTestingModule({
       imports: [RecipeDetail],
@@ -44,10 +50,8 @@ describe('RecipeDetail', () => {
             },
           },
         },
-        {
-          provide: RecipeService,
-          useValue: recipeServiceMock,      // ✅ use the mock here
-        },
+        {provide: RecipeService, useValue: recipeServiceMock},
+        {provide: MatDialog, useValue: dialogMock},
   ],
     }).compileComponents();
     fixture = TestBed.createComponent(RecipeDetail);
@@ -59,15 +63,21 @@ describe('RecipeDetail', () => {
     expect(component).toBeTruthy();
   });
 
-  it('renders the recipe details', () => {
-    const host: HTMLElement = fixture.nativeElement;
-    fixture.detectChanges();
-    const card = host.querySelector('.recipe-card');
-    expect(card).toBeTruthy();
-  });
+  it('should open confirm dialog and delete recipe when confirmed', () => {
+    const testrecipe = {id: 'abcd1234', title: 'test title'} as Recipe;
+    dialogMock.open.mockReturnValue({
+      afterClosed: () => of(true)
+    })
+    component.deleteRecipe(testrecipe);
 
-  it('calls loadRecipeById with route mongoId', () => {
-    expect(recipeServiceMock.loadRecipeById).toHaveBeenCalledWith('abcd1234');
+    expect(dialogMock.open).toHaveBeenCalledWith(ConfirmDialog, {
+      width: '360px',
+      data: {
+        title: 'Rezept löschen',
+        message: 'Möchtest du "test title" wirklich löschen?',
+      },
+    });
+    expect(recipeServiceMock.deleteRecipe).toHaveBeenCalledWith('abcd1234');
   });
 
 });

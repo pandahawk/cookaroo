@@ -1,6 +1,6 @@
-import {Injectable, signal, Signal} from '@angular/core';
+import {inject, Injectable, signal, Signal} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {finalize} from 'rxjs';
+import {finalize, tap} from 'rxjs';
 
 export interface Recipe {
   id: string;
@@ -18,7 +18,7 @@ export interface Recipe {
 
 export class RecipeService {
 
-  private readonly _recipes =  signal<Recipe[]>([]);
+  private readonly _recipes = signal<Recipe[]>([]);
   private readonly _loading = signal<boolean>(false);
   private readonly _error = signal<string | null>(null);
   private readonly _selectedRecipe = signal<Recipe | null>(null);
@@ -32,8 +32,7 @@ export class RecipeService {
   // Best practice: Use an interceptor for API keys, but keeping it here for simplicity
   private readonly apiKey = 'dingding';
 
-  constructor(private readonly http: HttpClient) {
-  }
+  private readonly http = inject(HttpClient);
 
   private getHeaders(): HttpHeaders {
     return new HttpHeaders({
@@ -50,19 +49,20 @@ export class RecipeService {
 
     this.http.get<Recipe[]>(`${this.apiUrl}`, {headers: this.getHeaders()})
       .pipe(
+        tap({
+          next: data => {
+            this._recipes.set(data);
+            console.log('RecipeService: Recipe list loaded successfully', data);
+          },
+          error: err => {
+            console.error('RecipeService: Failed to load recipes list.', err);
+            this._error.set('Failed to fetch recipes. Please try again.');
+            this._recipes.set([]);
+          },
+        }),
         finalize(() => this._loading.set(false)),
       )
-      .subscribe({
-        next: data => {
-          this._recipes.set(data);
-          console.log('RecipeService: Recipe list loaded successfully', data);
-          },
-        error: err => {
-          console.error('RecipeService: Failed to load recipes list.', err);
-          this._error.set('Failed to fetch recipes. Please try again.');
-          this._recipes.set([]);
-        },
-      });
+      .subscribe();
   }
 
   loadRecipeById(id: string): void {
@@ -70,37 +70,41 @@ export class RecipeService {
     this._error.set(null);
 
     // NOTE: Tracker logic has been removed. A duplicate request will now proceed.
-    this.http.get<Recipe>(`${this.apiUrl}/${id}`, { headers: this.getHeaders() })
-      .subscribe({
-        next: (data) => {
-          this._selectedRecipe.set(data);
-          console.log(`RecipeService: Recipe ${id} loaded successfully.`, data);
-        },
-        error: (err) => {
-          console.error(`RecipeService: Failed to load recipe ${id}.`, err);
-          this._error.set(`Failed to fetch recipe details for ID: ${id}.`);
-        }
-      });
+    this.http.get<Recipe>(`${this.apiUrl}/${id}`, {headers: this.getHeaders()})
+      .pipe(
+        tap({
+            next: (data) => {
+              this._selectedRecipe.set(data);
+              console.log(`RecipeService: Recipe ${id} loaded successfully.`, data);
+            },
+            error: (err) => {
+              console.error(`RecipeService: Failed to load recipe ${id}.`, err);
+              this._error.set(`Failed to fetch recipe details for ID: ${id}.`);
+            }
+          })
+        ).subscribe();
   }
 
   deleteRecipe(id: string): void {
-    this.http.delete<Recipe>(`${this.apiUrl}/${id}`, { headers: this.getHeaders() })
-      .subscribe({
-        next: () => {
-          console.log(`RecipeService: Recipe ${id} deleted successfully.`);
-          this._recipes.update(recipes =>
-            recipes ? recipes.filter(r => r.id !== id) : []
-          );
-          const current = this._selectedRecipe();
-          if (current?.id === id) {
-            this._selectedRecipe.set(null);
-          }
-        },
-        error: err => {
-          console.error(`RecipeService: Failed to delete recipe ${id}.`, err);
-          this._error.set(`Failed to delete recipe with ID: ${id}.`);
-        },
-      });
+    this.http.delete<Recipe>(`${this.apiUrl}/${id}`, {headers: this.getHeaders()})
+      .pipe(
+        tap({
+          next: () => {
+            console.log(`RecipeService: Recipe ${id} deleted successfully.`);
+            this._recipes.update(recipes =>
+              recipes ? recipes.filter(r => r.id !== id) : []
+            );
+            const current = this._selectedRecipe();
+            if (current?.id === id) {
+              this._selectedRecipe.set(null);
+            }
+          },
+          error: err => {
+            console.error(`RecipeService: Failed to delete recipe ${id}.`, err);
+            this._error.set(`Failed to delete recipe with ID: ${id}.`);
+          },
+        })
+      ).subscribe();
   }
 
   goHome(): void {
@@ -108,7 +112,6 @@ export class RecipeService {
     this._error.set(null);
     console.log("RecipeService: Selected recipe state cleared.");
   }
-
 
 
 }
