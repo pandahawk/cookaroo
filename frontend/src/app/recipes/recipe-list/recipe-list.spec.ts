@@ -1,11 +1,12 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {RecipeList} from './recipe-list';
-import {Recipe, RecipeService} from '../recipe.service';
+import {RecipeService} from '../recipe.service';
 import {MatDialog} from '@angular/material/dialog';
 import {Router} from '@angular/router';
 import {ConfirmDialog} from '../confirm-dialog/confirm-dialog';
 import {of} from 'rxjs';
+import {Recipe} from '../recipe.model';
 
 describe('RecipeList', () => {
   let component: RecipeList;
