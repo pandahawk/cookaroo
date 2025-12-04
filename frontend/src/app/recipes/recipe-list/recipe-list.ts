@@ -1,15 +1,17 @@
-import {Component, OnInit} from '@angular/core';
-import {Recipe, RecipeService} from '../recipe.service';
+import {Component, inject, OnInit} from '@angular/core';
+import {RecipeService} from '../recipe.service';
 import {
   MatCard,
   MatCardActions,
   MatCardContent,
+  MatCardSubtitle,
   MatCardTitle
 } from '@angular/material/card';
 import {Router} from '@angular/router';
 import {MatDialog} from '@angular/material/dialog';
 import {ConfirmDialog} from '../confirm-dialog/confirm-dialog';
 import {MatButton} from '@angular/material/button';
+import {Recipe} from '../recipe.model';
 
 @Component({
   selector: 'app-recipe-list',
@@ -18,25 +20,20 @@ import {MatButton} from '@angular/material/button';
     MatCardTitle,
     MatCardContent,
     MatButton,
-    MatCardActions
+    MatCardActions,
+    MatCardSubtitle
   ],
   templateUrl: './recipe-list.html',
   styleUrl: './recipe-list.scss',
 })
 export class RecipeList implements OnInit {
 
-  constructor(
-    private readonly recipeService: RecipeService,
-    private readonly router: Router,
-    private readonly dialog: MatDialog) {
-  }
+  readonly recipeService = inject(RecipeService);
+  readonly router = inject(Router);
+  readonly dialog = inject(MatDialog);
 
   ngOnInit(): void {
-        this.recipeService.loadRecipeList();
-    }
-
-  get recipes() {
-    return this.recipeService.recipes();
+    this.recipeService.loadRecipeList();
   }
 
   deleteRecipe(r: Recipe) {

@@ -1,12 +1,17 @@
 <div class="recipe-grid">
 
-  @for (recipe of recipes; track recipe.id) {
+  @for (recipe of recipeService.recipes(); track recipe.id) {
 
     <mat-card
       (click)="onRecipeClick(recipe)"
       (keydown.enter)=" onRecipeClick(recipe)"
       (keydown.space)="onRecipeClick(recipe)">
       <mat-card-title>{{ recipe.title }}</mat-card-title>
+      <mat-card-subtitle>
+        <p class="recipe-categories">
+          {{ recipe.category.join(' • ').toLowerCase() }}
+        </p>
+      </mat-card-subtitle>
       <mat-card-content>
         <p> {{ recipe.description }}</p>
       </mat-card-content>

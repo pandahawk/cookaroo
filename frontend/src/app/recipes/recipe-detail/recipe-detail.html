@@ -7,11 +7,16 @@
   </div>
 
 
-  @if (recipe(); as recipe) {
+  @if (recipeService.selectedRecipe(); as recipe) {
     <mat-card class="recipe-card">
       <div class="recipe-header">
         <div class="recipe-title-block">
           <h1 class="recipe-title">{{ recipe.title }}</h1>
+          <mat-card-subtitle>
+            <p class="recipe-categories">
+              {{ recipe.category.join(' • ').toLowerCase() }}
+            </p>
+          </mat-card-subtitle>
           <p class="recipe-subtitle">{{ recipe.description }}</p>
         </div>
 
@@ -49,7 +54,10 @@
 
         <mat-card-actions class="recipe-card-action">
           <button matButton class="screen-button">Bearbeiten</button>
-          <button matButton class="screen-button">Entfernen</button>
+          <button matButton
+                  class="screen-button"
+                  (click)="deleteRecipe(recipe)">Entfernen
+          </button>
         </mat-card-actions>
       </div>
     </mat-card>

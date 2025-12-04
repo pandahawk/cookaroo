@@ -5,7 +5,13 @@
   <span class="example-spacer"></span>
   <button matButton (click)="onRecipesClick()">
     <mat-icon>menu_book</mat-icon>
-    <span class="button-text">Rezepte</span>
+    <span class="button-text">
+      @if(recipeService.loading()) {
+        Laden...
+      } @else {
+        Rezepte
+      }
+    </span>
   </button>
   <button matButton>
     <mat-icon>add_box</mat-icon>

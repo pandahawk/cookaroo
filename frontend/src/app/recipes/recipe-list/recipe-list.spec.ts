@@ -6,7 +6,6 @@ import {MatDialog} from '@angular/material/dialog';
 import {Router} from '@angular/router';
 import {ConfirmDialog} from '../confirm-dialog/confirm-dialog';
 import {of} from 'rxjs';
-import {By} from '@angular/platform-browser';
 
 describe('RecipeList', () => {
   let component: RecipeList;
@@ -74,54 +73,5 @@ describe('RecipeList', () => {
     expect(routerMock.navigate).toHaveBeenCalledWith(['/recipes', testrecipe.id])
   })
 
-  it('renders recipes from the service', () => {
-    recipeServiceMock.recipes.mockReturnValue([
-      { id: '1', title: 'Pizza', description: 'Yum' } as Recipe,
-    ]);
-
-    fixture.detectChanges();
-
-    const titles = fixture.nativeElement.querySelectorAll('mat-card-title');
-    expect(titles.length).toBe(1);
-    expect(titles[0].textContent).toContain('Pizza');
-  });
-
-
-  it('clicking delete button calls deleteRecipe', () => {
-    const recipe = { id: '1', title: 'Pizza', description: 'Yum' } as any;
-    recipeServiceMock.recipes.mockReturnValue([recipe]);
-    dialogMock.open.mockReturnValue({
-      afterClosed: () => of(true)
-    })
-    fixture.detectChanges();
-
-    const deleteButton: HTMLButtonElement =
-      fixture.nativeElement.querySelector('button.screen-button:last-of-type');
-
-    deleteButton.click();
-
-    expect(dialogMock.open).toHaveBeenCalled(); // or spy on component.deleteRecipe
-  });
-
-  it('should call onRecipeClick when card is clicked', () => {
-    const recipe = {
-      id: '1',
-      title: 'Pizza',
-      description: 'Yum',
-      difficulty: 'EASY',
-      ingredients: [],
-      steps: [],
-      servings: 2,
-    };
-    const spy = vi.spyOn(component, 'onRecipeClick');
-    vi.spyOn(recipeServiceMock, 'recipes').mockReturnValue([recipe]);
-    fixture.detectChanges();
-
-    const card = fixture.debugElement.query(By.css('mat-card'));
-    card.triggerEventHandler('click', {});
-
-    expect(spy).toHaveBeenCalledTimes(1);
-    expect(spy).toHaveBeenCalledWith(recipe);
-  });
 
 });

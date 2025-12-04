@@ -12,6 +12,10 @@ spring:
       # nothing secret in the base file
       auto-index-creation: false
 
+  jackson:
+    mapper:
+      accept-case-insensitive-enums: true
+
 cookaroo:
   api-key: ${COOKAROO_API_KEY}
 

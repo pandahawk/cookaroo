@@ -6,6 +6,7 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
+import java.util.Set;
 
 @Document("recipes")
 @Builder
@@ -17,6 +18,7 @@ public record Recipe(
         String title,
         String description,
         Difficulty difficulty,
+        Set<Category> category,
         List<String> ingredients,
         List<String> steps,
         int servings

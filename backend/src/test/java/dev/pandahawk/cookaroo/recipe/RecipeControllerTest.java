@@ -19,6 +19,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -149,6 +150,7 @@ class RecipeControllerTest {
                     .difficulty(Difficulty.EASY)
                     .ingredients(List.of("a", "b"))
                     .steps(List.of("do a", "do b"))
+                    .category(Set.of(Category.RICE))
                     .servings(2)
                     .build();
             var resp = RecipeResponse.builder()
@@ -157,6 +159,7 @@ class RecipeControllerTest {
                     .description(req.description())
                     .difficulty(req.difficulty())
                     .ingredients(req.ingredients())
+                    .category(Set.of(Category.RICE))
                     .steps(req.steps())
                     .servings(req.servings())
                     .build();

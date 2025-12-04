@@ -2,7 +2,7 @@ import {ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {Toolbar} from './toolbar';
 import {Router} from '@angular/router';
-import {expect} from 'vitest';
+import {expect, Mock} from 'vitest';
 import {RecipeService} from '../../recipes/recipe.service';
 
 describe('Toolbar', () => {
@@ -10,17 +10,20 @@ describe('Toolbar', () => {
   let fixture: ComponentFixture<Toolbar>;
 
   let recipeServiceMock: {
-    loadRecipeList: ReturnType<typeof vi.fn>,
-    goHome: ReturnType<typeof vi.fn>
+    loadRecipeList: Mock,
+    goHome: Mock,
+    loading: () => boolean,
   };
   let routerMock: {
     navigate: ReturnType<typeof vi.fn>
   };
 
   beforeEach(async () => {
+
     recipeServiceMock = {
       loadRecipeList: vi.fn(),
       goHome: vi.fn(),
+      loading: () => false,
     };
     routerMock = {
       navigate: vi.fn(),
@@ -28,10 +31,6 @@ describe('Toolbar', () => {
     await TestBed.configureTestingModule({
       imports: [Toolbar],
       providers: [
-        // {
-        //   provide: ActivatedRoute,
-        //   useValue: {}
-        // },
         {provide: Router, useValue: routerMock},
         {provide: RecipeService, useValue: recipeServiceMock},
       ]
@@ -48,7 +47,6 @@ describe('Toolbar', () => {
   });
 
   it('onRecipesClick() should call the service method and navigate to the recipe page', () => {
-    recipeServiceMock.loadRecipeList.mockReturnValue(Promise.resolve([]));
     component.onRecipesClick();
 
     fixture.detectChanges();
@@ -59,9 +57,6 @@ describe('Toolbar', () => {
 
   it('onHomeClick() should call the service method and navigate to the home' +
     ' page', () => {
-
-    recipeServiceMock.goHome.mockReturnValue(Promise.resolve([]));
-
     component.onHomeClick();
 
     expect(recipeServiceMock.goHome).toBeCalledTimes(1);
