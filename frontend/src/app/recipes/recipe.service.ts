@@ -1,16 +1,7 @@
 import {inject, Injectable, signal, Signal} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {finalize, tap} from 'rxjs';
-
-export interface Recipe {
-  id: string;
-  title: string;
-  description: string;
-  difficulty: string;
-  ingredients: string[];
-  steps: string[];
-  servings: number;
-}
+import {Recipe} from './recipe.model';
 
 @Injectable({
   providedIn: 'root',

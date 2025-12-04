@@ -1,12 +1,17 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {Recipe, RecipeService} from '../recipe.service';
+import {RecipeService} from '../recipe.service';
 import {MatButton} from '@angular/material/button';
-import {MatCard, MatCardActions,} from '@angular/material/card';
+import {
+  MatCard,
+  MatCardActions,
+  MatCardSubtitle,
+} from '@angular/material/card';
 import {MatIcon} from '@angular/material/icon';
 import {MatDivider} from '@angular/material/list';
 import {ConfirmDialog} from '../confirm-dialog/confirm-dialog';
 import {MatDialog} from '@angular/material/dialog';
+import {Recipe} from '../recipe.model';
 
 @Component({
   selector: 'app-recipe-detail',
@@ -15,7 +20,8 @@ import {MatDialog} from '@angular/material/dialog';
     MatIcon,
     MatCard,
     MatDivider,
-    MatCardActions
+    MatCardActions,
+    MatCardSubtitle
   ],
   templateUrl: './recipe-detail.html',
   styleUrl: './recipe-detail.scss',

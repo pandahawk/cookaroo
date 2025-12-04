@@ -12,6 +12,11 @@
       <div class="recipe-header">
         <div class="recipe-title-block">
           <h1 class="recipe-title">{{ recipe.title }}</h1>
+          <mat-card-subtitle>
+            <p class="recipe-categories">
+              {{ recipe.category.join(' • ').toLowerCase() }}
+            </p>
+          </mat-card-subtitle>
           <p class="recipe-subtitle">{{ recipe.description }}</p>
         </div>
 
