@@ -30,4 +30,8 @@ export class Toolbar {
     this.recipeService.goHome();
     this.router.navigate(['/']);
   }
+
+  onNewClick() {
+    this.router.navigate(['/recipes/new']);
+  }
 }

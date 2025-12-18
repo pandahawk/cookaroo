@@ -97,6 +97,22 @@ export class RecipeService {
       ).subscribe();
   }
 
+  createRecipe(recipe: Omit<Recipe, 'id'>) {
+    this._error.set(null);
+
+    return this.http.post<Recipe>(`${this.apiUrl}`,recipe,  {headers: this.getHeaders()})
+      .pipe(
+        tap(newRecipe => {
+          this._recipes.update(list => [...list, newRecipe]);
+          this._selectedRecipe.set(newRecipe);
+        }),
+        catchError(() => {
+          this._error.set('Failed to create recipe.');
+          return EMPTY;
+        })
+      )
+  }
+
   goHome(): void {
     this._selectedRecipe.set(null);
     this._error.set(null);
