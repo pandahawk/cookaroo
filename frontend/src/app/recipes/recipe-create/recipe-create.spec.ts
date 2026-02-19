@@ -1,6 +1,6 @@
-import {ComponentFixture, TestBed} from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import {RecipeCreate} from './recipe-create';
+import { RecipeCreate } from './recipe-create';
 
 describe('RecipeCreate', () => {
   let component: RecipeCreate;

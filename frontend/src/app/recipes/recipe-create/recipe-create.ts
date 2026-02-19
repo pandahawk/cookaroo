@@ -1,133 +1,72 @@
-import {Component, computed, inject, signal} from '@angular/core';
-import {RecipeService} from '../recipe.service';
-import {Router} from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {Category, Difficulty} from '../recipe.model';
 import {
   FormArray,
   FormBuilder,
   FormControl,
-  ReactiveFormsModule,
+  FormGroup,
   Validators
 } from '@angular/forms';
-import {Category, Difficulty, Recipe} from '../recipe.model';
-import {toSignal} from '@angular/core/rxjs-interop';
-import {finalize} from 'rxjs';
+import {HttpClient} from '@angular/common/http';
+import {RecipeService} from '../recipe.service';
 
 @Component({
   selector: 'app-recipe-create',
-  imports: [
-    ReactiveFormsModule
-  ],
+  imports: [],
   templateUrl: './recipe-create.html',
   styleUrl: './recipe-create.scss',
 })
-export class RecipeCreate {
+export class RecipeCreate implements OnInit {
+  readonly difficultyOptions: Difficulty[];
+  readonly categoryOptions: Category[];
 
-  private readonly recipeService = inject(RecipeService);
-  private readonly router = inject(Router);
-  private readonly fb = inject(FormBuilder);
+  form!: FormGroup;
+  isSubmitting = false;
+  submitError: string | null = null;
+  submitSuccess = false;
 
-  readonly difficultyOptions = Object.values(Difficulty);
-  readonly categoryOptions = Object.values(Category);
-
-  readonly form = this.fb.nonNullable.group({
-    title: ['', [Validators.required, Validators.minLength(3)]],
-    description: ['', [Validators.required, Validators.minLength(3)]],
-    difficulty: this.fb.nonNullable.control<Difficulty>(
-      Difficulty.EASY,
-      Validators.required,
-    ),
-    category: this.fb.nonNullable.control<Category[]>([]),
-    servings: [2, [Validators.required, Validators.min(1)]],
-    ingredients: this.fb.nonNullable.array<FormControl<string>>([
-      this.fb.nonNullable.control('', Validators.required),
-    ]),
-    steps: this.fb.nonNullable.array<FormControl<string>>([
-      this.fb.nonNullable.control('', Validators.required),
-    ]),
-  });
-
-  get ingredients(): FormArray<FormControl<string>> {
-    return this.form.controls.ingredients;
+  constructor(private fb: FormBuilder, private recipeService: RecipeService) {
   }
 
-  get steps(): FormArray<FormControl<string>> {
-    return this.form.controls.steps;
+
+  ngOnInit(): void {
+    this.form = this.fb.group({
+      title: ['', [Validators.required, Validators.minLength(1)]],
+      description: ['', [Validators.required], Validators.minLength(1)],
+      difficulty: [Difficulty.EASY, [Validators.required]],
+      category: this.fb.control<Category[]>([], [Validators.required, Validators.minLength(1)]),
+      ingredients: this.fb.array([this.fb.control('', [Validators.required, Validators.minLength(1)])]),
+      steps: this.fb.array([this.fb.control('', [Validators.required, Validators.minLength(1)])]),
+      servings: [1, [Validators.required, Validators.min(1)]],
+    });
   }
 
-  get titleCtrl() {
-    return this.form.controls.title;
+  get ingredientsArray() {
+    return this.form.get('ingredients') as FormArray<FormControl<string>>;
   }
 
-  get descriptionCtrl() {
-    return this.form.controls.description;
+  get stepsArray() {
+    return this.form.get('steps') as FormArray<FormControl<string>>;
   }
 
-  readonly isSubmitting = signal(false);
-  readonly submitError = signal<string | null>(null);
-
-  private readonly formStatus =
-    toSignal(this.form.statusChanges, {initialValue: this.form.status})
-
-  readonly canSubmit = computed(() =>
-    this.formStatus() === 'VALID' && !this.isSubmitting()
-  );
-
-  addIngredient(): void {
-    this.ingredients.push(
-      this.fb.nonNullable.control('', Validators.required),
-    );
+  addIngredient() {
+    this.ingredientsArray.push(
+      this.fb.nonNullable.control('', [Validators.required, Validators.minLength(1)]));
   }
 
-  removeIngredient(index: number): void {
-    this.ingredients.removeAt(index);
+  removeIngredient(index: number) {
+    if (this.ingredientsArray.length <= 1) return;
+    this.ingredientsArray.removeAt(index);
   }
-
 
   addStep(): void {
-    this.steps.push(
-      this.fb.nonNullable.control('', Validators.required),
-    );
+    this.stepsArray.push(
+      this.fb.nonNullable.control('', [Validators.required, Validators.minLength(1)]));
   }
 
   removeStep(index: number): void {
-    this.steps.removeAt(index);
-  }
-
-  onSubmit () {
-    if (!this.canSubmit) {
-      this.form.markAsTouched();
-    }
-
-    this.isSubmitting.set(true);
-    this.submitError.set(null);
-
-    const raw = this.form.getRawValue();
-
-    const payload: Omit<Recipe, 'id'> = {
-      category: raw.category,
-      description: raw.description,
-      difficulty: raw.difficulty,
-      ingredients: raw.ingredients,
-      servings: raw.servings,
-      steps: raw.steps,
-      title: raw.title,
-    }
-
-    this.recipeService.createRecipe(payload)
-      .pipe(finalize(() => this.isSubmitting.set(false)))
-      .subscribe({
-        next: () => {
-          this.router.navigate(['/recipes']);
-        },
-        error: err => {
-          console.error('Create failed in component:', err);
-          this.submitError.set('Rezept konnte nicht erstellt werden.');
-        },
-      });
-  }
-
-  onCancel () {
-    this.router.navigate(['/recipes']);
+    if (this.stepsArray.length <= 1) return;
+    this.stepsArray.removeAt(index);
   }
 
 }

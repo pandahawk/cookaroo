@@ -1,7 +1,7 @@
 import {inject, Injectable, signal, Signal} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {catchError, EMPTY, finalize, of, tap} from 'rxjs';
-import {Recipe} from './recipe.model';
+import {catchError, EMPTY, finalize, Observable, of, tap} from 'rxjs';
+import {CreateRecipeRequest, Recipe} from './recipe.model';
 
 @Injectable({
   providedIn: 'root',
@@ -23,7 +23,9 @@ export class RecipeService {
   // Best practice: Use an interceptor for API keys, but keeping it here for simplicity
   private readonly apiKey = 'dingding';
 
-  private readonly http = inject(HttpClient);
+  // private readonly http = inject(HttpClient);
+
+  constructor(private readonly http: HttpClient) {}
 
   private getHeaders(): HttpHeaders {
     return new HttpHeaders({
@@ -97,21 +99,10 @@ export class RecipeService {
       ).subscribe();
   }
 
-  createRecipe(recipe: Omit<Recipe, 'id'>) {
-    this._error.set(null);
-
-    return this.http.post<Recipe>(`${this.apiUrl}`,recipe,  {headers: this.getHeaders()})
-      .pipe(
-        tap(newRecipe => {
-          this._recipes.update(list => [...list, newRecipe]);
-          this._selectedRecipe.set(newRecipe);
-        }),
-        catchError(() => {
-          this._error.set('Failed to create recipe.');
-          return EMPTY;
-        })
-      )
+  createRecipe(payload: CreateRecipeRequest): Observable<any> {
+    return this.http.post(this.apiUrl, payload, {headers: this.getHeaders()})
   }
+
 
   goHome(): void {
     this._selectedRecipe.set(null);
