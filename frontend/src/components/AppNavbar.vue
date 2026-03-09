@@ -2,8 +2,8 @@
 </script>
 
 <template>
-    <v-app-bar color="white">
-      <v-app-bar-title>Cookaroo</v-app-bar-title>
+    <v-app-bar color="#7CB342">
+      <v-app-bar-title class="font-weight-bold">Cookaroo</v-app-bar-title>
       <v-spacer />
       <v-btn to="/">Home</v-btn>
       <v-btn to="/recipes">Recipes</v-btn>
