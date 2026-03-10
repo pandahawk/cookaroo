@@ -11,4 +11,8 @@ export default createVuetify({
       mdi,
     },
   },
+  theme: {
+    // Set this to 'light' or 'dark' to stop it from following your Mac settings
+    defaultTheme: 'light',
+  },
 })

@@ -16,7 +16,7 @@
     "format": "prettier --write --experimental-cli src/"
   },
   "dependencies": {
-    "@jamescoyle/vue-icon": "^0.1.2",
+    "@jamescoyle/vue-icon": "github:jamescoyle/vue-icon",
     "@mdi/font": "^7.4.47",
     "@mdi/js": "^7.4.47",
     "pinia": "^3.0.4",
