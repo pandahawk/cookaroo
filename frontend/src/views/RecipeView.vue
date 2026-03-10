@@ -16,7 +16,6 @@ onMounted(async () => {
     <v-row>
       <v-col v-for="recipe in recipes" :key="recipe.id" cols="12" sm="6" md="4">
         <v-card variant="elevated">
-          <v-img src="/kitchen.jpg" height="180px" cover> </v-img>
           <v-card-item>
             <div class="d-flex justify-space-between align-start mb-2">
               <span
