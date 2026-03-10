@@ -1,66 +1,202 @@
 [
   {
     "publicId": "a7Gh3KpQ",
-    "mongoId": "67493a8f2d4b317f9a1c2f01",
     "title": "Spaghetti Carbonara",
     "description": "Classic Italian pasta with eggs, cheese, pancetta, and pepper.",
-    "ingredients": [
-      "200g spaghetti",
-      "100g pancetta",
-      "2 eggs",
-      "50g parmesan cheese",
-      "Black pepper"
-    ],
-    "steps": [
-      "Cook the spaghetti.",
-      "Fry the pancetta.",
-      "Mix eggs and parmesan.",
-      "Combine everything and season."
-    ],
+    "ingredients": ["200g spaghetti", "100g pancetta", "2 eggs", "50g parmesan cheese", "Black pepper"],
+    "steps": ["Cook the spaghetti.", "Fry the pancetta.", "Mix eggs and parmesan.", "Combine everything and season."],
     "servings": 2,
     "difficulty": "HARD",
-    "category": ["PASTA", "MEAT"]
+    "category": ["PORK"]
   },
   {
     "publicId": "Zp3Kx9Qa",
-    "mongoId": "67493a8f2d4b317f9a1c2f02",
     "title": "Grilled Salmon",
     "description": "Juicy grilled salmon with lemon and herbs.",
-    "ingredients": [
-      "2 salmon fillets",
-      "1 lemon",
-      "Olive oil",
-      "Salt",
-      "Pepper"
-    ],
-    "steps": [
-      "Preheat grill.",
-      "Season salmon.",
-      "Grill for 4 minutes per side."
-    ],
+    "ingredients": ["2 salmon fillets", "1 lemon", "Olive oil", "Salt", "Pepper"],
+    "steps": ["Preheat grill.", "Season salmon.", "Grill for 4 minutes per side."],
     "servings": 2,
     "difficulty": "MEDIUM",
     "category": ["FISH"]
   },
   {
     "publicId": "M8Fq2TrA",
-    "mongoId": "67493a8f2d4b317f9a1c2f03",
     "title": "Veggie Stir Fry",
     "description": "Colorful vegetable stir fry with soy sauce.",
-    "ingredients": [
-      "Broccoli",
-      "Bell peppers",
-      "Carrots",
-      "Soy sauce",
-      "Garlic"
-    ],
-    "steps": [
-      "Chop vegetables.",
-      "Stir fry in hot pan.",
-      "Add soy sauce."
-    ],
+    "ingredients": ["Broccoli", "Bell peppers", "Carrots", "Soy sauce", "Garlic"],
+    "steps": ["Chop vegetables.", "Stir fry in hot pan.", "Add soy sauce."],
     "servings": 2,
     "difficulty": "EASY",
-    "category": ["VEGGI"]
+    "category": ["VEGGIE"]
+  },
+  {
+    "publicId": "2xWQeLmA",
+    "title": "Chicken Fried Rice",
+    "description": "Classic Asian-style fried rice with chicken.",
+    "ingredients": ["200g rice", "150g chicken breast", "2 eggs", "Soy sauce", "Spring onions"],
+    "steps": ["Cook rice.", "Fry chicken.", "Add eggs and rice.", "Season."],
+    "servings": 3,
+    "difficulty": "MEDIUM",
+    "category": ["CHICKEN"]
+  },
+  {
+    "publicId": "R8ZaT4XQ",
+    "title": "Pasta Pesto",
+    "description": "Green pesto pasta with parmesan.",
+    "ingredients": ["Pasta", "Basil pesto", "Parmesan", "Olive oil"],
+    "steps": ["Cook pasta.", "Mix with pesto.", "Top with parmesan."],
+    "servings": 2,
+    "difficulty": "EASY",
+    "category": ["VEGGIE"]
+  },
+  {
+    "publicId": "Y6wE9NQa",
+    "title": "Beef Burger",
+    "description": "Juicy beef burger with cheese and salad.",
+    "ingredients": ["Beef patty", "Burger buns", "Cheese", "Lettuce", "Tomato"],
+    "steps": ["Grill patty.", "Toast buns.", "Assemble burger."],
+    "servings": 1,
+    "difficulty": "MEDIUM",
+    "category": ["BEEF"]
+  },
+  {
+    "publicId": "H3KpQm8F",
+    "title": "Fish Tacos",
+    "description": "Crispy fish tacos with lime sauce.",
+    "ingredients": ["White fish", "Tortillas", "Cabbage", "Lime", "Yogurt"],
+    "steps": ["Fry fish.", "Prepare sauce.", "Assemble tacos."],
+    "servings": 2,
+    "difficulty": "MEDIUM",
+    "category": ["FISH"]
+  },
+  {
+    "publicId": "4NQaXW9P",
+    "title": "Mushroom Risotto",
+    "description": "Creamy risotto with mushrooms and parmesan.",
+    "ingredients": ["Risotto rice", "Mushrooms", "Vegetable broth", "Parmesan"],
+    "steps": ["Sauté mushrooms.", "Add rice and broth gradually.", "Stir until creamy."],
+    "servings": 2,
+    "difficulty": "HARD",
+    "category": ["VEGGIE"]
+  },
+  {
+    "publicId": "K7F2QaXm",
+    "title": "Chicken Alfredo Pasta",
+    "description": "Creamy chicken pasta with garlic sauce.",
+    "ingredients": ["Pasta", "Chicken breast", "Cream", "Garlic", "Parmesan"],
+    "steps": ["Cook pasta.", "Fry chicken.", "Add cream sauce.", "Mix with pasta."],
+    "servings": 3,
+    "difficulty": "MEDIUM",
+    "category": ["CHICKEN"]
+  },
+  {
+    "publicId": "QmT4R8Za",
+    "title": "Vegetable Rice Bowl",
+    "description": "Healthy rice bowl with roasted vegetables.",
+    "ingredients": ["Rice", "Zucchini", "Carrots", "Chickpeas", "Tahini sauce"],
+    "steps": ["Cook rice.", "Roast vegetables.", "Assemble bowl."],
+    "servings": 2,
+    "difficulty": "EASY",
+    "category": ["VEGGIE"]
+  },
+  {
+    "publicId": "Ab29KjLp",
+    "title": "Lemon Herb Baked Salmon",
+    "description": "Flaky salmon fillet with fresh herbs.",
+    "ingredients": ["Salmon", "Lemon", "Dill", "Garlic", "Asparagus"],
+    "steps": ["Season salmon.", "Place on baking sheet.", "Bake at 200°C for 15 minutes."],
+    "servings": 2,
+    "difficulty": "EASY",
+    "category": ["FISH"]
+  },
+  {
+    "publicId": "Nm88XyTr",
+    "title": "Classic Beef Stir Fry",
+    "description": "Tender beef strips with broccoli and soy sauce.",
+    "ingredients": ["Flank Steak", "Broccoli", "Soy Sauce", "Ginger", "Sesame Seeds"],
+    "steps": ["Slice beef thinly.", "Sear beef in a hot wok.", "Add broccoli and sauce."],
+    "servings": 3,
+    "difficulty": "MEDIUM",
+    "category": ["BEEF"]
+  },
+  {
+    "publicId": "Gh34VbNm",
+    "title": "Creamy Mushroom Fettuccine",
+    "description": "Rich pasta dish with sautéed mushrooms.",
+    "ingredients": ["Fettuccine", "Mushrooms", "Heavy Cream", "Garlic", "Parsley"],
+    "steps": ["Boil pasta.", "Sauté mushrooms and garlic.", "Toss everything with cream."],
+    "servings": 2,
+    "difficulty": "EASY",
+    "category": ["VEGGIE"]
+  },
+  {
+    "publicId": "Po92Qwer",
+    "title": "Spanish Seafood Paella",
+    "description": "Traditional rice dish with shrimp and mussels.",
+    "ingredients": ["Rice", "Shrimp", "Mussels", "Saffron", "Peas"],
+    "steps": ["Toast rice with saffron.", "Add broth and simmer.", "Arrange seafood on top."],
+    "servings": 4,
+    "difficulty": "HARD",
+    "category": ["FISH"]
+  },
+  {
+    "publicId": "Lk11Zxcv",
+    "title": "Spaghetti Carbonara",
+    "description": "The classic Roman pasta with guanciale.",
+    "ingredients": ["Spaghetti", "Pecorino Romano", "Eggs", "Guanciale", "Black Pepper"],
+    "steps": ["Fry guanciale.", "Mix eggs and cheese.", "Toss pasta with egg mixture off-heat."],
+    "servings": 2,
+    "difficulty": "MEDIUM",
+    "category": ["PORK"]
+  },
+  {
+    "publicId": "Jh55Tyui",
+    "title": "Teriyaki Chicken Bowl",
+    "description": "Grilled chicken served over fluffy rice.",
+    "ingredients": ["Chicken Thighs", "Rice", "Teriyaki Sauce", "Green Onions", "Carrots"],
+    "steps": ["Cook rice.", "Grill chicken with sauce.", "Serve chicken over rice bed."],
+    "servings": 2,
+    "difficulty": "EASY",
+    "category": ["CHICKEN"]
+  },
+  {
+    "publicId": "Ds66Ghkj",
+    "title": "Mediterranean Quinoa Bowl",
+    "description": "Healthy bowl with fresh vegetables.",
+    "ingredients": ["Quinoa", "Cucumber", "Cherry Tomatoes", "Olives", "Hummus"],
+    "steps": ["Cook quinoa.", "Chop vegetables.", "Assemble bowl with hummus."],
+    "servings": 2,
+    "difficulty": "EASY",
+    "category": ["VEGGIE"]
+  },
+  {
+    "publicId": "Xc33Bnmk",
+    "title": "Pesto Penne",
+    "description": "Simple pasta tossed in basil pesto.",
+    "ingredients": ["Penne", "Basil Pesto", "Pine Nuts", "Parmesan", "Cherry Tomatoes"],
+    "steps": ["Cook pasta.", "Halve tomatoes.", "Mix pasta with pesto and tomatoes."],
+    "servings": 2,
+    "difficulty": "EASY",
+    "category": ["VEGGIE"]
+  },
+  {
+    "publicId": "Mn77Plko",
+    "title": "Crispy Fish Tacos",
+    "description": "White fish with cabbage slaw.",
+    "ingredients": ["Cod", "Flour", "Tortillas", "Cabbage Slaw", "Lime"],
+    "steps": ["Batter and fry fish.", "Warm tortillas.", "Assemble with slaw."],
+    "servings": 3,
+    "difficulty": "MEDIUM",
+    "category": ["FISH"]
+  },
+  {
+    "publicId": "We44Rtyu",
+    "title": "Vegetable Fried Rice",
+    "description": "Quick stir-fry with leftover rice.",
+    "ingredients": ["Rice", "Peas", "Carrots", "Eggs", "Soy Sauce"],
+    "steps": ["Scramble eggs.", "Stir-fry vegetables and cold rice.", "Season with soy sauce."],
+    "servings": 2,
+    "difficulty": "EASY",
+    "category": ["VEGGIE"]
   }
 ]

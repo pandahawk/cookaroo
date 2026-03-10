@@ -150,7 +150,7 @@ class RecipeControllerTest {
                     .difficulty(Difficulty.EASY)
                     .ingredients(List.of("a", "b"))
                     .steps(List.of("do a", "do b"))
-                    .category(Set.of(Category.RICE))
+                    .category(Set.of(Category.VEGGIE))
                     .servings(2)
                     .build();
             var resp = RecipeResponse.builder()
@@ -159,7 +159,7 @@ class RecipeControllerTest {
                     .description(req.description())
                     .difficulty(req.difficulty())
                     .ingredients(req.ingredients())
-                    .category(Set.of(Category.RICE))
+                    .category(Set.of(Category.VEGGIE))
                     .steps(req.steps())
                     .servings(req.servings())
                     .build();

@@ -15,7 +15,7 @@ onMounted(async () => {
   <v-container>
     <v-row>
       <v-col v-for="recipe in recipes" :key="recipe.id" cols="12" sm="6" md="4">
-        <v-card variant="elevated">
+        <v-card variant="elevated" class="recipe-card">
           <v-card-item>
             <div class="d-flex justify-space-between align-start mb-2">
               <span
@@ -46,3 +46,11 @@ onMounted(async () => {
     </v-row>
   </v-container>
 </template>
+
+<style scoped>
+.recipe-card {
+  background-color: rgba(255, 255, 255, 0.7) !important; /* 70% white */
+  backdrop-filter: blur(10px); /* The magic ingredient */
+  border: 1px solid rgba(255, 255, 255, 0.3); /* Soft edge */
+}
+</style>
