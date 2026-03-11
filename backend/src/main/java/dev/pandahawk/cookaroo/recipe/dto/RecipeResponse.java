@@ -15,7 +15,7 @@ public record RecipeResponse(
     Difficulty difficulty,
     List<String> ingredients,
     List<String> steps,
-    Set<Category> category,
+    Category category,
     int servings
 ) {
 }

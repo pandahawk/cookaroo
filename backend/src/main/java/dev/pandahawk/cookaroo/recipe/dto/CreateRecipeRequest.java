@@ -23,8 +23,8 @@ public record CreateRecipeRequest(
         @NotNull
         Difficulty difficulty,
 
-        @NotEmpty
-        Set<@NotNull Category> category,
+        @NotNull
+        Category category,
 
         @NotEmpty
         List<@NotBlank String> ingredients,

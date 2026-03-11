@@ -7,7 +7,7 @@
     "steps": ["Cook the spaghetti.", "Fry the pancetta.", "Mix eggs and parmesan.", "Combine everything and season."],
     "servings": 2,
     "difficulty": "HARD",
-    "category": ["PORK"]
+    "category": "PORK"
   },
   {
     "publicId": "Zp3Kx9Qa",
@@ -17,7 +17,7 @@
     "steps": ["Preheat grill.", "Season salmon.", "Grill for 4 minutes per side."],
     "servings": 2,
     "difficulty": "MEDIUM",
-    "category": ["FISH"]
+    "category": "FISH"
   },
   {
     "publicId": "M8Fq2TrA",
@@ -27,7 +27,7 @@
     "steps": ["Chop vegetables.", "Stir fry in hot pan.", "Add soy sauce."],
     "servings": 2,
     "difficulty": "EASY",
-    "category": ["VEGGIE"]
+    "category": "VEGGIE"
   },
   {
     "publicId": "2xWQeLmA",
@@ -37,7 +37,7 @@
     "steps": ["Cook rice.", "Fry chicken.", "Add eggs and rice.", "Season."],
     "servings": 3,
     "difficulty": "MEDIUM",
-    "category": ["CHICKEN"]
+    "category": "CHICKEN"
   },
   {
     "publicId": "R8ZaT4XQ",
@@ -47,7 +47,7 @@
     "steps": ["Cook pasta.", "Mix with pesto.", "Top with parmesan."],
     "servings": 2,
     "difficulty": "EASY",
-    "category": ["VEGGIE"]
+    "category": "VEGGIE"
   },
   {
     "publicId": "Y6wE9NQa",
@@ -57,7 +57,7 @@
     "steps": ["Grill patty.", "Toast buns.", "Assemble burger."],
     "servings": 1,
     "difficulty": "MEDIUM",
-    "category": ["BEEF"]
+    "category": "BEEF"
   },
   {
     "publicId": "H3KpQm8F",
@@ -67,7 +67,7 @@
     "steps": ["Fry fish.", "Prepare sauce.", "Assemble tacos."],
     "servings": 2,
     "difficulty": "MEDIUM",
-    "category": ["FISH"]
+    "category": "FISH"
   },
   {
     "publicId": "4NQaXW9P",
@@ -77,7 +77,7 @@
     "steps": ["Sauté mushrooms.", "Add rice and broth gradually.", "Stir until creamy."],
     "servings": 2,
     "difficulty": "HARD",
-    "category": ["VEGGIE"]
+    "category": "VEGGIE"
   },
   {
     "publicId": "K7F2QaXm",
@@ -87,7 +87,7 @@
     "steps": ["Cook pasta.", "Fry chicken.", "Add cream sauce.", "Mix with pasta."],
     "servings": 3,
     "difficulty": "MEDIUM",
-    "category": ["CHICKEN"]
+    "category": "CHICKEN"
   },
   {
     "publicId": "QmT4R8Za",
@@ -97,7 +97,7 @@
     "steps": ["Cook rice.", "Roast vegetables.", "Assemble bowl."],
     "servings": 2,
     "difficulty": "EASY",
-    "category": ["VEGGIE"]
+    "category": "VEGGIE"
   },
   {
     "publicId": "Ab29KjLp",
@@ -107,7 +107,7 @@
     "steps": ["Season salmon.", "Place on baking sheet.", "Bake at 200°C for 15 minutes."],
     "servings": 2,
     "difficulty": "EASY",
-    "category": ["FISH"]
+    "category": "FISH"
   },
   {
     "publicId": "Nm88XyTr",
@@ -117,7 +117,7 @@
     "steps": ["Slice beef thinly.", "Sear beef in a hot wok.", "Add broccoli and sauce."],
     "servings": 3,
     "difficulty": "MEDIUM",
-    "category": ["BEEF"]
+    "category": "BEEF"
   },
   {
     "publicId": "Gh34VbNm",
@@ -127,7 +127,7 @@
     "steps": ["Boil pasta.", "Sauté mushrooms and garlic.", "Toss everything with cream."],
     "servings": 2,
     "difficulty": "EASY",
-    "category": ["VEGGIE"]
+    "category": "VEGGIE"
   },
   {
     "publicId": "Po92Qwer",
@@ -137,7 +137,7 @@
     "steps": ["Toast rice with saffron.", "Add broth and simmer.", "Arrange seafood on top."],
     "servings": 4,
     "difficulty": "HARD",
-    "category": ["FISH"]
+    "category": "FISH"
   },
   {
     "publicId": "Lk11Zxcv",
@@ -147,7 +147,7 @@
     "steps": ["Fry guanciale.", "Mix eggs and cheese.", "Toss pasta with egg mixture off-heat."],
     "servings": 2,
     "difficulty": "MEDIUM",
-    "category": ["PORK"]
+    "category": "PORK"
   },
   {
     "publicId": "Jh55Tyui",
@@ -157,7 +157,7 @@
     "steps": ["Cook rice.", "Grill chicken with sauce.", "Serve chicken over rice bed."],
     "servings": 2,
     "difficulty": "EASY",
-    "category": ["CHICKEN"]
+    "category": "CHICKEN"
   },
   {
     "publicId": "Ds66Ghkj",
@@ -167,7 +167,7 @@
     "steps": ["Cook quinoa.", "Chop vegetables.", "Assemble bowl with hummus."],
     "servings": 2,
     "difficulty": "EASY",
-    "category": ["VEGGIE"]
+    "category": "VEGGIE"
   },
   {
     "publicId": "Xc33Bnmk",
@@ -177,7 +177,7 @@
     "steps": ["Cook pasta.", "Halve tomatoes.", "Mix pasta with pesto and tomatoes."],
     "servings": 2,
     "difficulty": "EASY",
-    "category": ["VEGGIE"]
+    "category": "VEGGIE"
   },
   {
     "publicId": "Mn77Plko",
@@ -187,7 +187,7 @@
     "steps": ["Batter and fry fish.", "Warm tortillas.", "Assemble with slaw."],
     "servings": 3,
     "difficulty": "MEDIUM",
-    "category": ["FISH"]
+    "category": "FISH"
   },
   {
     "publicId": "We44Rtyu",
@@ -197,6 +197,6 @@
     "steps": ["Scramble eggs.", "Stir-fry vegetables and cold rice.", "Season with soy sauce."],
     "servings": 2,
     "difficulty": "EASY",
-    "category": ["VEGGIE"]
+    "category": "VEGGIE"
   }
 ]

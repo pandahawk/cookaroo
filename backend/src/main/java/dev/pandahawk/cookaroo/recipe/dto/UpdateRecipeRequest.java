@@ -16,6 +16,7 @@ public record UpdateRecipeRequest(
         String title,
         String description,
         Difficulty difficulty,
+        Category category,
 
         @Size(min = 1)
         List<@NotBlank String> ingredients,
@@ -25,8 +26,5 @@ public record UpdateRecipeRequest(
         List<@NotBlank String> steps,
 
         @Min(value = 1)
-        Integer servings,
-
-        @Size(min = 1)                 // ✅ applied ONLY if set is not null
-        Set<@NotNull Category> category
+        Integer servings
 ) {}

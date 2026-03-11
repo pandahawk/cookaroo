@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { useRecipeStore } from '@/stores/recipe.ts'
-import { storeToRefs } from 'pinia'
-import { onMounted } from 'vue'
+import {useRecipeStore} from '@/stores/recipe.ts'
+import {storeToRefs} from 'pinia'
+import {onMounted} from 'vue'
 
 const recipeStore = useRecipeStore()
-const { recipes } = storeToRefs(recipeStore)
+const {recipes} = storeToRefs(recipeStore)
 
 onMounted(async () => {
   await recipeStore.getRecipes()
@@ -17,21 +17,55 @@ onMounted(async () => {
       <v-col v-for="recipe in recipes" :key="recipe.id" cols="12" sm="6" md="4">
         <v-card variant="elevated" class="recipe-card">
           <v-card-item>
-            <div class="d-flex justify-space-between align-start mb-2">
-              <span
-                class="text-h5 text-truncate font-weight-bold text-green-darken-3"
+            <div class="d-flex justify-space-between align-center mb-2">
+              <h2
+                class="text-h2 text-truncate font-weight-bold text-green-darken-3"
                 style="min-width: 0; line-height: 1.2"
               >
                 {{ recipe.title }}
+              </h2>
+              <span>
+                <template v-if="recipe.category === 'FISH'">
+                  <v-icon
+                    icon="mdi-fish"
+                    size="x-large"
+                    color="grey-lighten-1"
+                  ></v-icon>
+                </template>
+                <template v-else-if="recipe.category === 'PORK'">
+                       <v-icon
+                         icon="mdi-pig-variant"
+                         size="x-large"
+                         color="grey-lighten-1"
+                       ></v-icon>
+                </template>
+                       <template v-else-if="recipe.category === 'BEEF'">
+                       <v-icon
+                         icon="mdi-cow"
+                         size="x-large"
+                         color="grey-lighten-1"
+                       ></v-icon>
+                </template>
+                <template v-else-if="recipe.category === 'CHICKEN'">
+                   <v-icon
+                     icon="mdi-turkey"
+                     size="x-large"
+                     color="grey-lighten-1"
+                   ></v-icon>
+                </template>
+                <template v-else>
+                   <v-icon
+                     icon="mdi-sprout-outline"
+                     size="x-large"
+                     color="grey-lighten-1"
+                   ></v-icon>
+                </template>
               </span>
             </div>
 
             <v-card-subtitle class="d-flex justify-space-between">
               <span>
                 {{ recipe.difficulty.toLowerCase() }}
-              </span>
-              <span>
-                {{ recipe.category.map((cat) => cat.toLowerCase()).join(', ') }}
               </span>
             </v-card-subtitle>
 
@@ -49,7 +83,7 @@ onMounted(async () => {
 
 <style scoped>
 .recipe-card {
-  background-color: rgba(255, 255, 255, 0.7) !important; /* 70% white */
+  background-color: rgba(255, 255, 255, 1) !important; /* 70% white */
   backdrop-filter: blur(10px); /* The magic ingredient */
   border: 1px solid rgba(255, 255, 255, 0.3); /* Soft edge */
 }

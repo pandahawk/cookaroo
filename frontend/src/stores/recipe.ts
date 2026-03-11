@@ -6,7 +6,7 @@ export interface Recipe {
   title: string
   description: string
   difficulty: string
-  category: string[]
+  category: string
 }
 
 export const useRecipeStore = defineStore('recipes', () => {
