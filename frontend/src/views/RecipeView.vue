@@ -1,10 +1,21 @@
 <script setup lang="ts">
-import {useRecipeStore} from '@/stores/recipe.ts'
-import {storeToRefs} from 'pinia'
-import {onMounted} from 'vue'
+import { useRecipeStore } from '@/stores/recipe.ts'
+import { storeToRefs } from 'pinia'
+import { onMounted } from 'vue'
 
 const recipeStore = useRecipeStore()
-const {recipes} = storeToRefs(recipeStore)
+const { recipes } = storeToRefs(recipeStore)
+
+const categoryIcons: Record<string, string> = {
+  FISH: 'mdi-fish',
+  PORK: 'mdi-pig-variant',
+  BEEF: 'mdi-cow',
+  CHICKEN: 'mdi-turkey',
+}
+
+const getCategoryIcon = (category: string) => {
+  return categoryIcons[category] || 'mdi-sprout-outline'
+}
 
 onMounted(async () => {
   await recipeStore.getRecipes()
@@ -25,41 +36,11 @@ onMounted(async () => {
                 {{ recipe.title }}
               </h2>
               <span>
-                <template v-if="recipe.category === 'FISH'">
-                  <v-icon
-                    icon="mdi-fish"
-                    size="x-large"
-                    color="grey-lighten-1"
-                  ></v-icon>
-                </template>
-                <template v-else-if="recipe.category === 'PORK'">
-                       <v-icon
-                         icon="mdi-pig-variant"
-                         size="x-large"
-                         color="grey-lighten-1"
-                       ></v-icon>
-                </template>
-                       <template v-else-if="recipe.category === 'BEEF'">
-                       <v-icon
-                         icon="mdi-cow"
-                         size="x-large"
-                         color="grey-lighten-1"
-                       ></v-icon>
-                </template>
-                <template v-else-if="recipe.category === 'CHICKEN'">
-                   <v-icon
-                     icon="mdi-turkey"
-                     size="x-large"
-                     color="grey-lighten-1"
-                   ></v-icon>
-                </template>
-                <template v-else>
-                   <v-icon
-                     icon="mdi-sprout-outline"
-                     size="x-large"
-                     color="grey-lighten-1"
-                   ></v-icon>
-                </template>
+                <v-icon
+                  :icon="getCategoryIcon(recipe.category)"
+                  size="x-large"
+                  color="grey-lighten-1"
+                ></v-icon>
               </span>
             </div>
 
@@ -72,7 +53,12 @@ onMounted(async () => {
             <v-card-text>{{ recipe.description }}</v-card-text>
 
             <v-card-actions class="justify-end pa-2">
-              <v-btn icon="mdi-magnify" variant="plain" color="green"></v-btn>
+              <v-btn
+                icon="mdi-magnify"
+                variant="plain"
+                color="green"
+                :to="{ name: 'detail', params: { id: recipe.id } }"
+              ></v-btn>
             </v-card-actions>
           </v-card-item>
         </v-card>

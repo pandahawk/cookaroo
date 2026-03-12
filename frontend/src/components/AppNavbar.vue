@@ -1,38 +1,6 @@
 <script setup lang="ts">
 </script>
 
-<!--<template>-->
-<!--  <v-app-bar-->
-<!--    color="rgba(255, 255, 255, 0.8)"-->
-<!--    flat-->
-<!--    class="glass-effect"-->
-<!--  >-->
-<!--    <v-app-bar-title class="font-weight-bold text-green-darken-3">-->
-<!--      <v-icon icon="mdi-silverware-fork-knife" start/>-->
-<!--      Cookaroo-->
-<!--    </v-app-bar-title>-->
-
-<!--    <v-spacer />-->
-<!--    <template v-slot:extension>-->
-<!--      <div class="d-flex justify-center w-100 pb-2">-->
-<!--        <v-btn to="/" variant="text">-->
-<!--          <v-icon icon="mdi-home" start></v-icon>-->
-<!--          Home-->
-<!--        </v-btn>-->
-
-<!--        <v-btn to="/recipes" variant="text" class="mx-2">-->
-<!--          <v-icon icon="mdi-format-list-bulleted" start></v-icon>-->
-<!--          Recipes-->
-<!--        </v-btn>-->
-
-<!--        <v-btn to="/create" variant="text">-->
-<!--          <v-icon icon="mdi-plus-circle-outline" start></v-icon>-->
-<!--          Create-->
-<!--        </v-btn>-->
-<!--      </div>-->
-<!--    </template>-->
-<!--  </v-app-bar>-->
-<!--</template>-->
 <template>
   <v-app-bar
     color="rgba(255, 255, 255, 0.8)"
