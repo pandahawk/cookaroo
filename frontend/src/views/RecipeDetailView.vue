@@ -4,9 +4,9 @@ import { useRecipeStore } from '@/stores/recipe.ts'
 import { computed, onMounted } from 'vue'
 
 const route = useRoute()
-const store = useRecipeStore()
+const recipeStore = useRecipeStore()
 const recipeId = route.params.id as string
-const recipe = computed(() => store.getRecipe(recipeId))
+const recipe = computed(() => recipeStore.getRecipe(recipeId))
 
 const categoryIcons: Record<string, string> = {
   FISH: 'mdi-fish',
@@ -20,15 +20,15 @@ const getCategoryIcon = (category: string) => {
 }
 
 onMounted(() => {
-  if (store.recipes.length === 0) {
-    store.getRecipes()
+  if (recipeStore.recipes.length === 0) {
+    recipeStore.getRecipes()
   }
 })
 </script>
 
 <template>
   <v-container class="fill-height d-flex justify-center align-center">
-    <v-card v-if="store.recipes.length === 0" class="pa-5 text-center">
+    <v-card v-if="recipeStore.recipes.length === 0" class="pa-5 text-center">
       <v-progress-circular indeterminate color="green"></v-progress-circular>
       <div class="mt-2">Loading...</div>
     </v-card>

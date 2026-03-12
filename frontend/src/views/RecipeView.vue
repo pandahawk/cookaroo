@@ -18,13 +18,20 @@ const getCategoryIcon = (category: string) => {
 }
 
 onMounted(async () => {
+  console.log('Component mounted.')
+  debugger;
   await recipeStore.getRecipes()
 })
 </script>
 
 <template>
   <v-container>
-    <v-row>
+    <v-card v-if="recipeStore.recipes.length === 0" class="pa-5 text-center">
+      <v-progress-circular indeterminate color="green"></v-progress-circular>
+      <div class="mt-2">Loading...</div>
+    </v-card>
+
+    <v-row v-else>
       <v-col v-for="recipe in recipes" :key="recipe.id" cols="12" sm="6" md="4">
         <v-card variant="elevated" class="recipe-card">
           <v-card-item>
